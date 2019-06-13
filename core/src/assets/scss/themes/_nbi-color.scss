@@ -1,0 +1,126 @@
+// Themes
+//
+// Themes can affect any of the primary types. They can
+// override base styles like default link colours. They can change
+// module elements such as colours and borders. They can affect
+// layout with different arrangements. They can also alter how states look.
+//
+// @source http://smacss.com/book/type-theme
+
+$bulgarian-rose: #460c0a;
+$ua-blue: #0233ab;
+$chrome-yellow: #ffa900;
+$misty-rose: #ffe5e4;
+
+// Primary
+$red-050: #fef0f0;
+$red-100: #f8d9d9;
+$red-200: #f1b3b3;
+$red-300: #e98e8e;
+$red-400: #e26868;
+$red-500: #db4242;
+$red-600: #af3535;
+$red-700: #832828;
+$red-800: #581a1a;
+$red-900: #2c0d0d;
+
+$yellow-vivid-050: #fffbea;
+$yellow-vivid-100: #fff3c4;
+$yellow-vivid-200: #fce588;
+$yellow-vivid-300: #fadb5f;
+$yellow-vivid-400: #f7c948;
+$yellow-vivid-500: #f0b429;
+$yellow-vivid-600: #de911d;
+$yellow-vivid-700: #cb6e17;
+$yellow-vivid-800: #b44d12;
+$yellow-vivid-900: #8d2b0b;
+
+$white: #ffffff;
+$black: #333333;
+
+// Neutrals
+$warm-grey-050: #faf9f7;
+$warm-grey-100: #e8e6e1;
+$warm-grey-200: #d3cec4;
+$warm-grey-300: #b8b2a7;
+$warm-grey-400: #a39e93;
+$warm-grey-500: #857f72;
+$warm-grey-600: #625d52;
+$warm-grey-700: #504a40;
+$warm-grey-800: #423d33;
+$warm-grey-900: #27241d;
+
+// Supporting
+$cyan-050: #e0fcff;
+$cyan-100: #bef8fd;
+$cyan-200: #87eaf2;
+$cyan-300: #54d1db;
+$cyan-400: #38bec9;
+$cyan-500: #2cb1bc;
+$cyan-600: #14919b;
+$cyan-700: #0e7c86;
+$cyan-800: #0a6c74;
+$cyan-900: #044e54;
+
+$lime-green-050: #f2fde0;
+$lime-green-100: #e2f7c2;
+$lime-green-200: #c7ea8f;
+$lime-green-300: #abdb5e;
+$lime-green-400: #94c843;
+$lime-green-500: #7bb026;
+$lime-green-600: #63921a;
+$lime-green-700: #507712;
+$lime-green-800: #42600c;
+$lime-green-900: #2b4005;
+
+$info-050: #e4f3fb;
+$info-100: #2294cf;
+$info-200: #208ac0;
+$success-050: #eaf6ea;
+$success-100: #57ae5b;
+$success-200: #3f9142;
+$warning-050: #fdf7e7;
+$warning-100: #f7c948;
+$warning-200: #f0b429;
+$danger-050: #fee8eb;
+$danger-100: #cf1124;
+$danger-200: #ab091e;
+
+$color-primary-darken: $red-800;
+$color-primary: $red-600;
+$color-primary-lighten: $red-100;
+
+$color-secondary: $yellow-vivid-700;
+$color-accents: $cyan-600;
+
+$color-shadow: $warm-grey-400;
+$color-note: $warm-grey-700;
+
+// Common colors
+$color-background: $warm-grey-050;
+$color-background-shade: $warm-grey-100;
+$color-text: $warm-grey-900;
+$color-text-weak: $warm-grey-300;
+$color-text-strong: $red-500;
+$color-text-heading: $warm-grey-600;
+
+// Links
+$color-link: $yellow-vivid-600;
+$color-link-hover: $yellow-vivid-800;
+$color-link-visited: $yellow-vivid-900;
+
+// Code
+$color-code: $warm-grey-400;
+$color-code-background: $warm-grey-200;
+$color-pre: $warm-grey-200;
+$color-pre-background: $warm-grey-900;
+
+// Selections
+$color-selection: $red-050;
+
+// Messages
+$color-message: #f4ecbb;
+$color-success: #2cde2c;
+$color-warning: #cf8600;
+$color-important: #d00;
+$color-notice: #66b;

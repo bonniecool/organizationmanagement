@@ -1,0 +1,13 @@
+.checklist label {
+  font-size: 0.8em;
+  color: #999;
+  line-height: 1.8em;
+}
+
+.checklist .item {
+  padding: 20px;
+}
+
+.checklist .item:nth-of-type(even) {
+  background: #fafafa;
+}

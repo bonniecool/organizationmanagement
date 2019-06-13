@@ -1,0 +1,25 @@
+.login-card {
+  background: $white;
+  box-shadow: 0 4px 16px 0 rgba($black, 0.05);
+  height: 400px;
+  max-width: 830px;
+  border-radius: 4px;
+
+  .login-form {
+    width: 380px;
+    padding: 48px 30px;
+    display: inline-block;
+    border-radius: 4px 0 0 4px;
+    .login-title {
+      font-family: $font-family-sans-2;
+      font-size: 22px;
+      color: $gray-chateau;
+      line-height: 32px;
+      margin: 0;
+      margin-bottom: 18px;
+    }
+    .btn-login {
+      margin-top: 57px;
+    }
+  }
+}

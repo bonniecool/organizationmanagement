@@ -1,0 +1,35 @@
+.main-loader {
+  position: fixed;
+  height: 4px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to right,
+    $color-primary 0%,
+    $color-primary-lighten 50%,
+    $color-primary 100%
+  );
+  background-size: 200% auto;
+  background-position: 0 100%;
+  animation: gradient 3s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  transition: 500ms all ease;
+  opacity: 0;
+  visibility: hidden;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

@@ -1,0 +1,63 @@
+.client .client-avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.client .client-avatar .status {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+}
+
+.client .client-title {
+  margin-top: 20px;
+}
+
+.client .client-title h3 {
+  font-weight: 500;
+  color: #555;
+}
+
+.client .client-title span {
+  font-size: 0.9em;
+  color: #aaa;
+  display: block;
+}
+
+.client .client-title a {
+  padding: 2px 30px;
+  border-radius: 40px;
+  background: #54e69d;
+  color: #fff;
+  margin-top: 5px;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+.client .client-title a:hover {
+  background: #85b4f2;
+}
+
+.client .client-info {
+  margin-top: 20px;
+}
+
+.client .client-info strong {
+  font-weight: 700;
+}
+
+.client .client-social {
+  margin-top: 20px;
+}
+
+.client .client-social a {
+  color: #aaa;
+}

@@ -1,0 +1,35 @@
+.login-details {
+  width: calc(830px - 380px);
+  display: inline-block;
+  height: 400px;
+  border-radius: 0 4px 4px 0;
+  background-size: cover;
+  vertical-align: top;
+  position: relative;
+
+  &>.login-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
+    left: 0;
+
+    & .logo {
+      width: auto;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+
+    & .caption {
+      color: $white;
+      font-weight: 600;
+    }
+
+    & .message {
+      margin-bottom: 0;
+      line-height: 22px;
+      font-size: 14px;
+      color: $white;
+    }
+  }
+}

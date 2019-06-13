@@ -1,0 +1,71 @@
+// Colors: Common
+$green-common: #2CAC87;
+// Colors: Gray
+$gray-gravel: #D6D6D6;
+$gray-med-dark: #999999;
+.wizard-wrapper .title{
+  text-align: center;
+  color: $green-common;
+}
+.wizard {
+  list-style: none;
+  padding: 0 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wizard.numeric li:not(:last-child){
+  width: 100%;
+
+  span {
+    color: $gray-med-dark;
+    border: 3px solid $gray-gravel;
+    border-radius: 50px;
+    text-align: center;
+    width: 27px;
+    height: 27px;
+    display: inline-block;
+    line-height: 22px;
+    font-weight: bold;
+  }
+
+  &.done span {
+    border: 3px solid $green-common;
+    color: $green-common;
+  }
+
+  &.active span {
+    color: #fff;
+    background: $green-common;
+    border: 3px solid $green-common;
+  }
+}
+
+.wizard.numeric li:last-child {
+  color: $gray-med-dark;
+  border: 3px solid $gray-gravel;
+  border-radius: 50px;
+  text-align: center;
+  width: 27px;
+  height: 27px;
+  display: table;
+  line-height: 22px;
+}
+
+.wizard.numeric li.active:last-child{
+color: #fff;
+    background: $green-common;
+    border: 3px solid $green-common;
+}
+.wizard.numeric li:not(:last-child):after {
+  content: '';
+  background: $gray-gravel;
+  height: 4px;
+  border-radius: 4px;
+  display: flex;
+  margin: -15px 10px 0 35px;
+}
+
+.wizard.numeric li.done:not(:last-child):after {
+  background: $green-common;
+}

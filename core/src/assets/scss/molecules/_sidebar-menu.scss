@@ -1,0 +1,111 @@
+.sidebar-menu {
+  margin: 4px 8px;
+  background: $romance;
+  text-decoration: none;
+  transform: 500ms ease;
+  outline: none;
+  &:hover,
+  &:focus {
+    outline: none;
+    & > .link > .menu-icon {
+      fill: $color-primary;
+    }
+    & > .link > .menu-text {
+      color: darken($gray-chateau, 50%);
+    }
+  }
+  & > .link {
+    text-decoration: none;
+    padding: 4px 16px;
+    display: block;
+    transform: 500ms ease;
+    display: flex;
+
+    & > .menu-icon {
+      transform: 500ms ease;
+      fill: darken($gray-chateau, 20%);
+    }
+
+    & > .menu-text {
+      transform: 500ms ease;
+      font-size: 14px;
+      color: darken($gray-chateau, 20%);
+      letter-spacing: 0;
+      line-height: 24px;
+      font-family: $font-family-sans-2;
+      font-style: normal;
+      font-weight: 500;
+      margin-right: auto;
+    }
+    & > .menu-badge {
+      line-height: 24px;
+      padding: 0 8px;
+      background: transparent;
+      color: darken($gray-chateau, 20%);
+    }
+  }
+  &.active {
+    background: $color-primary-lighten;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    &:hover,
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    & > .link > .menu-icon {
+      fill: $color-primary;
+    }
+    & > .link > .menu-text {
+      color: $color-primary;
+    }
+    & > .link > .menu-badge {
+      background: $color-primary;
+      color: $white;
+    }
+  }
+}
+
+.sidebar-navigation.shrinked {
+  & .sidebar-menu {
+    margin: 2px;
+    & > .link {
+      height: 40px;
+      padding: 4px 4px;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      flex-flow: column;
+
+      & > .menu-icon {
+        display: block;
+        margin: 0 auto;
+      }
+
+      & > .menu-text {
+        margin-top: 8px;
+        font-size: 10px;
+        line-height: 14px;
+        text-transform: uppercase;
+        display: none;
+      }
+
+      & > .menu-badge {
+        display: none;
+      }
+    }
+    &.active {
+      background: $color-primary-lighten;
+      border-radius: 4px;
+      outline: none;
+      box-shadow: none;
+      & > .link > .menu-icon {
+        fill: $color-primary;
+      }
+      & > .link > .menu-text {
+        color: $color-primary;
+      }
+    }
+  }
+}

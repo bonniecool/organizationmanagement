@@ -1,0 +1,51 @@
+.loader-wrapper {
+  position: fixed;
+  left: calc(50% - 25px);
+  z-index: 1051;
+  top: 20px;
+}
+$bars: 5;
+$size: 25px;
+$fBlue: $btn-primary-color;
+$ease: 0.3s ease-in-out;
+$delay: 0.1s;
+
+.loader {
+  padding: 10px;
+  width: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  border-radius: 3px;
+  margin: auto;
+  display: flex;
+  flex-flow: row no-wrap;
+  justify-content: center;
+  align-items: center;
+  &.loaded {
+    .bar {
+      width: 5px;
+      height: 5px;
+      margin-right: 1px;
+      border-radius: 5px;
+      background: $fBlue;
+      flex: 1 5px;
+      &:last-child {
+        margin: 0;
+      }
+      @for $i from 1 through $bars {
+        &:nth-child(#{$i}) {
+          animation: load $ease $delay * $i infinite alternate;
+        }
+      }
+    }
+  }
+}
+@keyframes load {
+  100% {
+    height: $size;
+  }
+}

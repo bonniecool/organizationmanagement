@@ -1,0 +1,104 @@
+/*FINGERPRINT*/
+.finger-print {
+  float: left;
+  margin: 10px;
+}
+
+.finger-print.left-hand .hand, .finger-print.right-hand .hand {
+  width: 350px;
+  position: absolute;
+}
+
+.finger-print.left-hand, .finger-print.right-hand {
+  position: relative;
+  height: 480px;
+  width: 350px;
+}
+
+.finger-print.left-hand .first img,
+.finger-print.left-hand .second img,
+.finger-print.left-hand .third img,
+.finger-print.left-hand .fourth img,
+.finger-print.left-hand .fifth img,
+.finger-print.right-hand .first img,
+.finger-print.right-hand .second img,
+.finger-print.right-hand .third img,
+.finger-print.right-hand .fourth img,
+.finger-print.right-hand .fifth img {
+    width: 43px;
+    border-radius: 50px;
+}
+
+.finger-print.left-hand .first, .finger-print.left-hand .second, .finger-print.left-hand .third, .finger-print.left-hand .fourth, .finger-print.left-hand .fifth {
+  position: absolute;
+  z-index: 1;
+}
+
+.finger-print.left-hand li.first {
+  left: -2px;
+  top: 69px;
+}
+
+.finger-print.left-hand li.second {
+  left: 63px;
+  top: 22px;
+}
+
+.finger-print.left-hand li.third {
+  left: 129px;
+  top: 4px;
+}
+
+.finger-print.left-hand li.fourth {
+  right: 102px;
+  top: 40px;
+}
+
+.finger-print.left-hand li.fifth {
+  right: 3px;
+  bottom: 166px;
+  -ms-transform: rotate(35deg);
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+
+.finger-print.left-hand li.fifth img {
+  width: 60px;
+}
+/*RIGHT*/
+.finger-print.right-hand .first, .finger-print.right-hand .second, .finger-print.right-hand .third, .finger-print.right-hand .fourth, .finger-print.right-hand .fifth {
+  position: absolute;
+  z-index: 1;
+}
+
+.finger-print.right-hand li.first {
+  right: -2px;
+  top: 69px;
+}
+
+.finger-print.right-hand li.second {
+  right: 63px;
+  top: 22px;
+}
+
+.finger-print.right-hand li.third {
+  right: 129px;
+  top: 4px;
+}
+
+.finger-print.right-hand li.fourth {
+  left: 102px;
+  top: 40px;
+}
+
+.finger-print.right-hand li.fifth {
+  left: 3px;
+  bottom: 166px;
+  -ms-transform: rotate(-35deg);
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
+
+.finger-print.right-hand li.fifth img {
+  width: 60px;
+}
