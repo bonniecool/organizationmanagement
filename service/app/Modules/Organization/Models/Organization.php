@@ -27,7 +27,7 @@ class Organization extends Model
      */
     public function profile()
     {
-//        return $this->hasMany(UserRepository::class, 'organization_id');
+        return $this->hasMany(UserRepository::class, 'organization_id');
     }
 
     /**
