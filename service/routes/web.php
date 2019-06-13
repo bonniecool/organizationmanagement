@@ -14,6 +14,6 @@ use Damnyan\Cmn\Services\ApiResponse;
 
 Route::get('/', function () {
     return (new ApiResponse)->resource([
-        'message' => 'Apollo API'
+        'message' => 'Huskies API'
     ]);
 });

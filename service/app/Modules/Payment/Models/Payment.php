@@ -38,6 +38,6 @@ class Payment extends Model implements AuditableContract
      */
     public function transaction() //pending
     {
-        return $this->belongsTo(TransactionRepository::class, 'txnid', 'txnid');
+//        return $this->belongsTo(TransactionRepository::class, 'txnid', 'txnid');
     }
 }

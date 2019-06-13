@@ -1,8 +1,0 @@
-{
-    "name": "Transaction",
-    "slug": "transaction",
-    "version": "1.0",
-    "description": "This is the description for the Transaction module.",
-    "order": "1500"
-}
-

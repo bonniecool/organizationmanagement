@@ -7,7 +7,7 @@ use Multipay\Multipay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\Payment\Repositories\PaymentRepository;
-use App\Modules\Transaction\Repositories\TransactionRepository;
+//use App\Modules\Transaction\Repositories\TransactionRepository;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
@@ -19,11 +19,11 @@ class PaymentService
     protected $transaction;
 
     public function __construct(
-        PaymentRepository $payment,
-        TransactionRepository $transaction
+        PaymentRepository $payment
+//        TransactionRepository $transaction
     ) {
         $this->payment     = $payment;
-        $this->transaction = $transaction;
+//        $this->transaction = $transaction;
     }
 
     public function process($transaction)
