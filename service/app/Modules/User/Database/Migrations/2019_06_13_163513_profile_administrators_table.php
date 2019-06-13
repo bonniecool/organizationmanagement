@@ -18,6 +18,8 @@ class ProfileAdministratorsTable extends Migration
             $table->string('first_name', 64);
             $table->string('middle_name', 64)->nullable();
             $table->string('last_name', 64);
+            $table->enum('gender', ['MALE', 'FEMALE'])->nullable();
+            $table->date('birth_date')->nullable();
             $table->string('suffix', 8)->nullable();
             $table->string('mobile_number', 32)->nullable();
             $table->string('photo', 256)->nullable();

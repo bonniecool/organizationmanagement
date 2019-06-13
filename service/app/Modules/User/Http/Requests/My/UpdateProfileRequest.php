@@ -23,14 +23,7 @@ class UpdateProfileRequest extends ApiRequest
     */
     public function rules()
     {
-        // if ($this->method() === 'PUT') {
-        // }
         $user = request()->user();
-
         return config("module_user.request.$user->profile_type.update");
-
-        // return [
-
-        // ];
     }
 }

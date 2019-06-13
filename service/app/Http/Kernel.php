@@ -60,9 +60,10 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'admin' => \App\Modules\User\Http\Middleware\AdministratorMiddleware::class,
+//        'Administrator' => \App\Modules\User\Http\Middleware\AdministratorMiddleware::class,
         'SuperAdmin' => \App\Modules\User\Http\Middleware\SuperAdminMiddleware::class,
         'Administrator' => \App\Modules\User\Http\Middleware\AdministratorMiddleware::class,
+        'BranchAdministrator' => \App\Modules\User\Http\Middleware\BranchAdministratorMiddleware::class,
         'SiteUser' => \App\Modules\User\Http\Middleware\SiteUserMiddleware::class,
     ];
 }
