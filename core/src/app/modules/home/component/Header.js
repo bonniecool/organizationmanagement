@@ -2,18 +2,15 @@ import React, { Component } from "react";
 import { withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { AsyncComponent } from "app/Utils";
-const Header = AsyncComponent(() => import("../component/Header"));
+import './style.css';
 
-class Home extends Component {
+class Header extends Component {
 
   render() {
     const { match, isShinked, user_type } = this.props;
     return (
-      <div className="container">
-      <Header/>
-        <div>Sidebar</div>
-        <div>Main</div>
-        <div>Foooter</div>
+      <div id="header">
+        Heaader
       </div>
     );
   }
@@ -29,4 +26,4 @@ const mapStateToProps = (state, routeParams) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Home));
+export default withRouter(connect(mapStateToProps)(Header));

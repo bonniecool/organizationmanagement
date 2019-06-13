@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { AsyncComponent } from "app/Utils";
-const Header = AsyncComponent(() => import("../component/Header"));
+
 
 class Home extends Component {
 
   render() {
     const { match, isShinked, user_type } = this.props;
     return (
-      <div className="container">
-      <Header/>
+      <div className="page home-page">
+        <div>Header</div>
         <div>Sidebar</div>
         <div>Main</div>
         <div>Foooter</div>

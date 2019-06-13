@@ -22,7 +22,6 @@ class MainRoutes extends Component{
 
     render(){
         const { isAuthenticated } = this.props
-
         return (
             <Switch>
                 <PrivateRoute key="home" exact={ !isAuthenticated } isAuthenticated={isAuthenticated} path="/" component={ AsyncHomeContainer }/>,
