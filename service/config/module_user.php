@@ -35,6 +35,28 @@ return [
                 'mobile_number' => 'required',
             ],
         ],
+        'BranchAdministrator' => [
+            'create' => [
+                'email',
+                'password',
+                'first_name',
+                'middle_name',
+                'last_name',
+                'gender',
+                'birth_date',
+                'photo',
+                'mobile_number',
+            ],
+            'update' => [
+                'first_name' => 'required',
+                'middle_name' => '',
+                'last_name' => 'required',
+                'gender' => 'required',
+                'birth_date' => 'required',
+                'photo' => '',
+                'mobile_number' => 'required',
+            ],
+        ],
         'SiteUser' => [
             'register' => [
                 'email',

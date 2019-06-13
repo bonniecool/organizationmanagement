@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Damnyan\Cmn\Services\ApiResponse;
-use App\Modules\User\Http\Requests\My\UpdatePhotoRequest;
-use App\Modules\User\Http\Requests\My\UpdateProfileRequest;
+use App\Modules\User\Http\Requests\Mng\Brc\My\UpdatePhotoRequest;
+use App\Modules\User\Http\Requests\Mng\Brc\My\UpdateProfileRequest;
 use App\Modules\User\Http\Requests\UpdatePasswordRequest;
 use App\Modules\User\Http\Resources\User as UserResource;
 
@@ -47,7 +47,6 @@ class ProfileController extends Controller
      */
     public function updateProfile(UpdateProfileRequest $request)
     {
-
         $user = request()->user();
         $payload = $request->only(config("module_user.request.$user->profile_type.create"));
 

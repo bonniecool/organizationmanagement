@@ -16,6 +16,8 @@ class BranchAdministrator extends Resource
     {
         return [
             'profile_id' => $this->id,
+            'branch_id' => $this->id,
+            'branch_name' => optional($this->branch)->name,
             'photo' => $this->photo,
             'full_name' => $this->full_name,
             'first_name' => $this->first_name,
