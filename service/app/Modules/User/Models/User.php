@@ -10,26 +10,20 @@ use App\Modules\Acl\Traits\UserAclTrait;
 use Illuminate\Notifications\Notifiable;
 use OwenIt\Auditing\Contracts\UserResolver;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Auth\Passwords\CanResetPassword;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use Damnyan\Cmn\Traits\Models\CreatorUpdaterTrait;
-use App\Modules\Wallet\Repositories\WalletRepository;
 use App\Modules\User\Repositories\UserTokenRepository;
-use App\Modules\Project\Repositories\ProjectRepository;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Modules\Transaction\Repositories\TransactionRepository;
 use App\Modules\Organization\Repositories\OrganizationRepository;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements
     AuditableContract,
     AuthenticatableContract,
-
     JWTSubject,
     UserResolver
 {
-    use Auditable, Authenticatable,
+    use Auditable, Authenticatable, CreatorUpdaterTrait,
     Notifiable, SoftDeletes, UserAclTrait;
 
     public $resourceName = 'User';
@@ -37,9 +31,16 @@ class User extends Model implements
     protected $table = 'users';
 
     protected $fillable = [
+        'organization_id',
         'email',
         'password',
-        'completed_profile'
+        'pin',
+        'mac_address',
+        'is_activated',
+        'is_active',
+        'activated_at',
+        'created_by',
+        'updated_by'
     ];
 
     protected $hidden = [

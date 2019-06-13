@@ -75,12 +75,14 @@ return [
         'user_types' => [
             'superadmin' => 'SuperAdmin',
             'administrator' => 'Administrator',
+            'branchadmin' => 'BranchAdministrator',
             'siteuser' => 'SiteUser',
         ],
     ],
     'mng_login' => [
         'Administrator',
-        'SuperAdmin'
+        'BranchAdministrator',
+        'SuperAdmin',
     ],
     'ste_login' => [
         'SiteUser',

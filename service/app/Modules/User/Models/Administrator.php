@@ -20,11 +20,8 @@ class Administrator extends Model implements AuditableContract
         'first_name',
         'middle_name',
         'last_name',
-        'gender',
         'mobile_number',
-        'birth_date',
         'photo',
-        'is_active'
     ];
 
      /**

@@ -6,17 +6,18 @@ use OwenIt\Auditing\Auditable;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class SuperAdmin extends Model implements AuditableContract
+class BranchAdministrator extends Model implements AuditableContract
 {
     use Auditable;
 
-    protected $resourceName = 'Super Admin';
+    protected $resourceName = 'Branch Administrator';
 
-    protected $table = 'profile_super_administrators';
+    protected $table = 'profile_branch_administrators';
 
     public $timestamps = false;
 
     protected $fillable = [
+        'uuid',
         'first_name',
         'middle_name',
         'last_name',
