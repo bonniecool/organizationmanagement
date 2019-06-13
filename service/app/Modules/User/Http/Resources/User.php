@@ -18,13 +18,13 @@ class User extends Resource
     {
         //user
         $profile = 'App\\Modules\\User\\Http\\Resources\\Profile\\'.$this->user->profile_type;
-
         return [
             'id' => $this->id,
             'profile_type' => $this->user->profile_type,
             'email' => $this->user->email,
             'profile' => new $profile($this->user->profile),
-            'completed_profile' => $this->user->completed_profile
+            'organization_id' => $this->user->organization_id,
+            'organization_name' => optional($this->user->organization)->name
         ];
     }
 }
