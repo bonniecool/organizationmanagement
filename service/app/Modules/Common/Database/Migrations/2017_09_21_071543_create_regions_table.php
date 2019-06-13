@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBirthDateOnProfileSiteUsersTable extends Migration
+class CreateRegionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddBirthDateOnProfileSiteUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('profile_site_users', function (Blueprint $table) {
-            $table->date('birth_date')->after('gender')->nullable();
+        Schema::create('regions', function (Blueprint $table) {
+            $table->string('code', 16)->primary();
+            $table->string('name', 128);
         });
     }
 
@@ -25,8 +26,6 @@ class AddBirthDateOnProfileSiteUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('profile_site_users', function (Blueprint $table) {
-            $table->dropColumn('birth_date');
-        });
+        Schema::dropIfExists('regions');
     }
 }

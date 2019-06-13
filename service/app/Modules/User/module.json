@@ -3,5 +3,5 @@
     "slug": "user",
     "version": "1.0",
     "description": "This is the description for the User module.",
-    "order" : 50
+    "order" : 300
 }
