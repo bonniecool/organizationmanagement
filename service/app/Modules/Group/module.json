@@ -1,0 +1,7 @@
+{
+    "name": "Group",
+    "slug": "group",
+    "version": "1.0",
+    "description": "This is the description for the Group module.",
+    "order": 55
+}
