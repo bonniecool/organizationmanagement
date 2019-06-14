@@ -46,15 +46,17 @@ return [
                 'birth_date',
                 'photo',
                 'mobile_number',
+                'pin'
             ],
             'update' => [
-                'first_name' => 'required',
-                'middle_name' => '',
-                'last_name' => 'required',
-                'gender' => 'required',
-                'birth_date' => 'required',
-                'photo' => '',
-                'mobile_number' => 'required',
+                'first_name',
+                'middle_name',
+                'last_name',
+                'gender',
+                'birth_date',
+                'photo',
+                'mobile_number',
+                'pin'
             ],
         ],
         'SiteUser' => [

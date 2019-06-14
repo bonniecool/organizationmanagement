@@ -31,7 +31,9 @@ class User extends Model implements
     protected $table = 'users';
 
     protected $fillable = [
+        'profile_id',
         'organization_id',
+        'profile_type',
         'email',
         'password',
         'pin',

@@ -3,12 +3,15 @@
 namespace App\Modules\Branch\Http\Controllers\Mng;
 
 use Illuminate\Http\Request;
+use App\Modules\User\Models\User;
 use App\Http\Controllers\Controller;
 use Damnyan\Cmn\Services\ApiResponse;
 use App\Modules\Branch\Http\Resources\Branch;
 use App\Modules\Branch\Repositories\BranchRepository;
 use App\Modules\Branch\Http\Requests\Mng\BranchRequest;
 use App\Modules\Branch\Http\Resources\BranchCollection;
+use App\Modules\User\Http\Requests\Mng\CreateAdministratorRequest;
+use App\Modules\User\Http\Requests\Mng\UpdateAdministratorRequest;
 
 class BranchController extends Controller
 {
@@ -119,6 +122,129 @@ class BranchController extends Controller
             ->delete();
 
         $response['message'] = 'Succesfully deleted branch';
+        return $this->apiResponse->resource($response);
+    }
+
+    /**
+     * branch admin list per branch.
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function branchAdminList(Request $request, $branchId)
+    {
+        $users = $request
+            ->user()
+            ->organization
+            ->branches()
+            ->findOrFail($branchId)
+            ->profile()
+            ->get()
+            ->load('user');
+
+        $response['data'] = $users;
+        return $this->apiResponse->resource($response);
+    }
+
+    /**
+     * create branch admin per branch.
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function createBranchAdmin(CreateAdministratorRequest $request, $branchId)
+    {
+        $payload = $request->only(config('module_user.request.BranchAdministrator.create'));
+
+        $organizationId = $request
+            ->user()
+            ->organization
+            ->id;
+
+        $profile = $request
+            ->user()
+            ->organization
+            ->branches()
+            ->findOrFail($branchId)
+            ->profile()
+            ->create($payload);
+
+        $payload['profile_id'] = $profile->id;
+        $payload['organization_id'] = $organizationId;
+        $payload['profile_type'] = 'BranchAdministrator';
+
+        $user = User::create($payload);
+
+        $response['profile'] = $profile;
+        $response['user'] = $user;
+        $response['message'] = 'Successfully created user for this branch.';
+        return $this->apiResponse->resource($response);
+    }
+
+    /**
+     * update branch admin per branch.
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function updateBranchAdmin(UpdateAdministratorRequest $request, $branchId, $profileId)
+    {
+        $payload = $request->only(config('module_user.request.BranchAdministrator.update'));
+
+        $profile = $request
+            ->user()
+            ->organization
+            ->branches()
+            ->findOrFail($branchId)
+            ->profile()
+            ->findOrFail($profileId);
+
+        $profile->update($payload);
+    
+        $response['data'] = $profile->fresh();
+        $response['message'] = 'Successfully updated user for this branch.';
+        return $this->apiResponse->resource($response);
+    }
+
+    /**
+     * update branch admin per branch.
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function branchAdminDetails(Request $request, $branchId, $profileId)
+    {
+        $profile = $request
+            ->user()
+            ->organization
+            ->branches()
+            ->findOrFail($branchId)
+            ->profile()
+            ->findOrFail($profileId)
+            ->load('user');
+    
+        $response['data'] = $profile;
+        return $this->apiResponse->resource($response);
+    }
+
+    /**
+     * delete branch admin per branch.
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function deleteBranchAdmin(Request $request, $branchId, $profileId)
+    {
+        $profile = $request
+            ->user()
+            ->organization
+            ->branches()
+            ->findOrFail($branchId)
+            ->profile()
+            ->findOrFail($profileId)
+            ->delete();
+
+        $user = User::where('profile_id', $profileId)
+            ->where('profile_type', 'BranchAdministrator')
+            ->first()
+            ->delete();
+    
+        $response['message'] = 'Successfully deleted branch admin.';
         return $this->apiResponse->resource($response);
     }
 }

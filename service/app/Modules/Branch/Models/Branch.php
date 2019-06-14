@@ -2,10 +2,11 @@
 
 namespace App\Modules\Branch\Models;
 
-use Emadadly\LaravelUuid\Uuids;
 use OwenIt\Auditing\Auditable;
+use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use App\Modules\User\Repositories\BranchAdministratorRepository;
 
 class branch extends Model implements AuditableContract
 {
@@ -18,7 +19,6 @@ class branch extends Model implements AuditableContract
     public $timestamps = false;
 
     protected $fillable = [
-        // 'organization_id',
         'uuid',
         'name',
         'region_code',
@@ -40,5 +40,15 @@ class branch extends Model implements AuditableContract
     public function organization()
     {
         return $this->belongsTo(OrganizationRepository::class, 'organization_id', 'id');
+    }
+
+     /**
+     * branch administrator profile Relationship
+     *
+     * @return string
+     */
+    public function profile()
+    {
+        return $this->hasMany(BranchAdministratorRepository::class, 'branch_id');
     }
 }
