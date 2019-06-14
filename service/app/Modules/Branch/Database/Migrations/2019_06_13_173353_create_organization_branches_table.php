@@ -16,7 +16,7 @@ class CreateOrganizationBranchesTable extends Migration
         Schema::create('organization_branches', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('organization_id');
-            $table->string('uuid');
+            $table->uuid('uuid');
             $table->string('name');
             $table->string('region_code', '16')->nullable();
             $table->string('province_code', '16')->nullable();
@@ -27,8 +27,13 @@ class CreateOrganizationBranchesTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('latitude')->nullable();
             $table->integer('is_active')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('region_code')->references('code')->on('regions')->onDelete('cascade');
             $table->foreign('province_code')->references('code')->on('provinces')->onDelete('cascade');
             $table->foreign('municipality_code')->references('code')->on('municipalities')->onDelete('cascade');

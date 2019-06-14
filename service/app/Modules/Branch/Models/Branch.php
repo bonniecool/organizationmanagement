@@ -2,13 +2,14 @@
 
 namespace App\Modules\Branch\Models;
 
+use Emadadly\LaravelUuid\Uuids;
 use OwenIt\Auditing\Auditable;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class branch extends Model implements AuditableContract
 {
-    use Auditable;
+    use Auditable, uuids;
 
     protected $resourceName = 'Organization Branch';
 
@@ -17,11 +18,11 @@ class branch extends Model implements AuditableContract
     public $timestamps = false;
 
     protected $fillable = [
-        'organization_id',
+        // 'organization_id',
         'uuid',
         'name',
         'region_code',
-        'provice_code',
+        'province_code',
         'municipality_code',
         'barangay_code',
         'zip_code',

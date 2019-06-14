@@ -16,7 +16,8 @@
         "laravel/tinker": "v1.0.8",
         "nicopenaredondo/multipay": "v1.4",
         "owen-it/laravel-auditing": "v8.0.4",
-        "tymon/jwt-auth": "1.0.0-rc.2"
+        "tymon/jwt-auth": "1.0.0-rc.2",
+        "emadadly/laravel-uuid": "1.*",
     },
     "require-dev": {
         "filp/whoops": "2.3.1",
