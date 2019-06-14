@@ -12,7 +12,6 @@ class Dashboard extends Component {
 
 
 	onAdd = e => {
-		console.log('here')
 		e.preventDefault();
 		const { dispatch } = this.props;
 		dispatch({
@@ -37,9 +36,6 @@ class Dashboard extends Component {
 				contact:'+63 12345678',
 				email:'george@companya.com',
 				photo:'',
-				subscription:'TRIAL',
-				status:'ACTIVE',
-				date:'2019-12-01',
 			},
 			{
 				name:'Company B',
@@ -47,19 +43,6 @@ class Dashboard extends Component {
 				contact:'+63 11122233',
 				email:'john@companyb.com',
 				photo:'',
-				subscription:'MONTHLY',
-				status:'ACTIVE',
-				date:'2019-05-31',
-			},
-			{
-				name:'Company D',
-				address:'Rotonda Quezon City PHilippines',
-				contact:'+63 8765432',
-				email:'lina@companyd.com',
-				photo:'',
-				subscription:'ANNUAL',
-				status:'ACTIVE',
-				date:'2019-01-01',
 			},
 			{
 				name:'Company C',
@@ -67,26 +50,31 @@ class Dashboard extends Component {
 				contact:'+63 11122233',
 				email:'paul@companyc.com',
 				photo:'',
-				subscription:'-',
-				status:'INACTIVE',
-				date:'2019-05-01',
 			},
+			{
+				name:'Company D',
+				address:'Rotonda Quezon City PHilippines',
+				contact:'+63 8765432',
+				email:'lina@companyd.com',
+				photo:'',
+			}
 		])
 
 		return (
 			<div className="">
 				<header className="page-header">
 					<div className="container-fluid">
-						<h2 className="title-header m-2">Transactions</h2>
+						<h2 className="title-header m-2">Members</h2>
 					</div>
 				</header>
 				<div className="container-fluid">
 					<div className="row">
-						<div className="col-md-12">
+						<div className="col-md-4">
 							<div className="card">
 								<div className="card-header">
+									<button className="btn btn-primary btn-sm btn-block mb-2" type="button" onClick={this.onAdd}>Add Member</button>
 									<div className="input-group input-group-sm">
-									<input type="text" className="form-control" placeholder="Search Organization" />
+									<input type="text" className="form-control" placeholder="Search Branches" />
 									<div className="input-group-append">
 										<button className="btn btn-sm btn-primary" type="button" >Search</button>
 									</div>
@@ -95,6 +83,21 @@ class Dashboard extends Component {
 								<div className="">
 										<Organization
 											data={data}
+										/>
+								</div>
+							</div>
+						</div>
+						<div className="col-md-8">
+							<div className="card">
+								<div className="card-header">
+									Member's Name
+									<div className="pull-right">
+										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Edit Information</button>
+									</div>
+								</div>
+								<div className="card-body">
+										<Profile 
+											data={data.getIn([0])}
 										/>
 								</div>
 							</div>
@@ -109,9 +112,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state, routeParams) => {
-	const superAdminTransaction = state.superAdminTransaction;
+	const superAdminOrganization = state.superAdminOrganization;
 	return {
-		list : superAdminTransaction.get('list'),
+		list : superAdminOrganization.get('list'),
 	};
 };
 

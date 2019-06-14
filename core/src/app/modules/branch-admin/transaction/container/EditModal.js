@@ -95,7 +95,7 @@ class AddDeductionModal extends Component {
 }
 
 const mapPropsToState = (state, routeParams) => {
-    const form_data = state.superAdminOrganization.get('form_data')
+    const form_data = state.superAdminTransaction.get('form_data')
     return {
         form_data
     };

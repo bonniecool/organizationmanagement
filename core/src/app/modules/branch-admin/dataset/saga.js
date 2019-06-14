@@ -2,7 +2,7 @@ import { takeEvery, put, call, all } from 'redux-saga/effects';
 import { loading, services, watchApiResponse } from 'app/Utils';
 import * as c from './constant';
 
-function* getStatistic() {
+function* list() {
 	yield put(loading('GET_STATISTIC'));
 
 	const response = yield call(services.get(`/mng/dashboard`))
@@ -13,7 +13,7 @@ function* getStatistic() {
 		const { data } = response.data
 
 		yield put({
-			type: c.GOT_STATISTIC,
+			type: c.GOT_LIST,
 			data
 		})
 	})
@@ -22,6 +22,6 @@ function* getStatistic() {
 
 export default function* (){
 	yield all([
-		takeEvery(c.GET_STATISTIC, getStatistic),
+		takeEvery(c.GET_LIST, list),
 	]);
 };

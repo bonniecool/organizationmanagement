@@ -108,44 +108,34 @@ class SidebarNavigation extends Component {
           </ul>
           <span className="sidebar-title">Organization</span>
           <ul className="sidebar-list list-unstyled">
-            <li className={`sidebar-menu ${getClassName("employee")}`}>
-              <Link to="/employee" className="link collapsed">
+            <li className={`sidebar-menu ${getClassName("members")}`}>
+              <Link to="/members" className="link collapsed">
                 <IconEmployee />
                 <span className="menu-text">Members</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("request")}`}>
-              <Link to="/request/leave" className="link collapsed">
+            <li className={`sidebar-menu ${getClassName("attendance")}`}>
+              <Link to="/attendance" className="link collapsed">
                 <IconRequestApproval />{" "}
                 <span className="menu-text">Attendance</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("request")}`}>
-              <Link to="/request/leave" className="link collapsed">
+            <li className={`sidebar-menu ${getClassName("Events")}`}>
+              <Link to="/events" className="link collapsed">
                 <IconRequestApproval />{" "}
                 <span className="menu-text">Events</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("request")}`}>
-              <Link to="/request/leave" className="link collapsed">
+            <li className={`sidebar-menu ${getClassName("guest")}`}>
+              <Link to="/guest" className="link collapsed">
                 <IconRequestApproval />{" "}
                 <span className="menu-text">Guests</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("request")}`}>
-              <Link to="/request/leave" className="link collapsed">
+            <li className={`sidebar-menu ${getClassName("comment-suggestion")}`}>
+              <Link to="/comment-suggestion" className="link collapsed">
                 <IconRequestApproval />{" "}
                 <span className="menu-text">Comments & Suggestions</span>
-              </Link>
-            </li>
-          </ul>
-
-          <span className="sidebar-title">Settings</span>
-          <ul className="sidebar-list list-unstyled">
-            <li className={`sidebar-menu ${getClassName("user-management")}`}>
-              <Link to="/user-management" className="link collapsed">
-                <IconUserManagement />{" "}
-                <span className="menu-text">User Management</span>
               </Link>
             </li>
           </ul>

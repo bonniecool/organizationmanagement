@@ -36,7 +36,7 @@ class Home extends Component {
 
   render() {
     const { isShinked } = this.props;
-    const user = 'admin';
+    const user = 'branch';
 
     return (
       <div className="page home-page">

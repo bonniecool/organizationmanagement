@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import GeoMap from '../../chart/GeoMap';
+import GeoMap from 'app/modules/chart/GeoMap';
 // import { List } from 'immutable';
 import * as c from '../constant';
 import { AsyncComponent } from 'app/Utils';

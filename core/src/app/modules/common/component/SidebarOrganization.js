@@ -108,27 +108,22 @@ class SidebarNavigation extends Component {
           </ul>
           <span className="sidebar-title">Organization</span>
           <ul className="sidebar-list list-unstyled">
-            
-            <li className={`sidebar-menu ${getClassName("request")}`}>
-              <Link to="/request/leave" className="link collapsed">
+            <li className={`sidebar-menu ${getClassName("branches")}`}>
+              <Link to="/branches" className="link collapsed">
+                <IconEmployee />
+                <span className="menu-text">Branches</span>
+              </Link>
+            </li>
+            <li className={`sidebar-menu ${getClassName("transaction")}`}>
+              <Link to="/transaction" className="link collapsed">
                 <IconRequestApproval />{" "}
                 <span className="menu-text">Transaction</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("employee")}`}>
-              <Link to="/employee" className="link collapsed">
-                <IconEmployee />
-                <span className="menu-text">Users</span>
-              </Link>
-            </li>
-          </ul>
-
-          <span className="sidebar-title">Settings</span>
-          <ul className="sidebar-list list-unstyled">
-            <li className={`sidebar-menu ${getClassName("user-management")}`}>
-              <Link to="/user-management" className="link collapsed">
+            <li className={`sidebar-menu ${getClassName("members")}`}>
+              <Link to="/members" className="link collapsed">
                 <IconUserManagement />{" "}
-                <span className="menu-text">Organization Profile</span>
+                <span className="menu-text">Members</span>
               </Link>
             </li>
           </ul>

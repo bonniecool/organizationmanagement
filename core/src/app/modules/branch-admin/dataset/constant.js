@@ -1,4 +1,4 @@
-export const MODULE = 'SUPER-ADMIN-TRANSACTION';
+export const MODULE = 'SUPER-ADMIN-DATASET';
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`

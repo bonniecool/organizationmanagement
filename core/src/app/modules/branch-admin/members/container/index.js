@@ -12,7 +12,6 @@ class Dashboard extends Component {
 
 
 	onAdd = e => {
-		console.log('here')
 		e.preventDefault();
 		const { dispatch } = this.props;
 		dispatch({
@@ -65,7 +64,7 @@ class Dashboard extends Component {
 			<div className="">
 				<header className="page-header">
 					<div className="container-fluid">
-						<h2 className="title-header m-2">Organization</h2>
+						<h2 className="title-header m-2">Members</h2>
 					</div>
 				</header>
 				<div className="container-fluid">
@@ -73,9 +72,9 @@ class Dashboard extends Component {
 						<div className="col-md-4">
 							<div className="card">
 								<div className="card-header">
-									<button className="btn btn-primary btn-sm btn-block mb-2" type="button" onClick={this.onAdd}>Add Company</button>
+									<button className="btn btn-primary btn-sm btn-block mb-2" type="button" onClick={this.onAdd}>Add Member</button>
 									<div className="input-group input-group-sm">
-									<input type="text" className="form-control" placeholder="Search Organization" />
+									<input type="text" className="form-control" placeholder="Search Branches" />
 									<div className="input-group-append">
 										<button className="btn btn-sm btn-primary" type="button" >Search</button>
 									</div>
@@ -91,9 +90,9 @@ class Dashboard extends Component {
 						<div className="col-md-8">
 							<div className="card">
 								<div className="card-header">
-								 Organization Name
-								 	<div className="pull-right">
-										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Add Company</button>
+									Member's Name
+									<div className="pull-right">
+										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Edit Information</button>
 									</div>
 								</div>
 								<div className="card-body">
