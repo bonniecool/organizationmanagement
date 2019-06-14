@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { AsyncComponent } from "app/Utils";
-
+import './style.css';
 
 class Sidebar extends Component {
 
   render() {
-    const { match, isShinked, user_type } = this.props;
+    const { match, user_type } = this.props;
     return (
       <div id="sidebar">
-
+        sidebar
       </div>
     );
   }
@@ -18,7 +18,6 @@ class Sidebar extends Component {
 
 const mapStateToProps = (state, routeParams) => {
   return {
-    isShinked,
   };
 };
 

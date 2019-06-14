@@ -5,7 +5,9 @@ class MainLoader extends PureComponent {
   render() {
     return (
       <div className="loading-wrapper">
-        <img src={nbiLogo} className="progress-logo" alt="NBI HRIS" />
+        {
+          // <img src={nbiLogo} className="progress-logo" alt="NBI HRIS" />
+        }
         <h3 className="progress-name">NBI HRIS</h3>
         <div className="progress-loading" />
       </div>
