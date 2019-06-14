@@ -16,15 +16,18 @@ class SiteUser extends Resource
     public function toArray($request)
     {
         return [
+            'profile_id' => $this->id,
+            'branch_id' => $this->id,
+            'branch_name' => optional($this->branch)->name,
             'photo' => $this->photo,
             'full_name' => $this->full_name,
             'first_name' => $this->first_name,
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
-            'organization_name' => optional($this->organization)->name,
-            'is_organization_admin' => $this->is_organization_admin,
+            'mobile_number' => $this->mobile_number,
             'gender' => $this->gender,
-            'birth_date' => $this->birth_date
+            'birth_date' => $this->birth_date,
+            'is_active' => $this->is_active
         ];
     }
 }

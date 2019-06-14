@@ -24,8 +24,8 @@ class ModuleServiceProvider extends ServiceProvider
             config('module_user.constants.user_types.superadmin') => \App\Modules\User\Repositories\SuperAdminRepository::class,
             config('module_user.constants.user_types.administrator') => \App\Modules\User\Repositories\AdministratorRepository::class,
             config('module_user.constants.user_types.branchadmin') => \App\Modules\User\Repositories\BranchAdministratorRepository::class,
+            config('module_user.constants.user_types.siteuser') => \App\Modules\User\Repositories\SiteUserRepository::class,
         ]);
-
     }
 
     /**

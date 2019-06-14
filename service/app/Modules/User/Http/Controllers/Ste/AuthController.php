@@ -7,7 +7,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
 use Damnyan\Cmn\Services\ApiResponse;
-use App\Modules\User\Http\Requests\AuthRequest;
+use App\Modules\User\Http\Requests\Ste\AuthRequest;
 use Damnyan\Cmn\Exceptions\BadRequestException;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Modules\User\Http\Resources\Auth as AuthResource;
@@ -23,7 +23,7 @@ class AuthController extends Controller
      */
     public function login(AuthRequest $request)
     {
-        $data = $request->only('email', 'password');
+        $data = $request->only('mac_address', 'password');
         if ($lockedOut = $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
             $seconds = $this->limiter()->availableIn(
@@ -48,10 +48,9 @@ class AuthController extends Controller
             throw new BadRequestException('Invalid credentials.');
         }
 
-        if (!$user->activated_at) {
-            throw new BadRequestException('Please check your email to activate your account.');
+        if (!$user->is_activated) {
+            throw new BadRequestException('Please activate your account using mobile application.');
         }
-
 
         $response = collect(
             [

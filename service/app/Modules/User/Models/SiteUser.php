@@ -2,10 +2,11 @@
 
 namespace App\Modules\User\Models;
 
+use App\Modules\Branch\Repositories\BranchRepository;
 use App\Modules\Organization\Models\Organization;
 use App\Modules\Transaction\Repositories\TransactionRepository;
 use OwenIt\Auditing\Auditable;
-use Illuminate\Database\Eloquent\Model;
+use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use App\Modules\Organization\Repositories\OrganizationRepository;
 use OwenIt\Auditing\Contracts\UserResolver;
@@ -16,7 +17,7 @@ class SiteUser extends Model implements AuditableContract
 
     protected $resourceName = 'Site User';
 
-    protected $table = 'profile_site_users';
+    protected $table = 'profile_branch_members';
 
     public $timestamps = false;
 
@@ -27,8 +28,6 @@ class SiteUser extends Model implements AuditableContract
         'mobile_number',
         'suffix',
         'photo',
-        'organization_id',
-        'is_organization_admin'
     ];
 
     /**
@@ -96,23 +95,23 @@ class SiteUser extends Model implements AuditableContract
     }
 
     /**
-     * Organization
-     *
-     * @return string
-     */
-    public function organization()
-    {
-        return $this->belongsTo(OrganizationRepository::class);
-    }
-
-    /**
      * Transaction
      *
      * @return string
      */
-    public function transactions()
+//    public function transactions()
+//    {
+//        return $this->hasMany(TransactionRepository::class, 'profile_site_user_id');
+//    }
+
+    /**
+     * Branch
+     *
+     * @return string
+     */
+    public function branch()
     {
-        return $this->hasMany(TransactionRepository::class, 'profile_site_user_id');
+        return $this->belongsTo(BranchRepository::class, 'branch_id');
     }
 
 }

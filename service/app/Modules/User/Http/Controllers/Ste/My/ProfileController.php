@@ -2,23 +2,17 @@
 
 namespace App\Modules\User\Http\Controllers\Ste\My;
 
-use App\Http\Controllers\Controller;
-use App\Modules\User\Http\Requests\Ste\My\CreateDependencyContactInformationRequest;
-use App\Modules\User\Http\Requests\Ste\My\CreateDependencyEmergencyInformationRequest;
-use App\Modules\User\Http\Requests\Ste\My\CreateDependencyFamilyInformationRequest;
-use App\Modules\User\Http\Requests\Ste\My\CreateDependencyPassportInformationRequest;
-use App\Modules\User\Http\Requests\Ste\My\CreateDependencyPersonalInformationRequest;
-use App\Modules\User\Http\Requests\Ste\UpdateSiteUserRequest;
-use App\Modules\User\Http\Requests\UpdatePhotoRequest;
-use App\Modules\User\Http\Resources\Dependency;
-use App\Modules\User\Http\Resources\DependencyPhoto;
-use App\Modules\User\Http\Resources\User as UserResource;
-use Damnyan\Cmn\Services\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use Damnyan\Cmn\Services\ApiResponse;
+use App\Modules\User\Http\Requests\Ste\My\UpdatePhotoRequest;
+use App\Modules\User\Http\Requests\Ste\My\UpdateProfileRequest;
+use App\Modules\User\Http\Requests\UpdatePasswordRequest;
+use App\Modules\User\Http\Resources\User as UserResource;
 
 class ProfileController extends Controller
 {
-
     protected $apiResponse;
 
     /**
@@ -26,257 +20,86 @@ class ProfileController extends Controller
      *
      * @param ApiResponse $apiResponse description
      */
-    public function __construct(ApiResponse $apiResponse)
-    {
+    public function __construct(
+        ApiResponse $apiResponse
+    ) {
         $this->apiResponse = $apiResponse;
     }
 
     /**
-     * show profile
+     * Display user's profile
      *
-     * @return void
+     * @return \Damnyan\Cmn\Services\ApiResponse
      */
     public function profile()
     {
-        return $this->apiResponse->resource(
-            new Dependency(
-                request()->user()->profile->load(
-                    'country',
-                    'municipality',
-                    'region',
-                    'barangay',
-                    'province',
-                    'birthRegion',
-                    'birthProvince',
-                    'birthMunicipality'
-                )
-            )
+        return (new ApiResponse)->resource(
+            new UserResource(request()->user()->profile)
         );
     }
 
     /**
-     * update profile
+     * Update user's profile
      *
-     * @param UpdateSiteUserRequest $request description
-     * @return void
+     * @param  \App\Modules\User\Http\Requests\UpdateProfileRequest $request
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse
      */
-    public function updateProfile(UpdateSiteUserRequest $request)
+    public function updateProfile(UpdateProfileRequest $request)
     {
         $user = request()->user();
+        $payload = $request->only(array_keys(config("module_user.request.$user->profile_type.update")));
+        $user->profile->update($payload);
 
-        $data = $request->only(config('module_user.request.site_user.update'));
-        $user->profile->update($data);
+        $response['data']    = $user->profile;
+        $response['message'] = 'Profile successfully updated.';
 
-        $user->save();
-
-        return $this->apiResponse->resource(
-            (
-                new UserResource(request()->user())
-            )->additional(['message' => 'Profile successfully updated.'])
-        );
+        return $this->apiResponse->resource($response);
     }
 
     /**
-     * update photo
+     * Update user's photo
      *
-     * @param UpdatePhotoRequest $request description
-     * @return void
+     * @param  \App\Modules\User\Http\Requests\My\UpdatePhotoRequest  $request
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse
      */
     public function updatePhoto(UpdatePhotoRequest $request)
     {
-        $data = $request->only('photo');
+        $payload = $request->only('photo');
+        $profile = request()->user()->profile;
 
-        $user                 = request()->user();
-        $user->profile->photo = $data['photo'];
-        $user->profile->save();
+        $profile->update($payload);
 
-        return $this->apiResponse->resource(
-            (
-                new UserResource(request()->user())
-            )->additional(['message' => 'Photo successfully updated.'])
-        );
+        $response['data']    = $profile;
+        $response['message'] = 'Profile photo successfully updated.';
+
+        return $this->apiResponse->resource($response);
     }
 
     /**
-     * update personal
+     * Update users's password
+     * @param  \App\Modules\User\Http\Requests\UpdatePasswordRequest;  $request
      *
-     * @param CreateDependencyPersonalInformationRequest $request description
-     * @return void
+     * @return \Damnyan\Cmn\Services\ApiResponse
      */
-    public function updatePersonal(
-        CreateDependencyPersonalInformationRequest $request
-    ) {
-        $message = 'Personal Information successfully updated.';
-        $user    = request()->user();
-
-        $data = $request->only(
-            config('module_user.request.dependency.create.personal_information')
-        );
-
-        $data['is_first_time']         = 0;
-        $data['is_personal_completed'] = 1;
-        $user->profile->update($data);
-
-        $user->save();
-
-        return $this->apiResponse->resource(
-            (
-                new Dependency(request()->user()->profile)
-            )->additional(
-                [
-                    'message' => $message,
-                ]
-            )
-        );
-    }
-
-    /**
-     * update family
-     *
-     * @param CreateDependencyFamilyInformationRequest $request description
-     * @return void
-     */
-    public function updateFamily(
-        CreateDependencyFamilyInformationRequest $request
-    ) {
-        $user = request()->user();
-
-        $data = $request->only(
-            config('module_user.request.dependency.create.family_information')
-        );
-
-        $data['is_first_time']       = 0;
-        $data['is_family_completed'] = 1;
-        $user->profile->update($data);
-
-        $user->save();
-
-        return $this->apiResponse->resource(
-            (
-                new Dependency(
-                    request()->user()->profile
-                )
-            )->additional(
-                [
-                    'message' => 'Family Information successfully updated.',
-                ]
-            )
-        );
-    }
-
-    /**
-     * update passport
-     *
-     * @param CreateDependencyPassportInformationRequest $request description
-     * @return void
-     */
-    public function updatePassport(
-        CreateDependencyPassportInformationRequest $request
-    ) {
-        $message = 'Passport Information successfully updated.';
-        $user    = request()->user();
-
-        $data = $request->only(
-            config('module_user.request.dependency.create.passport_information')
-        );
-
-        $data['is_first_time']         = 0;
-        $data['is_passport_completed'] = 1;
-        $user->profile->update($data);
-
-        $user->save();
-
-        return $this->apiResponse->resource(
-            (
-                new Dependency(request()->user()->profile)
-            )->additional(
-                [
-                    'message' => $message,
-                ]
-            )
-        );
-    }
-
-    /**
-     * update emergency
-     *
-     * @param CreateDependencyEmergencyInformationRequest $request description
-     * @return void
-     */
-    public function updateEmergency(
-        CreateDependencyEmergencyInformationRequest $request
-    ) {
-        $message = 'Emergency Information successfully updated.';
-        $user    = request()->user();
-
-        $data = $request->only(
-            config(
-                'module_user.request.dependency.create.emergency_information'
-            )
-        );
-
-        $data['is_first_time']          = 0;
-        $data['is_emergency_completed'] = 1;
-        $user->profile->update($data);
-
-        $user->save();
-
-        return $this->apiResponse->resource(
-            (
-                new Dependency(
-                    request()->user()->profile
-                )
-            )->additional(
-                [
-                    'message' => $message,
-                ]
-            )
-        );
-    }
-
-    /**
-     * show photo
-     *
-     * @return void
-     */
-    public function showPhoto()
+    public function changePassword(UpdatePasswordRequest $request)
     {
-        return $this->apiResponse->resource(
-            new DependencyPhoto(request()->user()->profile)
-        );
-    }
+        $payload = $request->only(config('module_user.change_password'));
 
-    /**
-     * update contact
-     *
-     * @param CreateDependencyContactInformationRequest $request description
-     * @return void
-     */
-    public function updateContact(
-        CreateDependencyContactInformationRequest $request
-    ) {
-        $user = request()->user();
+        $user = $request->user();
 
-        $data = $request->only(
-            config('module_user.request.dependency.create.contact_information')
-        );
+        if (!Hash::check($payload['current_password'], $user->password)) {
+            $msg = 'The old password does not match your current password. Please try again later.';
+            return $this->apiResponse->badRequest($msg);
+        }
 
-        $data['is_first_time']        = 0;
-        $data['is_contact_completed'] = 1;
-        $user->profile->update($data);
+        if (!$user->update(['password' => $payload['new_password']])) {
+            $msg = 'Failed to change your password. Please try again later.';
+            return $this->apiResponse->badRequest($msg);
+        }
 
-        $user->save();
-
-        return $this->apiResponse->resource(
-            (
-                new Dependency(
-                    request()->user()->profile
-                )
-            )->additional(
-                [
-                    'message' => 'Contact Information successfully updated.',
-                ]
-            )
-        );
+        $response['message'] = 'You have succesfully changed your password.';
+        return $this->apiResponse->resource($response);
     }
 }

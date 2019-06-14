@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('pin');
             $table->integer('profile_id');
             $table->string('profile_type');
-            $table->string('mac_address')->nullable();
+            $table->string('mac_address')->unique();
             $table->boolean('is_activated')->default(0);
             $table->boolean('is_active')->default(1);
             $table->dateTime('activated_at')->nullable();

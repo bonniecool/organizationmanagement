@@ -22,18 +22,18 @@ class SiteUserRepository extends SiteUser
      */
     public static function createProfile($data)
     {
-        DB::beginTransaction();
-            $organization = OrganizationRepository::createOrganization($data);
-            $data['organization_id'] = $organization->id;
-            $data['is_organization_admin'] = isset($data['is_organization_admin'])
-                ?? $data['is_organization_admin'];
-            $profile = self::create($data);
-            $user    = $profile->user()->create($data);
-            $token   = UserTokenRepository::generateActivationToken($user);
-        DB::commit();
-
-        $user->notify(new SendActivation($token->token));
-        return $user;
+//        DB::beginTransaction();
+//            $organization = OrganizationRepository::createOrganization($data);
+//            $data['organization_id'] = $organization->id;
+//            $data['is_organization_admin'] = isset($data['is_organization_admin'])
+//                ?? $data['is_organization_admin'];
+//            $profile = self::create($data);
+//            $user    = $profile->user()->create($data);
+//            $token   = UserTokenRepository::generateActivationToken($user);
+//        DB::commit();
+//
+//        $user->notify(new SendActivation($token->token));
+//        return $user;
     }
 
     /**
@@ -44,16 +44,16 @@ class SiteUserRepository extends SiteUser
      */
     public static function createOrganizationUser($organization, $data)
     {
-        DB::beginTransaction();
-            $data['organization_id'] = $organization->id;
-            $data['password'] = self::generatePassword(8);
-
-            $profile = self::create($data);
-            $user    = $profile->user()->create($data);
-            $token   = UserTokenRepository::generateActivationToken($user);
-        DB::commit();
-        $user->notify(new SendOrganizationInvitation($data['password'], $token->token));
-        return $user;
+//        DB::beginTransaction();
+//            $data['organization_id'] = $organization->id;
+//            $data['password'] = self::generatePassword(8);
+//
+//            $profile = self::create($data);
+//            $user    = $profile->user()->create($data);
+//            $token   = UserTokenRepository::generateActivationToken($user);
+//        DB::commit();
+//        $user->notify(new SendOrganizationInvitation($data['password'], $token->token));
+//        return $user;
     }
 
     /**
@@ -78,5 +78,16 @@ class SiteUserRepository extends SiteUser
             $pass[] = $alphabet[$n];
         }
         return implode($pass); //turn the array into a string
+    }
+
+    public static function activate($data)
+    {
+        DB::beginTransaction();
+        $user = $data->user;
+        $user->is_activated = 1;
+        $user->activated_at = now();
+        $user->save();
+        DB::commit();
+        return $user;
     }
 }

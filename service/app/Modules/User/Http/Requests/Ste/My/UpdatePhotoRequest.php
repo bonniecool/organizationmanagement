@@ -2,11 +2,9 @@
 
 namespace App\Modules\User\Http\Requests\Ste\My;
 
-use Carbon\Carbon;
 use Damnyan\Cmn\Abstracts\ApiRequest;
-use Illuminate\Support\Facades\Validator;
 
-class CreateDependencyContactInformationRequest extends ApiRequest
+class UpdatePhotoRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +23,8 @@ class CreateDependencyContactInformationRequest extends ApiRequest
      */
     public function rules()
     {
-        $rules = [
-            'street' => 'required',
-            'municipality_code' => 'required',
-            'province_code' => 'required',
-            'occupation' => 'required',
-            'office_number' => 'required',
-            'office_address' => 'required'
+        return [
+            'photo' => 'required|url',
         ];
-
-
-        return $rules;
     }
 }

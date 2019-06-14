@@ -47,7 +47,6 @@ class ProfileController extends Controller
      */
     public function updateProfile(UpdateProfileRequest $request)
     {
-
         $user = request()->user();
         $payload = $request->only(config("module_user.request.$user->profile_type.create"));
 

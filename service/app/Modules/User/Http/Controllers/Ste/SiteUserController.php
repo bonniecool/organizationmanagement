@@ -3,6 +3,8 @@
 namespace App\Modules\User\Http\Controllers\Ste;
 
 use App\Http\Controllers\Controller;
+use App\Modules\User\Http\Requests\Ste\AccountActivationRequest;
+use App\Modules\User\Repositories\SiteUserRepository;
 use Damnyan\Cmn\Services\ApiResponse;
 use App\Modules\User\Http\Resources\UserCollection;
 use App\Modules\User\Http\Resources\User as UserResource;
@@ -46,23 +48,25 @@ class SiteUserController extends Controller
     }
 
     /**
-     * register site user
+     * activate site user
      *
-     * @param CreateSiteUserRequest $request description
      * @return void
      */
-    public function register(CreateSiteUserRequest $request)
+    public function activate(AccountActivationRequest $request)
     {
-        $data = $request->only(config('module_user.request.site_user.register'));
+        $data = $request->only('uuid');
 
-        if (!isset($data['name'])) {
-            $data['name'] = "{$data['first_name']} {$data['last_name']}";
-        }
-        $user = $this->siteUser->createProfile($data);
+        $profile = $this->siteUser->where('uuid',$data['uuid'])->firstOrfail();
+
+//        if(!$this->siteUser->activate($profile))
+//        {
+//            return $this->apiResponse->badRequest('Something went wrong. Please try again.');
+//        }
+
         return $this->apiResponse->resource(
             (
-                new UserResource($user->profile)
-            )->additional(['message' => 'Successfully registered. Please check your email to activate your account.'])
+                new UserResource($profile)
+            )
         );
     }
 

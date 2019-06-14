@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e669b1cae84a5d43fdcd614036e8832f",
+    "content-hash": "6f239c6d3ed8d37cadf1e0460b4e7852",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -491,6 +491,71 @@
                 "validator"
             ],
             "time": "2019-05-16T22:02:54+00:00"
+        },
+        {
+            "name": "emadadly/laravel-uuid",
+            "version": "v1.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EmadAdly/laravel-uuid.git",
+                "reference": "2069f023498eb6e1163802483f10d0e7f89ca4f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EmadAdly/laravel-uuid/zipball/2069f023498eb6e1163802483f10d0e7f89ca4f4",
+                "reference": "2069f023498eb6e1163802483f10d0e7f89ca4f4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*",
+                "php": "~5.6|~7.0"
+            },
+            "require-dev": {
+                "laravel/framework": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*",
+                "phpunit/phpunit": "5.5.*|7.0.*",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.1-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Emadadly\\LaravelUuid\\LaravelUuidServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Emadadly\\LaravelUuid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emad Adly",
+                    "email": "thedevgist@gmail.com",
+                    "homepage": "http://devgist.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "laravel uuid a simple, automatic UUID generator for any model based on Laravel.",
+            "homepage": "https://github.com/emadadly/laravel-uuid",
+            "keywords": [
+                "Laravel UUID",
+                "emadadly",
+                "generator",
+                "guid",
+                "laravel",
+                "laravel-guid",
+                "laravel-uuid",
+                "uuid"
+            ],
+            "time": "2019-03-01T15:48:00+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -6068,16 +6133,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "1c42705be2b6c1de5904f8afacef5895cab44bf8"
+                "reference": "11336f6f84e16a720dae9d8e6ed5019efa85a0f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/1c42705be2b6c1de5904f8afacef5895cab44bf8",
-                "reference": "1c42705be2b6c1de5904f8afacef5895cab44bf8",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/11336f6f84e16a720dae9d8e6ed5019efa85a0f9",
+                "reference": "11336f6f84e16a720dae9d8e6ed5019efa85a0f9",
                 "shasum": ""
             },
             "require": {
@@ -6104,7 +6169,7 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2019-04-04T09:56:43+00:00"
+            "time": "2019-06-13T22:48:21+00:00"
         },
         {
             "name": "webmozart/assert",
