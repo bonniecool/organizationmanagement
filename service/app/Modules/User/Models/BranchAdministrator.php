@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Models;
 
+use App\Modules\Branch\Repositories\BranchRepository;
 use OwenIt\Auditing\Auditable;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -88,5 +89,15 @@ class BranchAdministrator extends Model implements AuditableContract
         }
 
         return $fullname;
+    }
+
+    /**
+     * Relationship branch
+     *
+     * @return string
+     */
+    public function branch()
+    {
+        return $this->belongsTo(BranchRepository::class, 'branch_id');
     }
 }
