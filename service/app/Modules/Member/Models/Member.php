@@ -1,25 +1,23 @@
 <?php
 
-namespace App\Modules\User\Models;
+namespace App\Modules\Member\Models;
 
 use App\Modules\Branch\Repositories\BranchRepository;
-use App\Modules\Organization\Models\Organization;
-use App\Modules\Transaction\Repositories\TransactionRepository;
+use Damnyan\Cmn\Traits\Models\CreatorUpdaterTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Modules\Organization\Repositories\OrganizationRepository;
-use OwenIt\Auditing\Contracts\UserResolver;
 
-class SiteUser extends Model implements AuditableContract
+class Member extends Model implements AuditableContract
 {
-    use Auditable;
+    use Auditable, CreatorUpdaterTrait, SoftDeletes;
 
-    protected $resourceName = 'Site User';
+    protected $resourceName = 'Member';
 
     protected $table = 'profile_branch_members';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'uuid',
@@ -45,16 +43,6 @@ class SiteUser extends Model implements AuditableContract
 
 
     ];
-
-    /**
-     * User Relationship
-     *
-     * @return string
-     */
-    public function user()
-    {
-        return $this->morphOne('App\Modules\User\Repositories\UserRepository', 'profile');
-    }
 
     /**
      * Mutator for First name
@@ -109,16 +97,6 @@ class SiteUser extends Model implements AuditableContract
 
         return $fullname;
     }
-
-    /**
-     * Transaction
-     *
-     * @return string
-     */
-//    public function transactions()
-//    {
-//        return $this->hasMany(TransactionRepository::class, 'profile_site_user_id');
-//    }
 
     /**
      * Branch

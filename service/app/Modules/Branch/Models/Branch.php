@@ -60,6 +60,6 @@ class branch extends Model implements AuditableContract
      */
     public function members()
     {
-        return $this->hasMany(SiteUserRepository::class, 'branch_id');
+        return $this->hasMany(MemberRepository::class, 'branch_id');
     }
 }
