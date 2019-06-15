@@ -15,14 +15,11 @@ class CreateBranchMemberAttendanceTable extends Migration
     {
         Schema::create('branch_member_attendance', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('uuid');
+            $table->char('uuid', '36');
             $table->integer('branch_id')->nullable();
-            $table->integer('member_id')->unsigned();
             $table->dateTime('attendance_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('member_id')->references('id')->on('profile_branch_members')->onDelete('cascade');
         });
     }
 

@@ -16,7 +16,8 @@ class ProfileBranchMembersTable extends Migration
         Schema::create('profile_branch_members', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('branch_id')->unsigned();
-            $table->string('uuid')->unique();
+            $table->uuid('uuid');
+            $table->string('pin');
             $table->string('first_name', 64);
             $table->string('middle_name', 64)->nullable();
             $table->string('last_name', 64);

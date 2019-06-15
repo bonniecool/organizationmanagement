@@ -3,6 +3,11 @@
 namespace App\Modules\Member\Models;
 
 use App\Modules\Branch\Repositories\BranchRepository;
+use App\Modules\Common\Models\Barangay;
+use App\Modules\Common\Models\Municipality;
+use App\Modules\Common\Models\Province;
+use App\Modules\Common\Models\Region;
+use App\Modules\Member\Repositories\MemberAttendanceRepository;
 use Damnyan\Cmn\Traits\Models\CreatorUpdaterTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable;
@@ -21,6 +26,7 @@ class Member extends Model implements AuditableContract
 
     protected $fillable = [
         'uuid',
+        'pin',
         'first_name',
         'middle_name',
         'last_name',
@@ -40,8 +46,10 @@ class Member extends Model implements AuditableContract
         'latitude',
         'has_logged',
         'mac_address'
+    ];
 
-
+    protected $hidden = [
+        'pin'
     ];
 
     /**
@@ -98,6 +106,26 @@ class Member extends Model implements AuditableContract
         return $fullname;
     }
 
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_code', 'code');
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_code', 'code');
+    }
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_code', 'code');
+    }
+
+    public function barangay()
+    {
+        return $this->belongsTo(Barangay::class, 'barangay_code', 'code');
+    }
+
     /**
      * Branch
      *
@@ -106,6 +134,16 @@ class Member extends Model implements AuditableContract
     public function branch()
     {
         return $this->belongsTo(BranchRepository::class, 'branch_id');
+    }
+
+    /**
+     * attendances
+     *
+     * @return string
+     */
+    public function attendances()
+    {
+        return $this->hasMany(MemberAttendanceRepository::class, 'uuid', 'uuid');
     }
 
 }

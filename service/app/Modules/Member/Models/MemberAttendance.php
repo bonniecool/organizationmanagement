@@ -2,6 +2,7 @@
 
 namespace App\Modules\Member\Models;
 
+use App\Modules\Member\Repositories\MemberRepository;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
@@ -9,7 +10,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class MemberAttendance extends Model implements AuditableContract
 {
-    use Auditable, uuids;
+    use Auditable;
 
     protected $resourceName = 'Branch Member Attendance';
 
@@ -20,7 +21,22 @@ class MemberAttendance extends Model implements AuditableContract
     protected $fillable = [
         'uuid',
         'branch_id',
-        'member_id',
         'attendance_date'
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'attendance_date',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+    public function member()
+    {
+        return $this->belongsTo(MemberRepository::class, 'uuid', 'uuid');
+    }
 }
