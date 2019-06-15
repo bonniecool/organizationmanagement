@@ -5,6 +5,7 @@ namespace App\Modules\Branch\Models;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
+use App\Modules\User\Repositories\SiteUserRepository;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use App\Modules\User\Repositories\BranchAdministratorRepository;
 
@@ -50,5 +51,15 @@ class branch extends Model implements AuditableContract
     public function profile()
     {
         return $this->hasMany(BranchAdministratorRepository::class, 'branch_id');
+    }
+
+     /**
+     * branch administrator profile Relationship
+     *
+     * @return string
+     */
+    public function members()
+    {
+        return $this->hasMany(SiteUserRepository::class, 'branch_id');
     }
 }
