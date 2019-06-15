@@ -2,7 +2,6 @@
 
 namespace App\Modules\Member\Http\Resources;
 
-use App\Modules\Member\Http\Resources\MemberAttendance;
 use Damnyan\Cmn\Abstracts\AbstractResourceCollection as ResourceCollection;
 
 class MemberCollection extends ResourceCollection
@@ -15,6 +14,6 @@ class MemberCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return MemberAttendance::collection($this->collection);
+        return Member::collection($this->collection);
     }
 }

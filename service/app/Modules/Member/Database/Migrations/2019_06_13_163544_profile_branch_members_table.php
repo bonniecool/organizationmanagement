@@ -17,7 +17,7 @@ class ProfileBranchMembersTable extends Migration
             $table->increments('id');
             $table->integer('branch_id')->unsigned();
             $table->uuid('uuid');
-            $table->string('pin');
+            $table->string('pin')->nullable();
             $table->string('first_name', 64);
             $table->string('middle_name', 64)->nullable();
             $table->string('last_name', 64);

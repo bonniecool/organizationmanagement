@@ -2,6 +2,10 @@
 
 namespace App\Modules\Member\Http\Controllers\Mng\Brc;
 
+use App\Modules\Member\Http\Requests\MemberRequest;
+use App\Modules\Member\Http\Resources\Member;
+use App\Modules\Member\Http\Resources\MemberCollection;
+use App\Modules\Member\Repositories\MemberRepository;
 use Illuminate\Http\Request;
 use App\Modules\User\Models\User;
 use App\Http\Controllers\Controller;
@@ -23,7 +27,7 @@ class MemberController extends Controller
      * @param memberRepository $member [member repo]
      */
     public function __construct(
-        SiteUserRepository $member,
+        MemberRepository $member,
         ApiResponse $apiResponse
     )
     {
@@ -35,16 +39,13 @@ class MemberController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function index(Request $request)
+    public function index()
     {
-        $members = $request
-            ->user()
-            ->profile
-            ->branch
-            ->members()
+        $branch = request()->user()->profile->branch_id;
+        $member = $this->memberRepository
+            ->where('branch_id', $branch)
             ->getOrPaginate();
-
-        return $this->apiResponse->resource(new SiteUserCollection($members));
+        return $this->apiResponse->resource(new MemberCollection($member));
     }
 
     /**
@@ -52,16 +53,14 @@ class MemberController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function show(Request $request, $memberId)
+    public function show($uuid)
     {
-        $member = $request
-            ->user()
-            ->profile
-            ->branch
-            ->members()
-            ->findOrFail($memberId);
-
-        return $this->apiResponse->resource(new SiteUser($member));
+        $branch = request()->user()->profile->branch_id;
+        $member = $this->memberRepository
+            ->findUuid($uuid)
+            ->where('branch_id', $branch)
+            ->firstOrFail();
+        return $this->apiResponse->resource(new Member($member));
     }
 
     /**
@@ -69,58 +68,59 @@ class MemberController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function store(BranchRequest $request)
+    public function store(MemberRequest $request)
     {
-        $payload = $request->only(config('module_branch.request.mng.create'));
+        $payload = $request->only(config('module_member.requests.create'));
 
-        $branch = $request
-            ->user()
-            ->organization
-            ->branches()
-            ->create($payload);
+        if($this->memberRepository->checkDuplicate($payload))
+        {
+            return $this->apiResponse->badRequest('This member is already exists.');
+        }
 
-        $response['data'] = $branch;
-        $response['message'] = 'Successfully created branch.';
-        return $this->apiResponse->resource($response);
+        $member = $this->memberRepository->createMember($payload);
+
+        return $this->apiResponse->resource(new Member($member))->additional([
+            'message' => 'You have successfully created new member.'
+        ]);
     }
 
     /**
-     * update of branch.
+     * update of member.
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function update(BranchRequest $request, $branchId)
+    public function update(MemberRequest $request, $uuid)
     {
-        $payload = $request->only(config('module_branch.request.mng.update'));
-
-        $branch = $request
-            ->user()
-            ->organization
-            ->branches()
-            ->findOrFail($branchId);
-
-        $branch->update($payload);
-
-        $response['data'] = $branch->fresh();
-        $response['message'] = 'Succesfully updated branch';
-        return $this->apiResponse->resource($response);
+        $branch = request()->user()->profile->branch_id;
+        $payload = $request->only(config('module_member.requests.update'));
+        if(!$this->memberRepository->updateMember($payload, $uuid))
+        {
+            return $this->apiResponse->badRequest('Something wend wrong. Please try again.');
+        }
+        $member = $this->memberRepository
+            ->findUuid($uuid)
+            ->where('branch_id', $branch)
+            ->firstOrFail();
+        return $this->apiResponse->resource(new Member($member))->additional([
+            'message' => 'You have successfully updated this member.'
+        ]);
     }
 
     /**
-     * update of branch.
+     * Delete Member
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function delete(Request $request, $branchId)
+    public function delete($uuid)
     {
-        $branch = $request
-            ->user()
-            ->organization
-            ->branches()
-            ->findOrFail($branchId)
-            ->delete();
-
-        $response['message'] = 'Succesfully deleted branch';
-        return $this->apiResponse->resource($response);
+        $branch = request()->user()->profile->branch_id;
+        $member = $this->memberRepository
+            ->findUuid($uuid)
+            ->where('branch_id', $branch)
+            ->firstOrFail();
+        $member->delete();
+        return $this->apiResponse->resource(new Member($member))->additional([
+            'message' => 'You have successfully deleted this member.'
+        ]);
     }
 }

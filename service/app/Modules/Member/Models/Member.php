@@ -9,6 +9,7 @@ use App\Modules\Common\Models\Province;
 use App\Modules\Common\Models\Region;
 use App\Modules\Member\Repositories\MemberAttendanceRepository;
 use Damnyan\Cmn\Traits\Models\CreatorUpdaterTrait;
+use Emadadly\LaravelUuid\Uuids;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
@@ -16,7 +17,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Member extends Model implements AuditableContract
 {
-    use Auditable, CreatorUpdaterTrait, SoftDeletes;
+    use Auditable, CreatorUpdaterTrait, SoftDeletes, Uuids;
 
     protected $resourceName = 'Member';
 
@@ -25,6 +26,7 @@ class Member extends Model implements AuditableContract
     public $timestamps = true;
 
     protected $fillable = [
+        'branch_id',
         'uuid',
         'pin',
         'first_name',
@@ -53,13 +55,27 @@ class Member extends Model implements AuditableContract
     ];
 
     /**
+     * Set UUID
+     *
+     * @return string
+     */
+    public function setUuidAttribute($value)
+    {
+        $value = substr($value,0,8);
+
+        $uuid = "MEM".strtoupper($value);
+
+        return $this->attributes['uuid'] = $uuid;
+    }
+
+    /**
      * Mutator for First name
      *
      * @return string
      */
-    public function getFirstNameAttribute()
+    public function getFirstNameAttribute($value)
     {
-        return $this->attributes['first_name'] = mb_strtoupper($this->attributes['first_name']);
+        return $this->attributes['first_name'] = mb_strtoupper($value);
     }
 
     /**
@@ -67,9 +83,9 @@ class Member extends Model implements AuditableContract
      *
      * @return string
      */
-    public function getMiddleNameAttribute()
+    public function getMiddleNameAttribute($value)
     {
-        return $this->attributes['middle_name'] = mb_strtoupper($this->attributes['middle_name']);
+        return $this->attributes['middle_name'] = mb_strtoupper($value);
     }
 
     /**
@@ -77,9 +93,9 @@ class Member extends Model implements AuditableContract
      *
      * @return string
      */
-    public function getLastNameAttribute()
+    public function getLastNameAttribute($value)
     {
-        return $this->attributes['last_name'] = mb_strtoupper($this->attributes['last_name']);
+        return $this->attributes['last_name'] = mb_strtoupper($value);
     }
 
     /**
