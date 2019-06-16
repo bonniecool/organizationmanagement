@@ -26,6 +26,8 @@ class OrganizationRequest extends ApiRequest
         return [
             'uuid' => '',
             'name' => 'required',
+            'organzation_owner' => 'required',
+            'mobile_number' => 'required',
             'region_code' => 'required',
             'province_code' => 'required',
             'municipality_code' => 'required',

@@ -5,10 +5,8 @@ namespace App\Modules\Organization\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Damnyan\Cmn\Services\ApiResponse;
-// use App\Modules\Organization\Http\Resources\Organization;
-// use App\Modules\Organization\Http\Requests\OrganizationRequest;
+use App\Modules\Organization\Http\Requests\OrganizationRequest;
 use App\Modules\Organization\Repositories\OrganizationRepository;
-// use App\Modules\Organization\Http\Resources\OrganizationCollection;
 
 class RegisterOrganizationController extends Controller
 {
@@ -35,7 +33,7 @@ class RegisterOrganizationController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function register(Request $request)
+    public function register(OrganizationRequest $request)
     {
         $payload = $request->only(config('module_organization.request.create'));
 
