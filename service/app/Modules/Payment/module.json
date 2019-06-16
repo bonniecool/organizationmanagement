@@ -2,5 +2,6 @@
     "name": "Payment",
     "slug": "payment",
     "version": "1.0",
-    "description": "This is the description for the Payment module."
+    "description": "This is the description for the Payment module.",
+    "order": 700
 }

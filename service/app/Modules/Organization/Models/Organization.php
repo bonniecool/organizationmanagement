@@ -3,8 +3,10 @@
 namespace App\Modules\Organization\Models;
 
 use OwenIt\Auditing\Auditable;
-use Emadadly\LaravelUuid\Uuids;
+use App\Modules\Payment\Repositories\PaymentRepository;
+use App\Modules\Wallet\Repositories\LoadWalletRepository;
 use Illuminate\Database\Eloquent\Model;
+use Emadadly\LaravelUuid\Uuids;
 use App\Modules\User\Repositories\UserRepository;
 use App\Modules\Branch\Repositories\BranchRepository;
 use App\Modules\Common\Repositories\RegionRepository;
@@ -12,6 +14,7 @@ use App\Modules\Common\Repositories\BarangayRepository;
 use App\Modules\Common\Repositories\ProvinceRepository;
 use App\Modules\Common\Repositories\MunicipalityRepository;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+
 
 class Organization extends Model
 {
@@ -106,6 +109,26 @@ class Organization extends Model
     public function barangay()
     {
        return $this->belongsTo(BarangayRepository::class, 'barangay_code', 'code');
+    }
+
+    /**
+     * Payments or Transactions Relationship
+     *
+     * @return string
+     */
+    public function payments()
+    {
+       return $this->hasMany(PaymentRepository::class, 'organization_id');
+    }
+
+    /**
+     * Load wallet Relationship
+     *
+     * @return string
+     */
+    public function loadWallet()
+    {
+        return $this->hasOne(LoadWalletRepository::class, 'organization_id');
     }
 
 }

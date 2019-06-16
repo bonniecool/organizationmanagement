@@ -5,14 +5,9 @@ namespace App\Modules\Payment\Services;
 use Carbon\Carbon;
 use Multipay\Multipay;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Modules\Payment\Repositories\PaymentRepository;
-//use App\Modules\Transaction\Repositories\TransactionRepository;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-/**
- * @SuppressWarnings(PHPMD.StaticAccess)
- */
 class PaymentService
 {
     protected $payment;
@@ -20,26 +15,20 @@ class PaymentService
 
     public function __construct(
         PaymentRepository $payment
-//        TransactionRepository $transaction
     ) {
         $this->payment     = $payment;
-//        $this->transaction = $transaction;
     }
 
-    public function process($transaction)
+    public function process($organization, $data)
     {
         DB::beginTransaction();
-        $amount = $transaction['amount'] ?? 0;
+        $amount = $data['amount'] ?? 0;
 
-        if (!$paymentData = self::generateMultipayReferenceNumber($transaction, $amount)) {
+        if (!$paymentData = self::generateMultipayReferenceNumber($organization, $amount)) {
             return false;
         }
 
-        if (!$transaction->update(['status' => 'FOR PAYMENT'])) {
-            return false;
-        }
-
-        if (!$payment = self::createPayment($paymentData, $transaction)) {
+        if (!$payment = $this->payment->createPayment($paymentData, $data)) {
             return false;
         }
 
@@ -47,21 +36,20 @@ class PaymentService
         return $payment;
     }
 
-    private function generateMultipayReferenceNumber($transaction, $amount)
+    private function generateMultipayReferenceNumber($organization, $amount)
     {
-        $profile = $transaction->profile;
         $multiPay = new Multipay(config('multipay.code'), config('multipay.token'));
-
+        $txnid = self::generateTransactionNumber(20);
         $transaction = $multiPay->generate([
             'code' => config('multipay.code'),
             'token' => config('multipay.token'),
-            'name' => $profile->first_name.' '.$profile->last_name,
+            'name' => $organization->name,
             'amount' => $amount,
-            'txnid' => $transaction->txnid,
-            'mobile' => $profile->mobile,
-            'email' => $profile->user->email,
+            'txnid' => $txnid,
+            'mobile' => '09276543226', //$organization->mobile,
+            'email' => 'janreyguyjoco@gmail.com', //$organization->user->email,
             'channel' => 'MPAY',
-            'callback_url' => 'https://apollo-ws.geek-demos.com/ste/payment/receive'//secure_url('ste/payment/receive')
+            'callback_url' => secure_url('payment/receive')
         ]);
 
         if (is_null($transaction)) {
@@ -87,9 +75,19 @@ class PaymentService
         return $payment->update([
             'status' => $payload['status'],
             'remarks' => $payload['message'],
-//            'payment_channel' => $payload['procid'],
             'transaction_date' => self::validateTransactionDate($payment)
         ]);
+    }
+
+    public function replenishLoad($payment, $payload)
+    {
+        $amount = $payment->organization->loadWallet->amount ?? 0;
+        return $payment->organization->loadWallet()->updateOrCreate([
+            'organization_id' => $payment->organization_id
+        ],
+            [
+                'amount' => $amount + $payment->amount
+            ]);
     }
 
     private function validateTransactionDate($payment)
@@ -100,20 +98,6 @@ class PaymentService
 
         return $payment->transaction_date;
     }
-
-    private function createPayment($paymentData, $transaction)
-    {
-        return $transaction->payment()->create([
-            'status' => 'P',
-            'refno' => $paymentData['refno'],
-            'txnid' => $paymentData['txnid'],
-            'payment_channel' => 'MPAY',
-            'amount' => $transaction->amount,
-            'remarks' => 'WAITING FOR PAYMENT'
-        ]);
-    }
-
-
 
     private function generateTransactionNumber($len = 24)
     {
