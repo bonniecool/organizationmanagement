@@ -17,9 +17,13 @@ class LoadWalletService
     public function checkLoadWallet($organization, $branch)
     {
         $members = $this->branch->find($branch)->count();
+        $amount = $members * 0.50;
         $load = optional($organization->loadWallet)->amount ?? 0;
-        if($load >= $members)
+        if($load >= $amount)
         {
+            $wallet = $organization->loadWallet;
+            $wallet->amount = $wallet->amount - $amount;
+            $wallet->save();
             return true;
         }
         return false;

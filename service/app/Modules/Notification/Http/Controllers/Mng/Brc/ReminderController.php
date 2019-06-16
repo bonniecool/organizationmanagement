@@ -157,7 +157,7 @@ class ReminderController extends Controller
         $data['posted_by'] = $reminder->creator->full_name;
         $reminder->notify(new SendSmsNotification($data));
         return $this->apiResponse->resource(new Reminder($reminder))->additional([
-            'message' => 'Text blast has started...'
+            'message' => 'Sms notification sent.'
         ]);
     }
 }
