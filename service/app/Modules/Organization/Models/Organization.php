@@ -84,6 +84,4 @@ class Organization extends Model
         return $this->hasOne(LoadWalletRepository::class, 'organization_id');
     }
 
-
-
 }
