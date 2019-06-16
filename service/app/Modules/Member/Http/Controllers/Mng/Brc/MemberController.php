@@ -2,17 +2,18 @@
 
 namespace App\Modules\Member\Http\Controllers\Mng\Brc;
 
-use App\Modules\Member\Http\Requests\MemberRequest;
-use App\Modules\Member\Http\Resources\Member;
-use App\Modules\Member\Http\Resources\MemberCollection;
-use App\Modules\Member\Repositories\MemberRepository;
 use Illuminate\Http\Request;
 use App\Modules\User\Models\User;
 use App\Http\Controllers\Controller;
 use Damnyan\Cmn\Services\ApiResponse;
+use App\Modules\Member\Http\Resources\Member;
+use App\Modules\Member\Http\Requests\MemberRequest;
+use App\Modules\Member\Repositories\MemberRepository;
 use App\Modules\User\Http\Resources\Profile\SiteUser;
 use App\Modules\User\Repositories\SiteUserRepository;
+use App\Modules\Member\Http\Resources\MemberCollection;
 use App\Modules\User\Http\Resources\Profile\SiteUserCollection;
+use App\Modules\Member\Http\Resources\MemberAttendanceCollection;
 
 class MemberController extends Controller
 {
@@ -122,5 +123,25 @@ class MemberController extends Controller
         return $this->apiResponse->resource(new Member($member))->additional([
             'message' => 'You have successfully deleted this member.'
         ]);
+    }
+
+    /**
+     * member attendance list
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function attendanceList(Request $request)
+    {
+        $params = $request->only('attendance_date');
+
+        $attendance = $request
+            ->user()
+            ->profile
+            ->branch
+            ->attendance()
+            ->filter($params)
+            ->getOrPaginate();
+
+        return $this->apiResponse->resource(new MemberAttendanceCollection ($attendance));
     }
 }

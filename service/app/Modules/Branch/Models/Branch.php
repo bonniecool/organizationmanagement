@@ -5,12 +5,13 @@ namespace App\Modules\Branch\Models;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
-use App\Modules\User\Repositories\SiteUserRepository;
 use App\Modules\Common\Repositories\RegionRepository;
+use App\Modules\User\Repositories\SiteUserRepository;
 use App\Modules\Common\Repositories\BarangayRepository;
 use App\Modules\Common\Repositories\ProvinceRepository;
 use App\Modules\Common\Repositories\MunicipalityRepository;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use App\Modules\Member\Repositories\MemberAttendanceRepository;
 use App\Modules\User\Repositories\BranchAdministratorRepository;
 
 class branch extends Model implements AuditableContract
@@ -119,5 +120,15 @@ class branch extends Model implements AuditableContract
     public function barangay()
     {
        return $this->belongsTo(BarangayRepository::class, 'barangay_code', 'code');
+    }
+
+    /**
+     * Attendance list relationship
+     * 
+     * @return string
+     */
+    public function attendance()
+    {
+        return $this->hasMany(MemberAttendanceRepository::class, 'branch_id');
     }
 }
