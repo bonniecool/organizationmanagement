@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->integer('organization_id')->unsigned()->nullable();
             $table->string('email', '191')->unique();
             $table->string('password');
-            $table->string('pin');
+            $table->string('pin')->nullable();
             $table->integer('profile_id');
             $table->string('profile_type');
-            $table->string('mac_address')->unique();
+            $table->string('mac_address')->nullable();
             $table->boolean('is_activated')->default(0);
             $table->boolean('is_active')->default(1);
             $table->dateTime('activated_at')->nullable();
