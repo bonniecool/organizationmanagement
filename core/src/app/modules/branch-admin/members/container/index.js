@@ -5,11 +5,29 @@ import * as c from '../constant';
 import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
 import Profile from '../component/Profile'
-import { fromJS } from 'immutable';
+import MemberList from '../component/MemberList'
+
+const AddAdminModal = AsyncComponent(() => import ('./AddAdminModal'));
+const EditAdminModal = AsyncComponent(() => import ('./EditAdminModal'));
 const AddModal = AsyncComponent(() => import ('./AddModal'));
+const EditModal = AsyncComponent(() => import ('./EditModal'));
 
 class Dashboard extends Component {
 
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.GET_LIST
+		})
+	}
+
+	onSelectRow = (data) => {
+		const { dispatch } = this.props;
+		dispatch({
+				type:c.GET_DETAIL,
+				id:data.get('uuid')     
+		})
+	}
 
 	onAdd = e => {
 		e.preventDefault();
@@ -18,8 +36,8 @@ class Dashboard extends Component {
 			type:'MODAL',
 			data: {
 					isOpen: true,
-					title: 'Add Organization',
-					modalSize: 'modal-md',
+					title: 'Add Branch',
+					modalSize: 'modal-lg',
 					content: <AddModal 
 
 						/>
@@ -28,37 +46,110 @@ class Dashboard extends Component {
 	}
 
 
-	render() {
-		const data = fromJS([
-			{
-				name:'Company A',
-				address:'Manila Makati PHilippines',
-				contact:'+63 12345678',
-				email:'george@companya.com',
-				photo:'',
-			},
-			{
-				name:'Company B',
-				address:'Ortigas Pasig PHilippines',
-				contact:'+63 11122233',
-				email:'john@companyb.com',
-				photo:'',
-			},
-			{
-				name:'Company C',
-				address:'BGC Taguig PHilippines',
-				contact:'+63 11122233',
-				email:'paul@companyc.com',
-				photo:'',
-			},
-			{
-				name:'Company D',
-				address:'Rotonda Quezon City PHilippines',
-				contact:'+63 8765432',
-				email:'lina@companyd.com',
-				photo:'',
+	onEdit = data => e => {
+		e.preventDefault();
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.SET_FORM_DATA,
+			data:data.toJS()
+		})
+			dispatch({
+					type:c.GET_PROVINCES,
+					region_id:data.get('region_code') || ''
+			})
+			dispatch({
+					type:c.GET_MUNICIPALITIES,
+					region_id:data.get('region_code'),
+					province_id:data.get('province_code') || ''
+			})
+			dispatch({
+					type:c.GET_BARANGAYS,
+					region_id:data.get('region_code'),
+					province_id:data.get('province_code'),
+					municipality_id:data.get('municipality_code'),
+			})
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Edit Branch',
+					modalSize: 'modal-md',
+					content: <EditModal 
+										data={data}
+									/>
 			}
-		])
+		})
+	}
+
+
+	onAddAdmin = (data) => e => {
+		e.preventDefault();
+		const { dispatch } = this.props;
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Add Members',
+					modalSize: 'modal-md',
+					content: <AddAdminModal 
+							data={data}
+						/>
+			}
+		})
+	}
+
+	editAdmin = (data) => e => {
+		e.preventDefault();
+		const { dispatch, details } = this.props;
+		dispatch({
+			type:c.SET_FORM_DATA,
+			data:{
+				first_name:data.get('first_name'),
+				last_name:data.get('last_name'),
+				email:data.getIn(['user','email']),
+				id:data.getIn(['user','profile_id']),
+			}
+		})
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Add Admin',
+					modalSize: 'modal-md',
+					content: <EditAdminModal 
+							data={details}
+						/>
+			}
+		})
+	}
+
+	removeAdmin = (data) => e => {
+		e.preventDefault();
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.SET_FORM_DATA,
+			data:{
+				first_name:data.get('first_name'),
+				last_name:data.get('last_name'),
+				email:data.get('email')
+			}
+		})
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Add Admin',
+					modalSize: 'modal-md',
+					content: <EditAdminModal 
+							data={data}
+						/>
+			}
+		})
+	}
+
+
+	render() {
+		const { list, details, members } = this.props;
 
 		return (
 			<div className="">
@@ -82,7 +173,8 @@ class Dashboard extends Component {
 								</div>
 								<div className="">
 										<Organization
-											data={data}
+											data={list}
+											onSelectRow={this.onSelectRow}
 										/>
 								</div>
 							</div>
@@ -90,21 +182,35 @@ class Dashboard extends Component {
 						<div className="col-md-8">
 							<div className="card">
 								<div className="card-header">
-									Member's Name
-									<div className="pull-right">
-										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Edit Information</button>
+								 <b className="text-uppercase">{ details.get('name') }</b>
+								 	<div className="pull-right">
+										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onEdit(details)}>Edit Member</button>
 									</div>
 								</div>
 								<div className="card-body">
 										<Profile 
-											data={data.getIn([0])}
+											data={details}
+										/>
+								</div>
+							</div>
+							<div className="card mt-3">
+								<div className="card-header">
+								 <b className="text-uppercase">Member</b>
+								 <div className="pull-right">
+										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAddAdmin(details)}>Add Admin</button>
+									</div>
+								</div>
+								<div className="">
+										<MemberList 
+											data={members}
+											editAdmin={this.editAdmin}
+											removeAdmin={this.removeAdmin}
 										/>
 								</div>
 							</div>
 						</div>
-					</div>
-					
 						
+					</div>
 				</div>
 			</div>
 		);
@@ -112,9 +218,12 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state, routeParams) => {
-	const superAdminOrganization = state.superAdminOrganization;
+	const branchMembers = state.branchMembers;
 	return {
-		list : superAdminOrganization.get('list'),
+		list : branchMembers.get('list'),
+		details : branchMembers.get('details'),
+		form_data : branchMembers.get('form_data'),
+		members : branchMembers.get('members'),
 	};
 };
 

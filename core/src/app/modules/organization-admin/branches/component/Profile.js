@@ -33,7 +33,7 @@ class EmployeeShortInfo extends PureComponent {
                     </h3>
                     <h4 className="position">
                         <p className="mb-0">
-                        {data.get('address')}
+                        {data.get('street')}, {data.get('barangay_name')}, {data.get('municipality_name')}, {data.get('province_name')}, {data.get('region_name')}, {data.get('zip_code')}
                         </p>
                     </h4>
                     <h4 className="service">

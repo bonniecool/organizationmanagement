@@ -5,14 +5,38 @@ import * as c from '../constant';
 import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
 import Profile from '../component/Profile'
-import { fromJS } from 'immutable';
 const AddModal = AsyncComponent(() => import ('./AddModal'));
 
 class Dashboard extends Component {
 
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.GET_LIST
+		})
+		dispatch({
+			type:c.GET_REGIONS
+		})
+		dispatch({
+			type:c.GET_PROVINCES
+		})
+		dispatch({
+			type:c.GET_MUNICIPALITIES
+		})
+		dispatch({
+			type:c.GET_BARANGAYS
+		})
+	}
+
+	onSelectRow = (data) => {
+		const { dispatch } = this.props;
+		dispatch({
+				type:c.GET_DETAIL,
+				id:data.get('id')     
+		})
+	}
 
 	onAdd = e => {
-		console.log('here')
 		e.preventDefault();
 		const { dispatch } = this.props;
 		dispatch({
@@ -21,8 +45,7 @@ class Dashboard extends Component {
 					isOpen: true,
 					title: 'Add Organization',
 					modalSize: 'modal-md',
-					content: <AddModal 
-
+					content: <AddModal
 						/>
 			}
 		})
@@ -30,36 +53,7 @@ class Dashboard extends Component {
 
 
 	render() {
-		const data = fromJS([
-			{
-				name:'Company A',
-				address:'Manila Makati PHilippines',
-				contact:'+63 12345678',
-				email:'george@companya.com',
-				photo:'',
-			},
-			{
-				name:'Company B',
-				address:'Ortigas Pasig PHilippines',
-				contact:'+63 11122233',
-				email:'john@companyb.com',
-				photo:'',
-			},
-			{
-				name:'Company C',
-				address:'BGC Taguig PHilippines',
-				contact:'+63 11122233',
-				email:'paul@companyc.com',
-				photo:'',
-			},
-			{
-				name:'Company D',
-				address:'Rotonda Quezon City PHilippines',
-				contact:'+63 8765432',
-				email:'lina@companyd.com',
-				photo:'',
-			}
-		])
+		const { list, details } = this.props;
 
 		return (
 			<div className="">
@@ -73,7 +67,7 @@ class Dashboard extends Component {
 						<div className="col-md-4">
 							<div className="card">
 								<div className="card-header">
-									<button className="btn btn-primary btn-sm btn-block mb-2" type="button" onClick={this.onAdd}>Add Company</button>
+									<button className="btn btn-primary btn-sm btn-block mb-2" type="button" onClick={this.onAdd}>Add Organization</button>
 									<div className="input-group input-group-sm">
 									<input type="text" className="form-control" placeholder="Search Organization" />
 									<div className="input-group-append">
@@ -83,7 +77,8 @@ class Dashboard extends Component {
 								</div>
 								<div className="">
 										<Organization
-											data={data}
+											data={list}
+											onSelectRow={this.onSelectRow}
 										/>
 								</div>
 							</div>
@@ -91,14 +86,14 @@ class Dashboard extends Component {
 						<div className="col-md-8">
 							<div className="card">
 								<div className="card-header">
-								 Organization Name
+									<div className="pull-left">{details.get('name')}</div>
 								 	<div className="pull-right">
-										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Add Company</button>
+										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Edit Organization</button>
 									</div>
 								</div>
 								<div className="card-body">
 										<Profile 
-											data={data.getIn([0])}
+											data={details}
 										/>
 								</div>
 							</div>
@@ -116,6 +111,8 @@ const mapStateToProps = (state, routeParams) => {
 	const superAdminOrganization = state.superAdminOrganization;
 	return {
 		list : superAdminOrganization.get('list'),
+		details : superAdminOrganization.get('details'),
+		form_data : superAdminOrganization.get('form_data'),
 	};
 };
 

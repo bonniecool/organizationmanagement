@@ -11,7 +11,8 @@ const initState = Map({
 export default (state = initState, action) => {
 	switch(action.type){
 		case c.AUTHENTICATE:
-			return state.set('isAuthenticated', action.isSuccess);
+			return state.set('isAuthenticated', action.isSuccess)
+						.set('user_type', action.user_type)
 		case c.PERMISSIONS:
 			return state.set('permissions', fromJS(action.data));
         case c.PROFILE:

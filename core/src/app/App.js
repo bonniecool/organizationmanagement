@@ -12,13 +12,14 @@ class App extends Component {
   };
 
   componentWillMount() {
-    const { dispatch, isAuthenticated } = this.props;
+    const { dispatch, isAuthenticated, user_type } = this.props;
     dispatch({
       type: "CHECK_AUTH"
     });
     if (isAuthenticated) {
       dispatch({
-        type: "MY_PROFILE"
+        type: "MY_PROFILE",
+        user_type:user_type
       });
     }
   }
@@ -74,12 +75,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, routeParams) => {
-  const { isAuthenticated } = state.auth.toJS();
+  const { isAuthenticated, user_type } = state.auth.toJS();
   const { loadingTypes } = state.loading;
   const modal = state.modal.toJS();
   return {
     isLoading: loadingTypes.length > 0,
     isAuthenticated,
+    user_type,
     modal
   };
 };

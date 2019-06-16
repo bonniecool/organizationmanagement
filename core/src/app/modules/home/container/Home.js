@@ -16,9 +16,9 @@ class Home extends Component {
 
   sidebar = type => {
     const sidebar = {
-      'super' : <SidebarSuper />,
-      'admin' : <SidebarOrganization />, 
-      'branch' : <SidebarBranch />,
+      'SuperAdmin' : <SidebarSuper />,
+      'Administrator' : <SidebarOrganization />, 
+      'BranchAdministrator' : <SidebarBranch />,
       'default' : '',
     }
     return sidebar[type];
@@ -27,16 +27,16 @@ class Home extends Component {
   mainRoutes = type => {
     const route = {
       'super' : <SuperRoute />,
-      'admin' : <OrganizationRoute />, 
-      'branch' : <BranchRoute />,
+      'Administrator' : <OrganizationRoute />, 
+      'BranchAdministrator' : <BranchRoute />,
       'default' : '',
     }
     return route[type];
   }
 
   render() {
-    const { isShinked } = this.props;
-    const user = 'branch';
+    const { isShinked, user_type } = this.props;
+    const user = user_type;
 
     return (
       <div className="page home-page">

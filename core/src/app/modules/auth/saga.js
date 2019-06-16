@@ -10,14 +10,15 @@ import * as c from './constant';
 
 function* checkAuthentication() {
     const token = sessionStorage.getItem('token');
+    const user_type = sessionStorage.getItem('user_type');
     if(token) {
         yield put({
                 type: "AUTHENTICATE",
-                isSuccess: true
+                isSuccess: true,
+                user_type:user_type
             })
         return;
     }
-
     yield put({
         type: "AUTHENTICATE",
         isSuccess: false
@@ -28,25 +29,26 @@ function* checkAuthentication() {
 function* login({ args }){
     yield put(loading('LOGIN'));
 
-    const response = yield call(services.post(`/agn/auth`), args);
+    const response = yield call(services.post(`/mng/auth`), args);
 
     yield put(loading(null));
 
     yield call(watchApiResponse, response, function*(){
 
-        const { token } = response.data;
-        
-        sessionStorage.setItem('token', token);
+        const { data } = response.data;
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('user_type', data.profile_type);
        
         yield put({
             type: "AUTHENTICATE",
-            isSuccess: true
+            isSuccess: true,
+            user_type: data.profile_type
         })
 
         history.push('/')
 
-        yield myProfile();
-        yield permissions();
+        yield myProfile({user_type:data.profile_type});
+        // yield permissions();
 
         
     })
@@ -155,18 +157,24 @@ function* register({ args }){
     })
 }
 
-function* myProfile() {
+function* myProfile({user_type}) {
 
-    const response = yield call(services.get(`/my/profile`));
+    let response = ''
+    if(user_type === 'SuperAdmin')
+        response = yield call(services.get(`mng/su/my/profile`));
+    if(user_type === 'Administrator')
+        response = yield call(services.get(`mng/my/profile`));
+    if(user_type === 'BranchAdministrator')
+        response = yield call(services.get(`mng/brc/my/profile`));
 
     yield call(watchApiResponse, response, function*(){
 
         const { data } = response.data;
-
+        console.log('===',user_type)
         yield put({
             type: "PROFILE",
             data,
-            user_type: data.profile_type === "SuperAdministrator" ? 1 : 0
+            user_type: user_type
         })
     })
 }

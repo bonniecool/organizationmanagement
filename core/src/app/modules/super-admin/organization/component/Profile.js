@@ -16,16 +16,19 @@ class EmployeeShortInfo extends PureComponent {
               <div className="row">
                 <div className="col">
                   <div className="profile-photo">
-                    <img
-                      className="img-fluid w-100 img-thumbnail"
-                      src={`${
-                        _.isNil(data.get("photo")) ||
-                        data.get("photo") === ""
-                          ? img_thumbnail
-                          : data.get("photo")
-                      }`}
-                      alt=""
-                    />
+                  {
+                    // <img
+                    //   className="img-fluid w-100 img-thumbnail"
+                    //   src={`${
+                    //     _.isNil(data.get("photo")) ||
+                    //     data.get("photo") === ""
+                    //       ? img_thumbnail
+                    //       : data.get("photo")
+                    //   }`}
+                    //   alt=""
+                    // />
+                  }
+                    
                   </div>
                   <div className="profile-short-details">
                     <h3 className="name">

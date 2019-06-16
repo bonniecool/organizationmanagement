@@ -3,10 +3,17 @@ import Modal from 'app/modules/common/component/Modal';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
+import Select from 'react-select';
 
-class AddDeductionModal extends Component {
+class EditModal extends Component {
 
-
+    componentWillMount() {
+        const { dispatch } = this.props;
+        dispatch({
+			type:c.GET_REGIONS
+		})
+		
+    }
     onChangeInput = e => {
         e.preventDefault();
         const {dispatch} = this.props;
@@ -17,6 +24,38 @@ class AddDeductionModal extends Component {
                 [name] : value
             }
         })
+    }
+
+    handleChangeSelect = (key) => (value) => {
+        const {dispatch, form_data} = this.props;
+        dispatch({
+            type:c.SET_FORM_DATA,
+            data:{
+                [key] : value || ''
+            }
+        })
+        if(key === 'region_code'){
+            dispatch({
+                type:c.GET_PROVINCES,
+                region_id:value || ''
+            })
+        }
+        if(key === 'province_code'){
+            dispatch({
+                type:c.GET_MUNICIPALITIES,
+                region_id:form_data.get('region_code'),
+                province_id:value || '',
+            })
+        }
+        if(key === 'municipality_code'){
+            dispatch({
+                type:c.GET_BARANGAYS,
+                region_id:form_data.get('region_code'),
+                province_id:form_data.get('province_code'),
+                municipality_id:form_data.get('municipality_code'),
+            })
+        }
+        
     }
 
     closeModal = () => {
@@ -31,11 +70,22 @@ class AddDeductionModal extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onSubmit()
+        const { dispatch, form_data } = this.props;
+        dispatch({
+            type:c.UPDATE,
+            args:form_data.toJS(),
+            id:form_data.get('id')
+        })
     }
 
     render() {
-        const { form_data } = this.props;
+        const { form_data, 
+                regions,
+                provinces,
+                municipalities,
+                barangays,
+                loadingTypes,
+        } = this.props;
         return (
             <div>
              <form onSubmit={ this.onSubmit }>
@@ -44,31 +94,107 @@ class AddDeductionModal extends Component {
                             <div className="col-md-12">
                                 <div className="form-group">
                                     <label>Organization Name</label>
-                                    <input name="employee_number" className="form-control" onChange={this.onChangeInput} value={form_data.get('employee_number')} />
+                                    <input name="name" className="form-control" onChange={this.onChangeInput} value={form_data.get('name')} />
                                 </div>
                             </div>
                             <div className="col-md-12">
                                 <div className="form-group">
-                                    <label>Address</label>
-                                    <input type="number" name="rice_allowance" className="form-control" onChange={this.onChangeInput} value={form_data.get('rice_allowance')} />
+                                    <label>Region</label>
+                                    <Select
+                                        isLoading={loadingTypes.indexOf('GET_REGIONS') > -1 }
+                                        value={ form_data.get('region_code') }
+                                        simpleValue
+                                        onChange={this.handleChangeSelect('region_code')}
+                                        name="region_code"
+                                        loadingPlaceholder="Loading..."
+                                        options={regions.toJS().map( item => {
+                                            return {
+                                                label:item.name,
+                                                value:item.code
+                                            }}
+                                        )}
+                                    required/>
+                                </div>
+                            </div>
+                            <div className="col-md-12">
+                                <div className="form-group">
+                                    <label>Province</label>
+                                    <Select
+                                        isLoading={loadingTypes.indexOf('GET_PROVINCES') > -1 }
+                                        value={ form_data.get('province_code') }
+                                        simpleValue
+                                        onChange={this.handleChangeSelect('province_code')}
+                                        name="province_code"
+                                        loadingPlaceholder="Loading..."
+                                        options={provinces.toJS().map( item => {
+                                            return {
+                                                label:item.name,
+                                                value:item.code
+                                            }}
+                                        )}
+                                    required/>
+                                </div>
+                            </div>
+                            <div className="col-md-12">
+                                <div className="form-group">
+                                    <label>Municipality</label>
+                                    <Select
+                                        isLoading={loadingTypes.indexOf('GET_MUNICIPALITIES') > -1 }
+                                        value={ form_data.get('municipality_code') }
+                                        simpleValue
+                                        onChange={this.handleChangeSelect('municipality_code')}
+                                        name="municipality_code"
+                                        loadingPlaceholder="Loading..."
+                                        options={municipalities.toJS().map( item => {
+                                            return {
+                                                label:item.name,
+                                                value:item.code
+                                            }}
+                                        )}
+                                    required/>
+                                </div>
+                            </div>
+                            <div className="col-md-12">
+                                <div className="form-group">
+                                    <label>Barangay</label>
+                                    <Select
+                                        isLoading={loadingTypes.indexOf('GET_BARANGAYS') > -1 }
+                                        value={ form_data.get('barangay_code') }
+                                        simpleValue
+                                        onChange={this.handleChangeSelect('barangay_code')}
+                                        name="barangay_code"
+                                        loadingPlaceholder="Loading..."
+                                        options={barangays.toJS().map( item => {
+                                            return {
+                                                label:item.name,
+                                                value:item.code
+                                            }}  
+                                        )}
+                                    required/>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Street</label>
+                                    <input type="text" name="street" className="form-control" onChange={this.onChangeInput} value={form_data.get('street')} />
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Zip Code</label>
+                                    <input type="text" name="zip_code" className="form-control" onChange={this.onChangeInput} value={form_data.get('zip_code')} />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label>Contact Number</label>
-                                    <input type="number" name="transportation_allowance" className="form-control" onChange={this.onChangeInput} value={form_data.get('transportation_allowance')} />
+                                    <input type="text" name="number" className="form-control" onChange={this.onChangeInput} value={form_data.get('number')} />
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label>Email</label>
-                                    <input type="number" name="transportation_allowance" className="form-control" onChange={this.onChangeInput} value={form_data.get('transportation_allowance')} />
-                                </div>
-                            </div>
-                            <div className="col-md-12">
-                                <div className="form-group">
-                                    <label>Representative</label>
-                                    <input type="number" name="transportation_allowance" className="form-control" onChange={this.onChangeInput} value={form_data.get('transportation_allowance')} />
+                                    <input type="email" name="email" className="form-control" onChange={this.onChangeInput} value={form_data.get('email')} />
                                 </div>
                             </div>
                         </div>
@@ -93,10 +219,20 @@ class AddDeductionModal extends Component {
 }
 
 const mapPropsToState = (state, routeParams) => {
-    const form_data = state.superAdminOrganization.get('form_data')
+    const { loadingTypes } = state.loading;
+    const form_data = state.organizationBranch.get('form_data')
+    const regions = state.organizationBranch.get('regions')
+    const provinces = state.organizationBranch.get('provinces')
+    const municipalities = state.organizationBranch.get('municipalities')
+    const barangays = state.organizationBranch.get('barangays')
     return {
-        form_data
+        loadingTypes,
+        form_data,
+        regions,
+        provinces,
+        municipalities,
+        barangays,
     };
 };
 
-export default withRouter(connect(mapPropsToState)(AddDeductionModal));
+export default withRouter(connect(mapPropsToState)(EditModal));

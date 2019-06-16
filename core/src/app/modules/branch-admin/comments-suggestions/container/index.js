@@ -1,0 +1,118 @@
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import * as c from '../constant';
+import { AsyncComponent } from 'app/Utils';
+import Organization from '../component/List'
+import Profile from '../component/Profile'
+import { fromJS } from 'immutable';
+const AddModal = AsyncComponent(() => import ('./AddModal'));
+
+class Dashboard extends Component {
+
+
+	onAdd = e => {
+		console.log('here')
+		e.preventDefault();
+		const { dispatch } = this.props;
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Add Organization',
+					modalSize: 'modal-md',
+					content: <AddModal 
+
+						/>
+			}
+		})
+	}
+
+
+	render() {
+		const data = fromJS([
+			{
+				name:'Company A',
+				address:'Manila Makati PHilippines',
+				contact:'+63 12345678',
+				email:'george@companya.com',
+				photo:'',
+				subscription:'TRIAL',
+				status:'ACTIVE',
+				date:'2019-12-01',
+			},
+			{
+				name:'Company B',
+				address:'Ortigas Pasig PHilippines',
+				contact:'+63 11122233',
+				email:'john@companyb.com',
+				photo:'',
+				subscription:'MONTHLY',
+				status:'ACTIVE',
+				date:'2019-05-31',
+			},
+			{
+				name:'Company D',
+				address:'Rotonda Quezon City PHilippines',
+				contact:'+63 8765432',
+				email:'lina@companyd.com',
+				photo:'',
+				subscription:'ANNUAL',
+				status:'ACTIVE',
+				date:'2019-01-01',
+			},
+			{
+				name:'Company C',
+				address:'BGC Taguig PHilippines',
+				contact:'+63 11122233',
+				email:'paul@companyc.com',
+				photo:'',
+				subscription:'-',
+				status:'INACTIVE',
+				date:'2019-05-01',
+			},
+		])
+
+		return (
+			<div className="">
+				<header className="page-header">
+					<div className="container-fluid">
+						<h2 className="title-header m-2">Comments & Suggestions</h2>
+					</div>
+				</header>
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-12">
+							<div className="card">
+								<div className="card-header">
+									<div className="input-group input-group-sm">
+									<input type="text" className="form-control" placeholder="Search ..." />
+									<div className="input-group-append">
+										<button className="btn btn-sm btn-primary" type="button" >Search</button>
+									</div>
+								</div>
+								</div>
+								<div className="">
+										<Organization
+											data={data}
+										/>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+						
+				</div>
+			</div>
+		);
+	}
+}
+
+const mapStateToProps = (state, routeParams) => {
+	const superAdminTransaction = state.superAdminTransaction;
+	return {
+		list : superAdminTransaction.get('list'),
+	};
+};
+
+export default withRouter(connect(mapStateToProps)(Dashboard));

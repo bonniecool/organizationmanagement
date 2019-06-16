@@ -126,14 +126,20 @@ class SidebarNavigation extends Component {
                 <span className="menu-text">Events</span>
               </Link>
             </li>
+            <li className={`sidebar-menu ${getClassName("announcements")}`}>
+              <Link to="/announcements" className="link collapsed">
+                <IconRequestApproval />{" "}
+                <span className="menu-text">Announcements</span>
+              </Link>
+            </li>
             <li className={`sidebar-menu ${getClassName("guest")}`}>
-              <Link to="/guest" className="link collapsed">
+              <Link to="/guests" className="link collapsed">
                 <IconRequestApproval />{" "}
                 <span className="menu-text">Guests</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("comment-suggestion")}`}>
-              <Link to="/comment-suggestion" className="link collapsed">
+              <Link to="/comments-suggestions" className="link collapsed">
                 <IconRequestApproval />{" "}
                 <span className="menu-text">Comments & Suggestions</span>
               </Link>

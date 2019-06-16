@@ -67,14 +67,14 @@ class EmployeeList extends Component {
 
                                 <Column
                                     width={ width }
-                                    // label="Employee"
+                                    label="Members"
                                     dataKey='name'
                                     cellRenderer={
                                             ({ rowData }) => {
                                                 return (
                                                     <div className="item d-flex align-items-center">
                                                         <div className="text">
-                                                            <a><h3 className="h5 text-uppercase">{rowData.get('name')} </h3></a>
+                                                            <a><h3 className="h5 text-uppercase">{rowData.get('last_name')}, {rowData.get('first_name')} {rowData.get('middle_name')} {rowData.get('suffix')} </h3></a>
                                                         </div>
                                                     </div>  
                                                 )

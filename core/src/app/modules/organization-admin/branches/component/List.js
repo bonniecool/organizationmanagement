@@ -67,7 +67,7 @@ class EmployeeList extends Component {
 
                                 <Column
                                     width={ width }
-                                    // label="Employee"
+                                    label="Members"
                                     dataKey='name'
                                     cellRenderer={
                                             ({ rowData }) => {
