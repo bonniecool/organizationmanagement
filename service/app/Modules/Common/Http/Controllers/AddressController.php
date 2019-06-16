@@ -43,9 +43,10 @@ class AddressController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function provinceList()
+    public function provinceList($regionCode)
     {
-        $provinces = Province::get();
+        $provinces = Province::where('region_code', $regionCode)
+            ->get();
 
         $response['data'] = $provinces;
         return $this->apiResponse->resource($response);
@@ -56,9 +57,11 @@ class AddressController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function municipalityList()
+    public function municipalityList($regionCode, $provinceCode)
     {
-        $municipality = Municipality::get();
+        $municipality = Municipality::where('region_code', $regionCode)
+            ->where('province_code', $provinceCode)
+            ->get();
 
         $response['data'] = $municipality;
         return $this->apiResponse->resource($response);
@@ -69,9 +72,12 @@ class AddressController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function barangayList()
+    public function barangayList($regionCode, $provinceCode, $municipalityCode)
     {
-        $barangay = Barangay::get();
+        $barangay = Barangay::where('region_code', $regionCode)
+            ->where('province_code', $provinceCode)
+            ->where('municipality_code', $municipalityCode)
+            ->get();
 
         $response['data'] = $barangay;
         return $this->apiResponse->resource($response);

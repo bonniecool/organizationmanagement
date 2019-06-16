@@ -5,8 +5,13 @@ namespace App\Modules\Branch\Models;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
+use App\Modules\Common\Repositories\RegionRepository;
 use App\Modules\User\Repositories\SiteUserRepository;
+use App\Modules\Common\Repositories\BarangayRepository;
+use App\Modules\Common\Repositories\ProvinceRepository;
+use App\Modules\Common\Repositories\MunicipalityRepository;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use App\Modules\Member\Repositories\MemberAttendanceRepository;
 use App\Modules\User\Repositories\BranchAdministratorRepository;
 
 class branch extends Model implements AuditableContract
@@ -32,6 +37,20 @@ class branch extends Model implements AuditableContract
         'latitude',
         'is_active'
     ];
+
+    /**
+     * Set UUID
+     *
+     * @return string
+     */
+    public function setUuidAttribute($value)
+    {
+        $value = substr($value,0,8);
+
+        $uuid = "BRC".strtoupper($value);
+
+        return $this->attributes['uuid'] = $uuid;
+    }
 
      /**
      * organization Relationship
@@ -61,5 +80,55 @@ class branch extends Model implements AuditableContract
     public function members()
     {
         return $this->hasMany(MemberRepository::class, 'branch_id');
+    }
+
+    /**
+     * Region Relationship
+     *
+     * @return string
+     */
+    public function region()
+    {
+       return $this->belongsTo(RegionRepository::class, 'region_code', 'code');
+    }
+
+    /**
+     * Province Relationship
+     *
+     * @return string
+     */
+    public function province()
+    {
+       return $this->belongsTo(ProvinceRepository::class, 'province_code', 'code');
+    }
+
+    /**
+     * Municipality Relationship
+     *
+     * @return string
+     */
+    public function municipality()
+    {
+       return $this->belongsTo(MunicipalityRepository::class, 'municipality_code', 'code');
+    }
+
+    /**
+     * Barangay Relationship
+     *
+     * @return string
+     */
+    public function barangay()
+    {
+       return $this->belongsTo(BarangayRepository::class, 'barangay_code', 'code');
+    }
+
+    /**
+     * Attendance list relationship
+     * 
+     * @return string
+     */
+    public function attendance()
+    {
+        return $this->hasMany(MemberAttendanceRepository::class, 'branch_id');
     }
 }
