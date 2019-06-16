@@ -5,7 +5,7 @@ namespace App\Notifications;
 use App\Channels\FirebaseEmailChannel;
 use Illuminate\Notifications\Notification;
 
-class SendAdminEmailNotification extends Notification
+class SendSmsNotification extends Notification
 {
      /**
       * Create a notification instance.
@@ -16,8 +16,7 @@ class SendAdminEmailNotification extends Notification
       */
      public function __construct($payload)
      {
-         $this->subject = $payload['subject'];
-         $this->message = $payload['message'];
+         $this->posted_by = $payload['posted_by'];
      }
 
     /**
@@ -39,14 +38,12 @@ class SendAdminEmailNotification extends Notification
      */
     public function toFirebaseMail($channel, $notifiable)
     {
-        $profile = $notifiable->profile;
         $data    = [
-            '_state' => config('queue.connections.firebase.queue.states.send_admin_notification_email'),
+            '_state' => config('queue.connections.firebase.queue.states.send_sms'),
             'data' => [
-                'name' => $profile->first_name . ' ' . $profile->last_name,
-                'email' => $notifiable->email,
-                'message' => $this->message,
-                'subject' => $this->subject
+                'subject' => $notifiable->subject,
+                'content' => $notifiable->content,
+                'posted_by' => $this->posted_by
             ],
         ];
 

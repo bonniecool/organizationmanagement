@@ -6,6 +6,8 @@ use App\Modules\Notification\Http\Requests\ReminderRequest;
 use App\Modules\Notification\Http\Resources\Reminder;
 use App\Modules\Notification\Http\Resources\ReminderCollection;
 use App\Modules\Notification\Repositories\ReminderRepository;
+use App\Modules\Wallet\Services\LoadWalletService;
+use App\Notifications\SendSmsNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Damnyan\Cmn\Services\ApiResponse;
@@ -17,6 +19,8 @@ class ReminderController extends Controller
 
     protected $apiResponse;
 
+    protected $walletService;
+
     /**
      * ReminderController constructor.
      *
@@ -24,11 +28,13 @@ class ReminderController extends Controller
      */
     public function __construct(
         ReminderRepository $reminder,
-        ApiResponse $apiResponse
+        ApiResponse $apiResponse,
+        LoadWalletService $loadWalletService
     )
     {
         $this->reminder = $reminder;
-        $this->apiResponse      = $apiResponse;
+        $this->apiResponse = $apiResponse;
+        $this->walletService = $loadWalletService;
     }
     /**
      * Display a listing of the resource.
@@ -136,14 +142,22 @@ class ReminderController extends Controller
      */
     public function sendAll($id)
     {
+        $organization = request()->user()->organization()->firstOrFail();
         $reminder = request()->user()
             ->profile
             ->branch
             ->reminders()
             ->findOrFail($id);
+        $branch = $reminder->branch_id;
 
-        $reminder->update($payload);
-
-        return $this->apiResponse->resource(new Reminder($reminder->fresh()));
+        if(!$wallet = $this->walletService->checkLoadWallet($organization, $branch))
+        {
+            return $this->apiResponse->badRequest('Unable to proccess. Your load balance is not enough.');
+        }
+        $data['posted_by'] = $reminder->creator->full_name;
+        $reminder->notify(new SendSmsNotification($data));
+        return $this->apiResponse->resource(new Reminder($reminder))->additional([
+            'message' => 'Text blast has started...'
+        ]);
     }
 }

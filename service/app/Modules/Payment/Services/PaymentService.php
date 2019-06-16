@@ -46,7 +46,7 @@ class PaymentService
             'name' => $organization->name,
             'amount' => $amount,
             'txnid' => $txnid,
-            'mobile' => '09276543226', //$organization->mobile,
+            'mobile' => $organization->mobile_number,
             'email' => 'janreyguyjoco@gmail.com', //$organization->user->email,
             'channel' => 'MPAY',
             'callback_url' => secure_url('payment/receive')

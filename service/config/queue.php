@@ -33,12 +33,7 @@ return [
         'firebase' => [
             'queue' => [
                 'states' => [
-                    'send_sms' => 'send_sms',
-                    'account_activation' => 'send_activation_email',
-                    'forgot_password' => 'send_forgot_password_email',
-                    'organization_invitation' => 'send_organization_invitation_email',
-                    'send_user_notification_email' => 'send_user_notification_email',
-                    'send_admin_notification_email' => 'send_admin_notification_email',
+                    'send_sms' => 'sms_notification'
                 ],
                 'config_path' => env('FIREBASE_QUEUE_STORAGE_PATH_CONFIG'),
                 'reference' => env('FIREBASE_QUEUE_REFERENCE'),

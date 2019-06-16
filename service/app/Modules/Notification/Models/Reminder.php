@@ -6,13 +6,14 @@ use App\Modules\Branch\Repositories\BranchRepository;
 use App\Modules\User\Repositories\UserRepository;
 use Damnyan\Cmn\Traits\Models\CreatorUpdaterTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use OwenIt\Auditing\Auditable;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Reminder extends Model implements AuditableContract
 {
-    use Auditable, CreatorUpdaterTrait, SoftDeletes;
+    use Auditable, CreatorUpdaterTrait, SoftDeletes, Notifiable;
 
     protected $resourceName = 'Reminder';
 
