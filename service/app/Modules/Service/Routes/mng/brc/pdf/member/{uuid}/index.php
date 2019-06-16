@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/', 'Mng\Brc\BranchMemberIDPrinter@printProfile');
+Route::get('/print_id', 'Mng\Brc\BranchMemberIDPrinter@printProfile');

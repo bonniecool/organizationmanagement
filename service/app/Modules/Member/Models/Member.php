@@ -99,6 +99,23 @@ class Member extends Model implements AuditableContract
     }
 
     /**
+     * Mutator for Full Address
+     *
+     * @return string
+     */
+    public function getFullAddressAttribute()
+    {
+        $var = array();
+        isset($this->region()->first()->name) ? $var[] = $this->region()->first()->name : null;
+        isset($this->province()->first()->name) ? $var[] = $this->province()->first()->name : null;
+        isset($this->municipality()->first()->name) ? $var[] = $this->municipality()->first()->name : null;
+        isset($this->barangay()->first()->name) ? $var[] = $this->barangay()->first()->name : null;
+        isset($this->attributes['street']) ? $var[] = $this->attributes['street'] : null;
+        isset($this->attributes['zip_code']) ? $var[] = $this->attributes['zip_code'] : null;
+        return implode(', ', $var);
+    }
+
+    /**
      * Accessor for fullname
      *
      * @return string

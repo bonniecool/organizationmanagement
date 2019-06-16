@@ -163,7 +163,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Damnyan\Cmn\CmnServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
     ],
 
     /*
@@ -213,6 +214,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Fpdf'    => Anouar\Fpdf\Facades\Fpdf::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
     ],
 
 ];

@@ -12,13 +12,13 @@ class BranchMemberIDPrinter
 {
     public function printProfile(Request $request)
     {
-        return (new SmsSender)->send(
-            [
-                'message' => "hi",
-                'number' => '09174228854',
-            ]
-        );
-//        $profile = MemberRepository::findUuid($request->uuid)->firstOrFail();
-//        return (new UserProfileIDPdf())->generate($profile);
+//        return (new SmsSender)->send(
+//            [
+//                'message' => "hi",
+//                'number' => '09174228854',
+//            ]
+//        );
+        $profile = MemberRepository::findUuid($request->uuid)->firstOrFail();
+        return (new UserProfileIDPdf())->generate($profile);
     }
 }
