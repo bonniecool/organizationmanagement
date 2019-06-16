@@ -2,6 +2,7 @@
 
 namespace App\Modules\Branch\Models;
 
+use App\Modules\Notification\Repositories\ReminderRepository;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
@@ -130,5 +131,15 @@ class branch extends Model implements AuditableContract
     public function attendance()
     {
         return $this->hasMany(MemberAttendanceRepository::class, 'branch_id');
+    }
+
+    /**
+     * Reminder list relationship
+     *
+     * @return string
+     */
+    public function reminders()
+    {
+        return $this->hasMany(ReminderRepository::class, 'branch_id');
     }
 }
