@@ -5,6 +5,8 @@ return [
             'create' => [
                 'uuid',
                 'name',
+                'organization_owner',
+                'mobile_number',
                 'region_code',
                 'province_code',
                 'municipality_code',
@@ -15,6 +17,8 @@ return [
             'update' => [
                 'uuid',
                 'name',
+                'organization_owner',
+                'mobile_number',
                 'region_code',
                 'province_code',
                 'municipality_code',
