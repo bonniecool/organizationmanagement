@@ -33,6 +33,9 @@ class Payment extends Model implements AuditableContract
         'remarks'
     ];
 
+    protected $date = [
+    ];
+
     /**
      * Organization Relation
      */

@@ -1,2 +1,3 @@
 <?php
-    Route::post('/receive', 'PaymentController@receive');
+
+Route::post('/receive', 'PaymentController@receive');
