@@ -2,6 +2,7 @@
 
 namespace App\Modules\Payment\Models;
 
+use App\Modules\Organization\Repositories\OrganizationRepository;
 use App\Modules\Transaction\Repositories\TransactionRepository;
 use OwenIt\Auditing\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,24 +21,23 @@ class Payment extends Model implements AuditableContract
     public $timestamps = true;
 
     protected $fillable = [
-        'appointment_id',
-        'delivery_type',
+        'organisation_id',
+        'organisation_uuid',
         'refno',
         'txnid',
         'transaction_date',
         'payment_channel',
         'amount',
         'status',
+        'digest',
         'remarks'
     ];
 
     /**
-     * trans Relationship
-     *
-     * @return string
+     * Organization Relation
      */
-    public function transaction() //pending
+    public function organization()
     {
-//        return $this->belongsTo(TransactionRepository::class, 'txnid', 'txnid');
+        return $this->belongsTo(OrganizationRepository::class, 'organization_id');
     }
 }

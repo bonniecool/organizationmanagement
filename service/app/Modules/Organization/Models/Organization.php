@@ -2,11 +2,11 @@
 
 namespace App\Modules\Organization\Models;
 
-use OwenIt\Auditing\Auditable;
+use App\Modules\Payment\Repositories\PaymentRepository;
+use App\Modules\Wallet\Repositories\LoadWalletRepository;
 use Illuminate\Database\Eloquent\Model;
 use App\Modules\User\Repositories\UserRepository;
 use App\Modules\Branch\Repositories\BranchRepository;
-use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Organization extends Model
 {
@@ -39,5 +39,27 @@ class Organization extends Model
     {
        return $this->hasMany(BranchRepository::class, 'organization_id');
     }
+
+    /**
+     * Payments or Transactions Relationship
+     *
+     * @return string
+     */
+    public function payments()
+    {
+       return $this->hasMany(PaymentRepository::class, 'organization_id');
+    }
+
+    /**
+     * Load wallet Relationship
+     *
+     * @return string
+     */
+    public function loadWallet()
+    {
+        return $this->hasOne(LoadWalletRepository::class, 'organization_id');
+    }
+
+
 
 }

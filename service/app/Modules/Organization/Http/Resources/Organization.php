@@ -24,6 +24,7 @@ class Organization extends Resource
             'barangay_code' => $this->barangay_code,
             'zip_code' => $this->zip_code,
             'street' => $this->street,
+            'load_wallet' => $this->whenLoaded('loadWallet')
         ];
     }
 }
