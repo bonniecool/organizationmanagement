@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from "react";
 import img_thumbnail from "assets/img/image-thumbnail.jpg";
-import DropDown from "app/modules/common/component/Dropdown";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { _ } from "app/Utils";
 
 class EmployeeShortInfo extends PureComponent {

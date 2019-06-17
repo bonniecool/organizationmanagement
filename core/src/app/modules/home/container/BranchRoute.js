@@ -11,6 +11,7 @@ const Attendance = AsyncComponent(() => import("../../branch-admin/attendance/co
 const Guests = AsyncComponent(() => import("../../branch-admin/guests/container"));
 const CommentsSuggestions = AsyncComponent(() => import("../../branch-admin/comments-suggestions/container"));
 const Announcements = AsyncComponent(() => import("../../branch-admin/announcements/container"));
+const Reminders = AsyncComponent(() => import("../../branch-admin/reminders/container"));
 
 class SuperAdminRoute extends Component {
   
@@ -26,6 +27,7 @@ class SuperAdminRoute extends Component {
         <Route path={`${match.path}guests`} component={Guests} />
         <Route path={`${match.path}comments-suggestions`} component={CommentsSuggestions} />
         <Route path={`${match.path}announcements`} component={Announcements} />
+        <Route path={`${match.path}reminders`} component={Reminders} />
       </div>
     );
   }

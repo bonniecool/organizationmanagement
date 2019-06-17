@@ -81,7 +81,7 @@ class AddDeductionModal extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const { dispatch, form_data, data } = this.props;
+        const { dispatch, form_data } = this.props;
         dispatch({
             type:c.UPDATE,
             args:{

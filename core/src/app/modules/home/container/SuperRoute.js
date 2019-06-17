@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { AsyncComponent } from "app/Utils";
-import { _ } from "app/Utils";
 
 const DashBoard = AsyncComponent(() => import("../../super-admin/dashboard/container"));
 const Organization = AsyncComponent(() => import("../../super-admin/organization/container"));

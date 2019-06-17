@@ -1,43 +1,43 @@
 import React, { Component } from "react";
-import nbiLogo from "assets/img/nbi-main-logo.png";
+import nbiLogo from "assets/img/logo.svg";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import _ from "lodash";
 
 import {
   IconDashboard,
-  IconAnnouncement,
+  // IconAnnouncement,
   IconRequestApproval,
   IconEmployee,
-  IconRecruitment,
-  IconApplicantHistory,
-  IconJobVacancy,
-  IconDTR,
-  IconPlantilla,
-  IconTraining,
-  IconOrganization,
-  IconAuditTrail,
-  IconMedical,
-  IconReports,
-  IconLeave,
+  // IconRecruitment,
+  // IconApplicantHistory,
+  // IconJobVacancy,
+  // IconDTR,
+  // IconPlantilla,
+  // IconTraining,
+  // IconOrganization,
+  // IconAuditTrail,
+  // IconMedical,
+  // IconReports,
+  // IconLeave,
   IconUserManagement,
-  IconSalarySchedules,
-  IconDataSets,
-  IconPosition,
-  IconQuestionnaire,
-  IconLibrary,
-  IconForms,
-  IconRecruitmentSettings,
-  IconPayrollPayroll,
-  IconPayrollDeductions,
-  IconPayrollRemittance,
-  IconIPCR,
-  IconSALN,
-  IconLeaveMonetization,
-  IconDisciplinaryAction,
-  IconPayrollLogs,
-  IconPinCode,
-  IconTranche
+  // IconSalarySchedules,
+  // IconDataSets,
+  // IconPosition,
+  // IconQuestionnaire,
+  // IconLibrary,
+  // IconForms,
+  // IconRecruitmentSettings,
+  // IconPayrollPayroll,
+  // IconPayrollDeductions,
+  // IconPayrollRemittance,
+  // IconIPCR,
+  // IconSALN,
+  // IconLeaveMonetization,
+  // IconDisciplinaryAction,
+  // IconPayrollLogs,
+  // IconPinCode,
+  // IconTranche
 } from "./Icons";
 
 class SidebarNavigation extends Component {
@@ -80,10 +80,7 @@ class SidebarNavigation extends Component {
             style={{ display: isShinked ? "block" : "none" }}
             className="mr-auto"
           >
-            <img className="brand-logo" src={nbiLogo} alt="NBI HRIS" />
-            <strong className="brand-text" onClick={this.handleToggle}>
-              Super Admin
-            </strong>
+            <img className="brand-logo" src={nbiLogo} alt="Who's In" />
           </div>
           <a
             onClick={this.handleToggle}

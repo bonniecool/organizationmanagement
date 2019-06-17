@@ -38,7 +38,7 @@ function* show({id}) {
 			type: c.GOT_DETAIL,
 			data
 		})
-		yield members({id})
+		// yield members({id})
 	})
 }
 

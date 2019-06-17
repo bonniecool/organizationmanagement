@@ -1,4 +1,4 @@
-export const MODULE = 'BRANCH-ADMIN-ATTENDANCE';
+export const MODULE = 'SUPER-ADMIN-REMINDERS';
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`
@@ -9,6 +9,7 @@ export const GOT_DETAIL = `${MODULE}/GOT_DETAIL`
 export const CREATE = `${MODULE}/CREATE`
 export const REMOVE = `${MODULE}/REMOVE`
 export const UPDATE = `${MODULE}/UPDATE`
+export const SEND_SMS = `${MODULE}/SEND_SMS`
 
 export const SET_FORM_DATA = `${MODULE}/SET_FORM_DATA`
 export const CLEAR_FORM_DATA = `${MODULE}/CLEAR_FORM_DATA`

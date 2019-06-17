@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import * as c from '../constant';
 import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
 import Profile from '../component/Profile'

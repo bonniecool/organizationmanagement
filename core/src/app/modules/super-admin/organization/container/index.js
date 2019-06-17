@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as c from '../constant';
-import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
 import Profile from '../component/Profile'
-const AddModal = AsyncComponent(() => import ('./AddModal'));
 
 class Dashboard extends Component {
 
@@ -17,15 +15,6 @@ class Dashboard extends Component {
 		dispatch({
 			type:c.GET_REGIONS
 		})
-		dispatch({
-			type:c.GET_PROVINCES
-		})
-		dispatch({
-			type:c.GET_MUNICIPALITIES
-		})
-		dispatch({
-			type:c.GET_BARANGAYS
-		})
 	}
 
 	onSelectRow = (data) => {
@@ -36,25 +25,8 @@ class Dashboard extends Component {
 		})
 	}
 
-	onAdd = e => {
-		e.preventDefault();
-		const { dispatch } = this.props;
-		dispatch({
-			type:'MODAL',
-			data: {
-					isOpen: true,
-					title: 'Add Organization',
-					modalSize: 'modal-md',
-					content: <AddModal
-						/>
-			}
-		})
-	}
-
-
 	render() {
 		const { list, details } = this.props;
-
 		return (
 			<div className="">
 				<header className="page-header">
@@ -67,7 +39,6 @@ class Dashboard extends Component {
 						<div className="col-md-4">
 							<div className="card">
 								<div className="card-header">
-									<button className="btn btn-primary btn-sm btn-block mb-2" type="button" onClick={this.onAdd}>Add Organization</button>
 									<div className="input-group input-group-sm">
 									<input type="text" className="form-control" placeholder="Search Organization" />
 									<div className="input-group-append">
@@ -87,9 +58,6 @@ class Dashboard extends Component {
 							<div className="card">
 								<div className="card-header">
 									<div className="pull-left">{details.get('name')}</div>
-								 	<div className="pull-right">
-										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Edit Organization</button>
-									</div>
 								</div>
 								<div className="card-body">
 										<Profile 

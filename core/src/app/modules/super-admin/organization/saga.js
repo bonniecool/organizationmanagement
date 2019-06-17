@@ -16,8 +16,9 @@ function* list() {
 			type: c.GOT_LIST,
 			data
 		})
-		if(data.length > 0)
+		if(data.length > 0){
 			yield show({id:data[0].id})
+		}
 	})
 }
 
@@ -53,9 +54,8 @@ function* create({args}) {
 }
 
 function* regions() {
-	yield put(loading('CREATE_ORGANIZATION_LIST'));
-
-	const response = yield call(services.get(`/common/region`))
+	yield put(loading('GET_REGIONS'));
+	const response = yield call(services.get(`/common/regions`))
 
 	yield put(loading(null));
 
@@ -70,10 +70,10 @@ function* regions() {
 	})
 }
 
-function* provinces() {
-	yield put(loading('CREATE_ORGANIZATION_LIST'));
+function* provinces({region_id}) {
+	yield put(loading('GET_PROVINCES'));
 
-	const response = yield call(services.get(`/common/province`))
+	const response = yield call(services.get(`/common/regions/${region_id}/provinces`))
 
 	yield put(loading(null));
 
@@ -88,10 +88,10 @@ function* provinces() {
 	})
 }
 
-function* municipalities() {
-	yield put(loading('CREATE_ORGANIZATION_LIST'));
+function* municipalities({region_id, province_id}) {
+	yield put(loading('GET_MUNICIPALITIES'));
 
-	const response = yield call(services.get(`/common/municipality`))
+	const response = yield call(services.get(`/common/regions/${region_id}/provinces/${province_id}/municipalities`))
 
 	yield put(loading(null));
 
@@ -106,10 +106,10 @@ function* municipalities() {
 	})
 }
 
-function* barangays() {
-	yield put(loading('CREATE_ORGANIZATION_LIST'));
+function* barangays({region_id, province_id, municipality_id}) {
+	yield put(loading('GET_BARANGAYS'));
 
-	const response = yield call(services.get(`/common/barangay`))
+	const response = yield call(services.get(`/common/regions/${region_id}/provinces/${province_id}/municipalities/${municipality_id}/barangay`))
 
 	yield put(loading(null));
 

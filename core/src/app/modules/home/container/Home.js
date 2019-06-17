@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Route } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { AsyncComponent } from "app/Utils";
 
@@ -26,7 +26,7 @@ class Home extends Component {
 
   mainRoutes = type => {
     const route = {
-      'super' : <SuperRoute />,
+      'SuperAdmin' : <SuperRoute />,
       'Administrator' : <OrganizationRoute />, 
       'BranchAdministrator' : <BranchRoute />,
       'default' : '',

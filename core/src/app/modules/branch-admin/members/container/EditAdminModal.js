@@ -3,7 +3,6 @@ import Modal from 'app/modules/common/component/Modal';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
-import Select from 'react-select';
 
 class AddDeductionModal extends Component {
 
@@ -71,7 +70,6 @@ class AddDeductionModal extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         const { dispatch, form_data, data } = this.props;
-        console.log('here')
         dispatch({
             type:c.UPDATE_MEMBER,
             id:data.get('id'),

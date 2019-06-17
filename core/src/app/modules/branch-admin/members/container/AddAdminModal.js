@@ -3,7 +3,6 @@ import Modal from 'app/modules/common/component/Modal';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
-import Select from 'react-select';
 
 class AddDeductionModal extends Component {
 
@@ -47,13 +46,7 @@ class AddDeductionModal extends Component {
     }
 
     render() {
-        const { form_data, 
-                regions,
-                provinces,
-                municipalities,
-                barangays,
-                loadingTypes,
-        } = this.props;
+        const { form_data } = this.props;
         return (
             <div>
              <form onSubmit={ this.onSubmit }>

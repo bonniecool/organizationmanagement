@@ -170,7 +170,6 @@ function* myProfile({user_type}) {
     yield call(watchApiResponse, response, function*(){
 
         const { data } = response.data;
-        console.log('===',user_type)
         yield put({
             type: "PROFILE",
             data,

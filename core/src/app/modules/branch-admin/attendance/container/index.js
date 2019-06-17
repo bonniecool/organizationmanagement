@@ -11,8 +11,14 @@ const AddModal = AsyncComponent(() => import ('./AddModal'));
 class Dashboard extends Component {
 
 
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.GET_LIST
+		})
+	}
+
 	onAdd = e => {
-		console.log('here')
 		e.preventDefault();
 		const { dispatch } = this.props;
 		dispatch({
@@ -60,7 +66,7 @@ class Dashboard extends Component {
 				photo:'',
 			}
 		])
-
+		console.log('here')
 		return (
 			<div className="">
 				<header className="page-header">
@@ -113,9 +119,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state, routeParams) => {
-	const superAdminOrganization = state.superAdminOrganization;
+	const branchAttendance = state.branchAttendance;
 	return {
-		list : superAdminOrganization.get('list'),
+		list : branchAttendance.get('list'),
 	};
 };
 
