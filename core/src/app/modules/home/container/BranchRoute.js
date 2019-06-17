@@ -8,6 +8,7 @@ const Members = AsyncComponent(() => import("../../branch-admin/members/containe
 
 const Attendance = AsyncComponent(() => import("../../branch-admin/attendance/container"));
 const Reminders = AsyncComponent(() => import("../../branch-admin/reminders/container"));
+const QRCode = AsyncComponent(() => import("../../branch-admin/qr-code/container"));
 
 class SuperAdminRoute extends Component {
   
@@ -20,6 +21,7 @@ class SuperAdminRoute extends Component {
 
         <Route path={`${match.path}attendance`} component={Attendance} />
         <Route path={`${match.path}reminders`} component={Reminders} />
+        <Route path={`${match.path}qr-code`} component={QRCode} />
       </div>
     );
   }

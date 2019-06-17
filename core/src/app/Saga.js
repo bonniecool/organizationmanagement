@@ -11,6 +11,7 @@ import organizationWallet from 'app/modules/organization-admin/wallet/saga';
 import branchMembers from 'app/modules/branch-admin/members/saga';
 import branchAttendance from 'app/modules/branch-admin/attendance/saga';
 import branchReminders from 'app/modules/branch-admin/reminders/saga';
+import branchQRCode from 'app/modules/branch-admin/qr-code/saga';
 
 
 export default function* rootSaga() {
@@ -23,9 +24,10 @@ export default function* rootSaga() {
         organizationBranch(),
         organizationTransaction(),
         organizationWallet(),
-        
+
         branchMembers(),
         branchAttendance(),
         branchReminders(),
+        branchQRCode(),
     ]);
 }
