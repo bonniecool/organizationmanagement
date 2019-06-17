@@ -7,7 +7,6 @@ use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use App\Modules\Common\Repositories\RegionRepository;
 use App\Modules\Member\Repositories\MemberRepository;
-use App\Modules\User\Repositories\SiteUserRepository;
 use App\Modules\Common\Repositories\BarangayRepository;
 use App\Modules\Common\Repositories\ProvinceRepository;
 use App\Modules\Common\Repositories\MunicipalityRepository;
