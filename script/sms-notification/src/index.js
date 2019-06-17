@@ -18,12 +18,11 @@ class Event
         });
     }
     initialize = () => {
-        console.log(GulpUtil.colors.green(figlet.textSync("SMS BLASTING SCRIPT", {
+        console.log(GulpUtil.colors.yellow(figlet.textSync("SMS BLASTING SCRIPT", {
             font: 'Standard',
             horizontalLayout: 'default',
             verticalLayout: 'full'
         })));
-        
         this._sendSms();
     }
 
@@ -33,18 +32,16 @@ class Event
             'numWorkers': 3,
             'suppressStack': true
         };
-
         let ref = this.fb.database().ref('queue');
-        new FirebaseQueue(ref, options, (data, progress, resolve, reject) => {
-            console.log(data);
-            // let sendSms = new SendSms(data).process();
-            // sendSms.then( res => {
-            //     console.log(res);
-            //     resolve(res);
-            // }).catch( err => {
-            //     console.log(err);
-            //     reject(err);
-            // });
+        const firebase = new FirebaseQueue(ref, options, (data, progress, resolve, reject) => {
+            let sendSms = new SendSms(data).process();
+            sendSms.then( res => {
+                console.log(res);
+                resolve(res);
+            }).catch( err => {
+                console.log(err);
+                reject(err);
+            });
         });
     }
 }
