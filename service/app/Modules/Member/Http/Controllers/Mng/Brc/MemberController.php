@@ -142,6 +142,24 @@ class MemberController extends Controller
             ->filter($params)
             ->getOrPaginate();
 
-        return $this->apiResponse->resource(new MemberAttendanceCollection ($attendance));
+        return $this->apiResponse->resource(new MemberAttendanceCollection($attendance));
+    }
+
+    /**
+     * attendance list per member
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function attendancePerMember(Request $request, $uuid)
+    {
+        $params = $request->only('attendance_date');
+
+        $branch = request()->user()->profile->branch_id;
+        $memberAttendance = $this->memberRepository
+            ->findUuid($uuid)
+            ->where('branch_id', $branch)
+            ->firstOrFail()->attendances()->get();
+
+        return $this->apiResponse->resource(new MemberAttendanceCollection($memberAttendance));
     }
 }
