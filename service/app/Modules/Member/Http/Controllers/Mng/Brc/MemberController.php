@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Modules\User\Models\User;
 use App\Http\Controllers\Controller;
 use Damnyan\Cmn\Services\ApiResponse;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Modules\Member\Http\Resources\Member;
 use App\Modules\Member\Http\Requests\MemberRequest;
 use App\Modules\Member\Repositories\MemberRepository;
@@ -161,5 +162,19 @@ class MemberController extends Controller
             ->firstOrFail()->attendances()->get();
 
         return $this->apiResponse->resource(new MemberAttendanceCollection($memberAttendance));
+    }
+
+    /**
+     * attendance list per member
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function showQr(Request $request)
+    {
+        $branch = $request->user()->profile->branch->uuid;
+        
+        $qrCode = QrCode::size(300)->generate($branch);
+
+        return $qrCode;
     }
 }

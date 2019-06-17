@@ -20,6 +20,7 @@ class Organization extends Resource
             'name' => $this->name,
             'oganization_owner' => $this->organization_owner,
             'mobile_number' => $this->mobile_number,
+            'photo' => $this->photo,
             'region_code' => $this->region_code,
             'region_name' => optional($this->region)->name,
             'province_code' => $this->province_code,
