@@ -2,7 +2,6 @@
 
 namespace App\Modules\Branch\Models;
 
-use App\Modules\Notification\Repositories\ReminderRepository;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
