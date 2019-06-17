@@ -3,14 +3,20 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
-import { fromJS } from 'immutable';
+import * as c from '../constant';
+
 const AddModal = AsyncComponent(() => import ('./AddModal'));
 
 class Dashboard extends Component {
 
-
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.GET_LIST
+		})
+	}
 	onAdd = e => {
-		console.log('here')
+
 		e.preventDefault();
 		const { dispatch } = this.props;
 		dispatch({
@@ -28,48 +34,7 @@ class Dashboard extends Component {
 
 
 	render() {
-		const data = fromJS([
-			{
-				name:'Company A',
-				address:'Manila Makati PHilippines',
-				contact:'+63 12345678',
-				email:'george@companya.com',
-				photo:'',
-				subscription:'TRIAL',
-				status:'ACTIVE',
-				date:'2019-12-01',
-			},
-			{
-				name:'Company B',
-				address:'Ortigas Pasig PHilippines',
-				contact:'+63 11122233',
-				email:'john@companyb.com',
-				photo:'',
-				subscription:'MONTHLY',
-				status:'ACTIVE',
-				date:'2019-05-31',
-			},
-			{
-				name:'Company D',
-				address:'Rotonda Quezon City PHilippines',
-				contact:'+63 8765432',
-				email:'lina@companyd.com',
-				photo:'',
-				subscription:'ANNUAL',
-				status:'ACTIVE',
-				date:'2019-01-01',
-			},
-			{
-				name:'Company C',
-				address:'BGC Taguig PHilippines',
-				contact:'+63 11122233',
-				email:'paul@companyc.com',
-				photo:'',
-				subscription:'-',
-				status:'INACTIVE',
-				date:'2019-05-01',
-			},
-		])
+		const { list } = this.props;
 
 		return (
 			<div className="">
@@ -92,7 +57,7 @@ class Dashboard extends Component {
 								</div>
 								<div className="">
 										<Organization
-											data={data}
+											data={list}
 										/>
 								</div>
 							</div>

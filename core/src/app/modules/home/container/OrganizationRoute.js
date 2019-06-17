@@ -6,7 +6,7 @@ import { AsyncComponent } from "app/Utils";
 const DashBoard = AsyncComponent(() => import("../../organization-admin/dashboard/container"));
 const Branches = AsyncComponent(() => import("../../organization-admin/branches/container"));
 const Transaction = AsyncComponent(() => import("../../organization-admin/transaction/container"));
-const Members = AsyncComponent(() => import("../../organization-admin/members/container"));
+const Wallet = AsyncComponent(() => import("../../organization-admin/wallet/container"));
 
 class SuperAdminRoute extends Component {
 
@@ -17,7 +17,7 @@ class SuperAdminRoute extends Component {
         <Route exact path={`${match.path}`} component={DashBoard} />
         <Route path={`${match.path}branches`} component={Branches} />
         <Route path={`${match.path}transaction`} component={Transaction} />
-        <Route path={`${match.path}members`} component={Members} />
+        <Route path={`${match.path}wallet`} component={Wallet} />
       </div>
     );
   }

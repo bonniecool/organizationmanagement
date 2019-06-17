@@ -238,7 +238,6 @@ export default class LocalUploader extends React.Component {
           label()
         ) : (
           <span>
-            <i className="material-icons">cloud_upload</i> {label}
           </span>
         )}
       </label>,

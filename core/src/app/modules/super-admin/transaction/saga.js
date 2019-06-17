@@ -5,7 +5,7 @@ import * as c from './constant';
 function* list() {
 	yield put(loading('GET_STATISTIC'));
 
-	const response = yield call(services.get(`/mng/dashboard`))
+	const response = yield call(services.get(`mng/su/payment`))
 
 	yield put(loading(null));
 

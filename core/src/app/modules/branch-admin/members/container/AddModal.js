@@ -7,6 +7,7 @@ import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import moment from 'moment-timezone';
 import Uploader from 'app/modules/uploadcare/Uploader';
+import thumbnail from "assets/img/image-thumbnail.jpg";
 import { _ } from 'app/Utils';
 
 class AddDeductionModal extends Component {
@@ -72,12 +73,11 @@ class AddDeductionModal extends Component {
     }
 
     uploadPhoto = (key) => (files) => {
-		const { dispatch } = this.props
+        const { dispatch } = this.props
         dispatch({
             type: c.SET_FORM_DATA,
             data: {
-                key: key,
-                value: files
+                [key]: files
             }
         });
 	};
@@ -112,6 +112,7 @@ class AddDeductionModal extends Component {
                 zip_code: form_data.get('zip_code'),
                 street: form_data.get('street'),
                 email: form_data.get('email'),
+                photo: form_data.get('photo'),
             }
             
         })
@@ -135,11 +136,26 @@ class AddDeductionModal extends Component {
                 <Modal.Body>
                         <div className="row">
                             <div className="col-md-12">
-                                    <Uploader
-                                    crop={"400x400"}
-                                    label={`${_.isEmpty(form_data.get('photo')) ? 'Upload Photo' : 'Update Photo'}`}
-                                    icon={`fa fa-camera`}
-                                    onUploaded={ this.uploadPhoto('photo') }/>
+                                <div className="col-md-6 offset-md-3">
+                                <div className="col-md-6 offset-md-3">
+                                    <div className="employee-photo ml-auto">
+                                        <img
+                                        src={
+                                            !_.isNil(form_data.get('photo'))
+                                            ? form_data.get('photo')
+                                            : thumbnail
+                                        }
+                                        alt="..."
+                                        className="w-100 img-fluid img-thumbnail"
+                                        />
+                                    </div>
+                                        <Uploader
+                                        crop={"400x400"}
+                                        label={`${_.isEmpty(form_data.get('photo')) ? 'Upload Photo' : 'Update Photo'}`}
+                                        icon={`fa fa-camera`}
+                                        onUploaded={ this.uploadPhoto('photo') }/>
+                                </div>
+                                </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
@@ -188,7 +204,7 @@ class AddDeductionModal extends Component {
                                     <label>Birth Date</label>
                                     <DatePicker
                                         required
-                                        selected={form_data.get('birth_date')}
+                                        selected={form_data.get('birth_date') || ''}
                                         name="birth_date"
                                         onChange={this.handleOnChangeDate('birth_date')}
                                         dateFormat="YYYY/MM/DD"
@@ -284,16 +300,10 @@ class AddDeductionModal extends Component {
                                     <input type="text" name="zip_code" className="form-control" onChange={this.onChangeInput} value={form_data.get('zip_code')} />
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-12">
                                 <div className="form-group">
                                     <label>Contact Number</label>
                                     <input type="text" name="mobile_number" className="form-control" onChange={this.onChangeInput} value={form_data.get('mobile_number')} />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" className="form-control" onChange={this.onChangeInput} value={form_data.get('email')} />
                                 </div>
                             </div>
                             <div className="col-md-6">

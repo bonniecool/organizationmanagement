@@ -66,75 +66,90 @@ class EmployeeList extends Component {
                                 rowGetter={({index}) => data.get(index)}>
 
                                 <Column
-                                    width={ 300 }
+                                    width={ width }
                                     flex={ 1 }
-                                    label="Organization"
+                                    label="Reference No."
                                     dataKey='name'
                                     cellRenderer={
                                             ({ rowData }) => {
-                                                console.log(rowData.toJS())
                                                 return (
                                                     <div className="item d-flex align-items-center">
-                                                        <div className="text">
-                                                            <a><h3 className="h5 text-uppercase">{rowData.get('name')} </h3></a>
-                                                        </div>
+                                                        <small className="text">
+                                                            {rowData.get('refno')}
+                                                        </small>
                                                     </div>  
                                                 )
                                             }
                                         }
                                 />
+
                                 <Column
-                                    width={ 100 }
-                                    label="Subscription"
-                                    dataKey=''
+                                    width={ width }
+                                    flex={ 1 }
+                                    label="Amount"
+                                    dataKey='name'
                                     cellRenderer={
                                             ({ rowData }) => {
                                                 return (
                                                     <div className="item d-flex align-items-center">
-                                                        <div className="text">
-                                                            <a><h3 className="h5 text-uppercase">{rowData.get('subscription')}</h3></a>
-                                                        </div>
+                                                        <small className="text">
+                                                            {rowData.get('amount')}
+                                                        </small>
                                                     </div>  
                                                 )
                                             }
                                         }
                                 />
                                 <Column
-                                    width={ 100 }
-                                    flex={ 1 }
+                                    width={ width }
                                     label="Status"
                                     dataKey=''
                                     cellRenderer={
                                             ({ rowData }) => {
                                                 return (
                                                     <div className="item d-flex align-items-center">
-                                                        <div className="text">
-                                                            <a><h3 className="h5 text-uppercase">{rowData.get('status')}</h3></a>
-                                                        </div>
+                                                        <small className="text">
+                                                            {rowData.get('status')}
+                                                        </small>
                                                     </div>  
                                                 )
                                             }
                                         }
                                 />
                                 <Column
-                                    width={ 200 }
+                                    width={ width }
                                     flex={ 1 }
-                                    label="Date Subscribed"
+                                    label="Remarks"
                                     dataKey=''
                                     cellRenderer={
                                             ({ rowData }) => {
                                                 return (
                                                     <div className="item d-flex align-items-center">
-                                                        <div className="text">
-                                                            <a><h3 className="h5 text-uppercase">{rowData.get('date')}</h3></a>
-                                                        </div>
+                                                        <small className="text">
+                                                            {rowData.get('remarks')}
+                                                        </small>
                                                     </div>  
                                                 )
                                             }
                                         }
                                 />
-                                
-
+                                <Column
+                                    width={ width }
+                                    flex={ 1 }
+                                    label="Date & Time  "
+                                    dataKey=''
+                                    cellRenderer={
+                                            ({ rowData }) => {
+                                                return (
+                                                    <div className="item d-flex align-items-center">
+                                                        <small className="text">
+                                                            {rowData.get('created_date_readable')}
+                                                        </small>
+                                                    </div>  
+                                                )
+                                            }
+                                        }
+                                />
                             </Table>
                         )
                     }}

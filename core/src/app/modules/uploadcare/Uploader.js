@@ -76,7 +76,7 @@ class UploadCare extends Component {
       if (this.state.isUploading) {
         return (
           <div>
-            <i className="material-icons">cloud_upload</i>{" "}
+            <i className="material-icons"></i>{" "}
             <span>Uploading ({this.state.progress}%)...</span>
           </div>
         );
@@ -144,7 +144,7 @@ class UploadCare extends Component {
           <Progress />
         ) : (
           <div>
-            <i className="material-icons">cloud_upload</i>{" "}
+            <i className="material-icons"></i>{" "}
             {this.props.btnCaption || this.props.label}
           </div>
         )}

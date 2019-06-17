@@ -44,6 +44,7 @@ class SidebarNavigation extends Component {
       if (path === name) return "active";
       return "";
     };
+
     return (
       <nav className={`sidebar-navigation ${!isShinked && "shrinked"}`}>
         <div className="sidebar-header">
@@ -56,8 +57,7 @@ class SidebarNavigation extends Component {
           <a
             onClick={this.handleToggle}
             id="toggle-btn"
-            className={`brand-menu brand-menu-icon ${!isShinked && "active"}`}
-          >
+            className={`brand-menu brand-menu-icon ${!isShinked && "active"}`}>
             <span />
             <span />
             <span />

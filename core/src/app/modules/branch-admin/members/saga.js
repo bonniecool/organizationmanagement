@@ -76,6 +76,8 @@ function* update({id,args}) {
 		alert.success(message)
 
 		yield list()
+		yield show({id:id})
+		
 
 		yield put({
 			type: 'MODAL',

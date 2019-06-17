@@ -88,9 +88,9 @@ class SidebarNavigation extends Component {
                 <span className="menu-text">Transaction</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("members")}`}>
-              <Link to="/members" className="link collapsed">
-                <IconMembers /> <span className="menu-text">Members</span>
+            <li className={`sidebar-menu ${getClassName("wallet")}`}>
+              <Link to="/wallet" className="link collapsed">
+                <IconMembers /> <span className="menu-text">Wallet</span>
               </Link>
             </li>
           </ul>

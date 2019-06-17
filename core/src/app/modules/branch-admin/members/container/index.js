@@ -7,7 +7,7 @@ import Organization from '../component/List'
 import Profile from '../component/Profile'
 import MemberList from '../component/MemberList'
 import DatePicker from 'react-datepicker';
-
+import moment from 'moment-timezone';
 const AddAdminModal = AsyncComponent(() => import ('./AddAdminModal'));
 const EditAdminModal = AsyncComponent(() => import ('./EditAdminModal'));
 const AddModal = AsyncComponent(() => import ('./AddModal'));
@@ -50,31 +50,52 @@ class Dashboard extends Component {
 	onEdit = data => e => {
 		e.preventDefault();
 		const { dispatch } = this.props;
+		let newData = data.toJS()
+				newData['first_name'] = data.get('first_name');
+				newData['last_name'] = data.get('last_name');
+				newData['middle_name'] = data.get('middle_name');
+				newData['suffix'] = data.get('suffix');
+				newData['birth_date'] = moment(data.get('birth_date'));
+				newData['gender'] = data.get('gender');
+				newData['mobile_number'] = data.get('mobile_number');
+				newData['region_code'] = data.getIn(['region','code']);
+				newData['province_code'] = data.getIn(['province','code']);
+				newData['municipality_code'] = data.getIn(['municipality','code']);
+				newData['barangay_code'] = data.getIn(['barangay','code']);
+				newData['zip_code'] = data.get('zip_code');
+				newData['street'] = data.get('street');
+				newData['photo'] = data.get('photo');	
 		dispatch({
 			type:c.SET_FORM_DATA,
-			data:data.toJS()
+			data:newData
 		})
-			dispatch({
+			if(data.get('region')){
+				dispatch({
 					type:c.GET_PROVINCES,
-					region_id:data.get('region_code') || ''
-			})
-			dispatch({
+					region_id:data.getIn(['region','code']) || '',
+				})
+			}
+			if(data.get('province')){
+				dispatch({
 					type:c.GET_MUNICIPALITIES,
-					region_id:data.get('region_code'),
-					province_id:data.get('province_code') || ''
-			})
-			dispatch({
-					type:c.GET_BARANGAYS,
-					region_id:data.get('region_code'),
-					province_id:data.get('province_code'),
-					municipality_id:data.get('municipality_code'),
-			})
+					region_id:data.getIn(['region','code'])  || '',
+					province_id:data.getIn(['province','code']) || '',
+				})
+			}
+			if(data.get('municipality')){
+				dispatch({
+						type:c.GET_BARANGAYS,
+						region_id:data.getIn(['region','code'])  || '',
+						province_id:data.getIn(['province','code']) || '',
+						municipality_id:data.getIn(['municipality','code']) || '',
+				})
+			}
 		dispatch({
 			type:'MODAL',
 			data: {
 					isOpen: true,
 					title: 'Edit Branch',
-					modalSize: 'modal-md',
+					modalSize: 'modal-lg',
 					content: <EditModal 
 										data={data}
 									/>

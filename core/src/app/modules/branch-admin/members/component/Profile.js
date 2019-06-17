@@ -38,7 +38,7 @@ export default class ProfileInfo extends PureComponent {
                   <div className="details-item">
                     <p className="title">Address :</p>
                     <p className="answer">
-                      {data.get('street')}, {data.getIn('barangay','name')}, {data.getIn('municipality','name')}, {data.getIn('province','name')}, {data.get('region','name')}, {data.get('zip_code')}
+                      {data.get('street')}, {data.getIn(['barangay','name'])}, {data.getIn(['municipality','name'])}, {data.getIn(['province','name'])}, {data.getIn(['region','name'])}, {data.get('zip_code')}
                     </p>
                   </div>
                 </div>
