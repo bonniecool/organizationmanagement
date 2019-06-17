@@ -34,7 +34,8 @@ class Member extends Resource
             'longitude' => $this->longitude,
             'latitude' => $this->latitude,
             'has_logged' => $this->has_logged,
-            'mac_address' => $this->mac_address
+            'mac_address' => $this->mac_address,
+            'pin' => $this->pin
         ];
     }
 }
