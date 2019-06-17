@@ -5,39 +5,14 @@ import { connect } from "react-redux";
 import _ from "lodash";
 
 import {
-  IconDashboard,
-  // IconAnnouncement,
-  IconRequestApproval,
-  IconEmployee,
-  // IconRecruitment,
-  // IconApplicantHistory,
-  // IconJobVacancy,
-  // IconDTR,
-  // IconPlantilla,
-  // IconTraining,
-  // IconOrganization,
-  // IconAuditTrail,
-  // IconMedical,
-  // IconReports,
-  // IconLeave,
-  // IconUserManagement,
-  // IconSalarySchedules,
-  // IconDataSets,
-  // IconPosition,
-  // IconQuestionnaire,
-  // IconLibrary,
-  // IconForms,
-  // IconRecruitmentSettings,
-  // IconPayrollPayroll,
-  // IconPayrollDeductions,
-  // IconPayrollRemittance,
-  // IconIPCR,
-  // IconSALN,
-  // IconLeaveMonetization,
-  // IconDisciplinaryAction,
-  // IconPayrollLogs,
-  // IconPinCode,
-  // IconTranche
+  IconHome,
+  IconMembers,
+  IconAttendance,
+  IconReminders,
+  IconEvents,
+  IconAnnouncements,
+  IconGuest,
+  IconComment
 } from "./Icons";
 
 class SidebarNavigation extends Component {
@@ -99,7 +74,7 @@ class SidebarNavigation extends Component {
               data-tooltip="Dashboard"
             >
               <Link to="/" className="link collapsed">
-                <IconDashboard /> <span className="menu-text">Dashboard</span>
+                <IconHome /> <span className="menu-text">Dashboard</span>
               </Link>
             </li>
           </ul>
@@ -107,43 +82,41 @@ class SidebarNavigation extends Component {
           <ul className="sidebar-list list-unstyled">
             <li className={`sidebar-menu ${getClassName("members")}`}>
               <Link to="/members" className="link collapsed">
-                <IconEmployee />
+                <IconMembers />
                 <span className="menu-text">Members</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("attendance")}`}>
               <Link to="/attendance" className="link collapsed">
-                <IconRequestApproval />{" "}
-                <span className="menu-text">Attendance</span>
+                <IconAttendance /> <span className="menu-text">Attendance</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("reminders")}`}>
               <Link to="/reminders" className="link collapsed">
-                <IconRequestApproval />{" "}
-                <span className="menu-text">Reminders</span>
+                <IconReminders /> <span className="menu-text">Reminders</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("Events")}`}>
               <Link to="/events" className="link collapsed">
-                <IconRequestApproval />{" "}
-                <span className="menu-text">Events</span>
+                <IconEvents /> <span className="menu-text">Events</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("announcements")}`}>
               <Link to="/announcements" className="link collapsed">
-                <IconRequestApproval />{" "}
+                <IconAnnouncements />{" "}
                 <span className="menu-text">Announcements</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("guest")}`}>
               <Link to="/guests" className="link collapsed">
-                <IconRequestApproval />{" "}
-                <span className="menu-text">Guests</span>
+                <IconGuest /> <span className="menu-text">Guests</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("comment-suggestion")}`}>
+            <li
+              className={`sidebar-menu ${getClassName("comment-suggestion")}`}
+            >
               <Link to="/comments-suggestions" className="link collapsed">
-                <IconRequestApproval />{" "}
+                <IconComment />{" "}
                 <span className="menu-text">Comments & Suggestions</span>
               </Link>
             </li>
