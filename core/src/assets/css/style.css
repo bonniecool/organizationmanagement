@@ -955,7 +955,7 @@ section.dashboard-counts div[class*='col-']:last-of-type .item {
 .list-box,
 .card {
   border: 1px solid #fff;
-  box-shadow: 0 0 0 1px #f0f0f0; }
+  box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.07), 0 2px 9px 0 rgba(62, 57, 107, 0.06); }
 
 .list-box a {
   text-decoration: none !important;

@@ -16,7 +16,7 @@
   }
   & > .link {
     text-decoration: none;
-    padding: 4px 16px;
+    padding: 8px 16px;
     display: block;
     transform: 500ms ease;
     display: flex;
@@ -24,6 +24,7 @@
     & > .menu-icon {
       transform: 500ms ease;
       fill: darken($gray-chateau, 20%);
+      margin-right: 8px;
     }
 
     & > .menu-text {

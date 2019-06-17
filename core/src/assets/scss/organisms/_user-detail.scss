@@ -6,10 +6,10 @@
   transition: 500ms all ease;
   user-select: none;
   &:hover {
-    background: rgba($color-primary, 0.02);
+    background: rgba($white, 0.02);
   }
   &.active {
-    background: rgba($color-primary, 0.1);
+    background: rgba($white, 0.1);
     & > .icon {
       transform: rotate(180deg);
       transform-origin: 50% 50%;
@@ -18,7 +18,7 @@
 
   & > .icon {
     transform: 500ms all ease;
-    fill: $color-primary;
+    fill: $white;
     position: absolute;
     display: block;
     top: 20px;

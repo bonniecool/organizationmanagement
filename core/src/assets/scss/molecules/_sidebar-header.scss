@@ -1,23 +1,18 @@
 .sidebar-header {
   height: 50px;
-  padding: 5px 0 5px 24px;
-  background: $white;
-  border-bottom: 1px solid $color-primary-lighten;
-  box-shadow: 0 4px 8px 0 rgba($color-primary-lighten, 0.05);
+  padding: 10px 0 10px 24px;
+  background: $blue-500;
+  border-bottom: 1px solid $blue-500;
+  box-shadow: 0 4px 8px 0 rgba($blue-500, 0.05);
   display: flex;
   .brand-logo {
-    height: 40px;
+    height: 30px;
     width: auto;
-  }
-  .brand-text {
-    line-height: 40px;
-    letter-spacing: 1px;
-    color: $blue-900;
   }
   .brand-menu {
     width: 40px;
     height: 40px;
-    padding: 8px;
+    padding: 4px;
   }
 }
 

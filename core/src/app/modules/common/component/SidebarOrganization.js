@@ -1,43 +1,14 @@
 import React, { Component } from "react";
-import nbiLogo from "assets/img/logo.svg";
+import logo from "assets/img/logo-white.svg";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import _ from "lodash";
 
 import {
-  IconDashboard,
-  // IconAnnouncement,
-  IconRequestApproval,
-  IconEmployee,
-  // IconRecruitment,
-  // IconApplicantHistory,
-  // IconJobVacancy,
-  // IconDTR,
-  // IconPlantilla,
-  // IconTraining,
-  // IconOrganization,
-  // IconAuditTrail,
-  // IconMedical,
-  // IconReports,
-  // IconLeave,
-  IconUserManagement,
-  // IconSalarySchedules,
-  // IconDataSets,
-  // IconPosition,
-  // IconQuestionnaire,
-  // IconLibrary,
-  // IconForms,
-  // IconRecruitmentSettings,
-  // IconPayrollPayroll,
-  // IconPayrollDeductions,
-  // IconPayrollRemittance,
-  // IconIPCR,
-  // IconSALN,
-  // IconLeaveMonetization,
-  // IconDisciplinaryAction,
-  // IconPayrollLogs,
-  // IconPinCode,
-  // IconTranche
+  IconHome,
+  IconOrganization,
+  IconTransactions,
+  IconMembers
 } from "./Icons";
 
 class SidebarNavigation extends Component {
@@ -80,7 +51,7 @@ class SidebarNavigation extends Component {
             style={{ display: isShinked ? "block" : "none" }}
             className="mr-auto"
           >
-            <img className="brand-logo" src={nbiLogo} alt="Who's In" />
+            <img className="brand-logo" src={logo} alt="Who's In" />
           </div>
           <a
             onClick={this.handleToggle}
@@ -99,7 +70,7 @@ class SidebarNavigation extends Component {
               data-tooltip="Dashboard"
             >
               <Link to="/" className="link collapsed">
-                <IconDashboard /> <span className="menu-text">Dashboard</span>
+                <IconHome /> <span className="menu-text">Dashboard</span>
               </Link>
             </li>
           </ul>
@@ -107,20 +78,19 @@ class SidebarNavigation extends Component {
           <ul className="sidebar-list list-unstyled">
             <li className={`sidebar-menu ${getClassName("branches")}`}>
               <Link to="/branches" className="link collapsed">
-                <IconEmployee />
+                <IconOrganization />
                 <span className="menu-text">Branches</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("transaction")}`}>
               <Link to="/transaction" className="link collapsed">
-                <IconRequestApproval />{" "}
+                <IconTransactions />{" "}
                 <span className="menu-text">Transaction</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("members")}`}>
               <Link to="/members" className="link collapsed">
-                <IconUserManagement />{" "}
-                <span className="menu-text">Members</span>
+                <IconMembers /> <span className="menu-text">Members</span>
               </Link>
             </li>
           </ul>
