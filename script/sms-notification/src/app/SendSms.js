@@ -2,8 +2,8 @@ import _ from 'lodash';
 import https from 'https';
 import Promise from 'promise';
 import request from 'request';
-import Async from 'asyncawait/async';
-import Await from 'asyncawait/await';
+import SmsLog from '../models/SmsLog';
+import Async from "asyncawait/async";
 
 class SendSms {
     constructor(data) {
@@ -13,54 +13,37 @@ class SendSms {
     process() {
         return new Promise((resolve, reject) => {
             let payload = this.data;
-            Async( (customer) => {
-                console.log(customer.mobile_number);
-                Await (this.pushSms(payload));
+            SmsLog.create(payload).then( () => {
+                let sms = this.pushSms(payload);
+                sms.then( res => {
+                    resolve(res);
+                }).catch( err => {
+                    reject(err);
+                });
             });
-            resolve();
         });
     }
 
-    //
-    // companyCustomer(payload) {
-    //     return new Promise((resolve, reject) => {
-    //         Customer.getAllCustomer(payload).then( customers => {
-    //             // console.log(customers);
-    //                 customers.forEach( Async( (customer) => {
-    //                     console.log(customer.mobile_number);
-    //                     Await (this.pushSms(customer, payload));
-    //                 }));
-    //                 resolve();
-    //         });
-    //     });
-    // }
-    //
-    // branchCustomer(payload) {
-    //     return new Promise((resolve, reject) => {
-    //         Customer.getBranchCustomer(payload).then( customers => {
-    //             // console.log(customers);
-    //             customers.forEach( Async( (customer) => {
-    //                 console.log(customer.mobile_number);
-    //                 Await (this.pushSms(customer, payload));
-    //             }));
-    //             resolve();
-    //         });
-    //     });
-    // }
-
     pushSms(payload) {
+        return new Promise((resolve, reject) => {
             let content = `${payload.content}`;
             let formData = {
-                'number'       : `${payload.mobile_number}`,
-                'message'      : content
+                'number': `${payload.mobile_number}`,
+                'message': `${payload.subject}\n${content}`
             };
-            request.post({url:'https://staging-ws.txtbox.com/v1/sms/push', formData: formData, headers: {
+            console.log(payload);
+            request.post({
+                url: 'https://ws-staging.txtbox.com/v1/sms/push', formData: formData, headers: {
                     "X-TXTBOX-Auth": "3a9607d8435211394037443799615296"
-                }}, function(err,httpResponse,body) {
-                if(httpResponse.statusCode == 200) {
-                    console.log(`Sent sms to ${payload.mobile_number}`);
                 }
+            }, function (err, httpResponse, body) {
+                console.log(httpResponse.body);
+                if (httpResponse.statusCode == 200) {
+                    resolve();
+                }
+                resolve();
             });
+        });
     }
 }
 export default SendSms;
