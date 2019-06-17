@@ -154,8 +154,11 @@ class ReminderController extends Controller
         {
             return $this->apiResponse->badRequest('Unable to proccess. Your load balance is not enough.');
         }
-        $data['posted_by'] = $reminder->creator->full_name;
-        $reminder->notify(new SendSmsNotification($data));
+        $members = $reminder->branch->members;
+        foreach ($members as $member)
+        {
+            $reminder->notify(new SendSmsNotification($member));
+        }
         return $this->apiResponse->resource(new Reminder($reminder))->additional([
             'message' => 'Sms notification sent.'
         ]);

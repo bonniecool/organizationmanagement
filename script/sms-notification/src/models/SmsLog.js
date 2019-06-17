@@ -4,11 +4,11 @@ import MySQL from '../database/mysql';
 import _ from 'lodash';
 import moment from 'moment';
 
-class CompanyBranchCustomer{
+class SmsLogModel{
 
     constructor() {
         this.db = MySQL;
-        this.table = 'company_branch_customers';
+        this.table = 'sms_logs';
     }
 
     getAllCustomer(payload) {
@@ -46,4 +46,4 @@ class CompanyBranchCustomer{
 
 }
 
-export default new CompanyBranchCustomer;
+export default new SmsLogModel;

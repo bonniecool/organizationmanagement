@@ -14,9 +14,10 @@ class SendSmsNotification extends Notification
       * @param string $token
       * @return void
       */
-     public function __construct($payload)
+     public function __construct($member)
      {
-         $this->posted_by = $payload['posted_by'];
+         $this->mobile_number = $member->mobile_number;
+         $this->member_id = $member->id;
      }
 
     /**
@@ -41,9 +42,12 @@ class SendSmsNotification extends Notification
         $data    = [
             '_state' => config('queue.connections.firebase.queue.states.send_sms'),
             'data' => [
+                'mobile_number' => $this->mobile_number,
+                'member_id' => $this->member_id,
+                'reminder_id' => $notifiable->id,
                 'subject' => $notifiable->subject,
                 'content' => $notifiable->content,
-                'posted_by' => $this->posted_by
+                'posted_by' => $notifiable->creator->profile->full_name,
             ],
         ];
 
