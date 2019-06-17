@@ -16,9 +16,11 @@ function* list() {
 			type: c.GOT_LIST,
 			data
 		})
-		if(data.length > 0)
+		if(data.length > 0){
 			yield show({id:data[0].id})
 			yield members({id:data[0].id})
+		}
+			
 	})
 }
 
@@ -29,15 +31,15 @@ function* show({id}) {
 
 	yield put(loading(null));
 
-	// yield call(watchApiResponse, response, function*() {
-	// 	const { data } = response.data
+	yield call(watchApiResponse, response, function*() {
+		const { data } = response.data
 
-	// 	yield put({
-	// 		type: c.GOT_DETAILS,
-	// 		data
-	// 	})
-	// 	// yield members({id})
-	// })
+		yield put({
+			type: c.GOT_DETAILS,
+			data
+		})
+		yield members({id})
+	})
 }
 
 function* create({args}) {
@@ -221,7 +223,7 @@ function* updateMember({id, args}) {
 function* removeMember({id, args}) {
 	yield put(loading('REMOVE_MEMBER'));
 
-	const response = yield call(services.remove(`mng/branch/${id}/user/${args.id}`), args)
+	const response = yield call(services.remove(`mng/branch/${id}/user/${args.id}`))
 
 	yield put(loading(null));
 

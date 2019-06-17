@@ -8,7 +8,6 @@ import {
   IconHome,
   IconOrganization,
   IconTransactions,
-  IconDataSet
 } from "./Icons";
 
 class SidebarNavigation extends Component {

@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
 import Select from 'react-select';
-
+import Uploader from 'app/modules/uploadcare/Uploader';
+import thumbnail from "assets/img/image-thumbnail.jpg";
+import { _ } from 'app/Utils';
 class AddDeductionModal extends Component {
 
     componentWillMount() {
@@ -77,6 +79,16 @@ class AddDeductionModal extends Component {
         })
     }
 
+    uploadPhoto = (key) => (files) => {
+        const { dispatch } = this.props
+        dispatch({
+            type: c.SET_FORM_DATA,
+            data: {
+                [key]: files
+            }
+        });
+	};
+
     render() {
         const { form_data, 
                 regions,
@@ -90,6 +102,28 @@ class AddDeductionModal extends Component {
              <form onSubmit={ this.onSubmit }>
                 <Modal.Body>
                         <div className="row">
+                            <div className="col-md-12">
+                                <div className="col-md-6 offset-md-3">
+                                    <div className="col-md-6 offset-md-3">
+                                        <div className="employee-photo ml-auto">
+                                            <img
+                                            src={
+                                                !_.isNil(form_data.get('photo'))
+                                                ? form_data.get('photo')
+                                                : thumbnail
+                                            }
+                                            alt="..."
+                                            className="w-100 img-fluid img-thumbnail"
+                                            />
+                                        </div>
+                                            <Uploader
+                                            crop={"400x400"}
+                                            label={`${_.isEmpty(form_data.get('photo')) ? 'Upload Photo' : 'Update Photo'}`}
+                                            icon={`fa fa-camera`}
+                                            onUploaded={ this.uploadPhoto('photo') }/>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="col-md-12">
                                 <div className="form-group">
                                     <label>Organization Name</label>
@@ -224,7 +258,7 @@ const mapPropsToState = (state, routeParams) => {
     const provinces = state.organizationBranch.get('provinces')
     const municipalities = state.organizationBranch.get('municipalities')
     const barangays = state.organizationBranch.get('barangays')
-    console.log(loadingTypes)
+
     return {
         loadingTypes,
         form_data,

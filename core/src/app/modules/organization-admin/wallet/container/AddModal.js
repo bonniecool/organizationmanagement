@@ -93,7 +93,6 @@ class AddDeductionModal extends Component {
 
 const mapPropsToState = (state, routeParams) => {
     const form_data = state.organizationWallet.get('form_data')
-    console.log(form_data.toJS())
     return {
         form_data
     };

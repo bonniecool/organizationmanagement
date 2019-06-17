@@ -8,12 +8,10 @@ import Profile from '../component/Profile'
 import MemberList from '../component/MemberList'
 import DatePicker from 'react-datepicker';
 import moment from 'moment-timezone';
-const AddAdminModal = AsyncComponent(() => import ('./AddAdminModal'));
-const EditAdminModal = AsyncComponent(() => import ('./EditAdminModal'));
 const AddModal = AsyncComponent(() => import ('./AddModal'));
 const EditModal = AsyncComponent(() => import ('./EditModal'));
 
-class Dashboard extends Component {
+class index extends Component {
 
 	componentWillMount() {
 		const { dispatch } = this.props;
@@ -103,48 +101,6 @@ class Dashboard extends Component {
 		})
 	}
 
-
-	onAddAdmin = (data) => e => {
-		e.preventDefault();
-		const { dispatch } = this.props;
-		dispatch({
-			type:'MODAL',
-			data: {
-					isOpen: true,
-					title: 'Add Members',
-					modalSize: 'modal-md',
-					content: <AddAdminModal 
-							data={data}
-						/>
-			}
-		})
-	}
-
-	editAdmin = (data) => e => {
-		e.preventDefault();
-		const { dispatch, details } = this.props;
-		dispatch({
-			type:c.SET_FORM_DATA,
-			data:{
-				first_name:data.get('first_name'),
-				last_name:data.get('last_name'),
-				email:data.getIn(['user','email']),
-				id:data.getIn(['user','profile_id']),
-			}
-		})
-		dispatch({
-			type:'MODAL',
-			data: {
-					isOpen: true,
-					title: 'Add Admin',
-					modalSize: 'modal-md',
-					content: <EditAdminModal 
-							data={details}
-						/>
-			}
-		})
-	}
-
 	handleOnChangeDate = key => (value) => {
 		const { dispatch } = this.props;
 		dispatch({
@@ -155,29 +111,6 @@ class Dashboard extends Component {
 		});
 	}
 
-	removeAdmin = (data) => e => {
-		e.preventDefault();
-		const { dispatch } = this.props;
-		dispatch({
-			type:c.SET_FORM_DATA,
-			data:{
-				first_name:data.get('first_name'),
-				last_name:data.get('last_name'),
-				email:data.get('email')
-			}
-		})
-		dispatch({
-			type:'MODAL',
-			data: {
-					isOpen: true,
-					title: 'Add Admin',
-					modalSize: 'modal-md',
-					content: <EditAdminModal 
-							data={data}
-						/>
-			}
-		})
-	}
 
 
 	render() {
@@ -280,4 +213,4 @@ const mapStateToProps = (state, routeParams) => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps)(Dashboard));
+export default withRouter(connect(mapStateToProps)(index));

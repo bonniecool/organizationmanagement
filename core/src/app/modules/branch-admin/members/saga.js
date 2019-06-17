@@ -161,86 +161,86 @@ function* barangays({region_id, province_id, municipality_id}) {
 	})
 }
 
-function* members({id}) {
-	yield put(loading('GET_MEMBERS'));
+// function* members({id}) {
+// 	yield put(loading('GET_MEMBERS'));
 
-	const response = yield call(services.get(`mng/branch/${id}/user`))
+// 	const response = yield call(services.get(`mng/branch/${id}/user`))
 
-	yield put(loading(null));
+// 	yield put(loading(null));
 
-	yield call(watchApiResponse, response, function*() {
-		const { data } = response.data
+// 	yield call(watchApiResponse, response, function*() {
+// 		const { data } = response.data
 
-		yield put({
-			type: c.GOT_MEMBERS,
-			data
-		})
+// 		yield put({
+// 			type: c.GOT_MEMBERS,
+// 			data
+// 		})
 
-	})
-}
+// 	})
+// }
 
-function* createMember({id, args}) {
-	yield put(loading('GET_MEMBERS'));
+// function* createMember({id, args}) {
+// 	yield put(loading('GET_MEMBERS'));
 
-	const response = yield call(services.post(`mng/branch/${id}/user`), args)
+// 	const response = yield call(services.post(`mng/branch/${id}/user`), args)
 
-	yield put(loading(null));
+// 	yield put(loading(null));
 
-	yield call(watchApiResponse, response, function*() {
-		const { message } = response.data
-		alert.success(message)
-		yield members({id:id})
-		yield put({
-			type: 'MODAL',
-			data: {
-					isOpen: false
-			}
-		})
+// 	yield call(watchApiResponse, response, function*() {
+// 		const { message } = response.data
+// 		alert.success(message)
+// 		yield members({id:id})
+// 		yield put({
+// 			type: 'MODAL',
+// 			data: {
+// 					isOpen: false
+// 			}
+// 		})
 
-	})
-}
+// 	})
+// }
 
-function* updateMember({id, args}) {
-	yield put(loading('GET_MEMBERS'));
+// function* updateMember({id, args}) {
+// 	yield put(loading('GET_MEMBERS'));
 
-	const response = yield call(services.put(`mng/branch/${id}/user/${args.id}`), args)
+// 	const response = yield call(services.put(`mng/branch/${id}/user/${args.id}`), args)
 
-	yield put(loading(null));
+// 	yield put(loading(null));
 
-	yield call(watchApiResponse, response, function*() {
-		const { message } = response.data
-		alert.success(message)
-		yield members({id:id})
-		yield put({
-			type: 'MODAL',
-			data: {
-					isOpen: false
-			}
-		})
+// 	yield call(watchApiResponse, response, function*() {
+// 		const { message } = response.data
+// 		alert.success(message)
+// 		yield members({id:id})
+// 		yield put({
+// 			type: 'MODAL',
+// 			data: {
+// 					isOpen: false
+// 			}
+// 		})
 
-	})
-}
+// 	})
+// }
 
-function* removeMember({id, args}) {
-	yield put(loading('GET_MEMBERS'));
+// function* removeMember({id, args}) {
+// 	yield put(loading('GET_MEMBERS'));
 
-	const response = yield call(services.remove(`mng/branch/${id}/user/${args.id}`), args)
+// 	const response = yield call(services.remove(`mng/branch/${id}/user/${args.id}`), args)
 
-	yield put(loading(null));
+// 	yield put(loading(null));
 
-	yield call(watchApiResponse, response, function*() {
-		const { message } = response.data
-		alert.success(message)
-		yield members({id:id})
-		yield put({
-			type: 'MODAL',
-			data: {
-					isOpen: false
-			}
-		})
+// 	yield call(watchApiResponse, response, function*() {
+// 		const { message } = response.data
+// 		alert.success(message)
+// 		yield members({id:id})
+// 		yield put({
+// 			type: 'MODAL',
+// 			data: {
+// 					isOpen: false
+// 			}
+// 		})
 
-	})
-}
+// 	})
+// }
 
 function* attendance({id}) {
 	yield put(loading('GET_MEMBERS'));
@@ -270,10 +270,6 @@ export default function* (){
 		takeEvery(c.GET_PROVINCES, provinces),
 		takeEvery(c.GET_MUNICIPALITIES, municipalities),
 		takeEvery(c.GET_BARANGAYS, barangays),
-		takeEvery(c.GET_MEMBERS, members),
 		takeEvery(c.GET_ATTENDANCE, attendance),
-		takeEvery(c.CREATE_MEMBER, createMember),
-		takeEvery(c.UPDATE_MEMBER, updateMember),
-		takeEvery(c.REMOVE_MEMBER, removeMember),
 	]);
 };

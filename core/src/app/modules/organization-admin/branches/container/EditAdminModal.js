@@ -70,7 +70,6 @@ class AddDeductionModal extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         const { dispatch, form_data, data } = this.props;
-        console.log('here')
         dispatch({
             type:c.UPDATE_MEMBER,
             id:data.get('id'),

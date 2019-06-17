@@ -1,4 +1,4 @@
-export const MODULE = 'ORGANIZATION-ADMIN-TRANSACTION';
+export const MODULE = 'ORGANIZATION-ADMIN-WALLET';
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`

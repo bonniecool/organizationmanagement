@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { AsyncComponent, currency } from 'app/Utils';
-import Organization from '../component/List'
-import { fromJS } from 'immutable';
+import { AsyncComponent } from 'app/Utils';
 import * as c from '../constant';
 const AddModal = AsyncComponent(() => import ('./AddModal'));
 

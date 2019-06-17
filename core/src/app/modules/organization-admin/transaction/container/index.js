@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
-import { fromJS } from 'immutable';
 import * as c from '../constant';
 const AddModal = AsyncComponent(() => import ('./AddModal'));
 

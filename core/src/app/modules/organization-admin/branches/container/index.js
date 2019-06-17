@@ -9,6 +9,7 @@ import MemberList from '../component/MemberList'
 
 const AddAdminModal = AsyncComponent(() => import ('./AddAdminModal'));
 const EditAdminModal = AsyncComponent(() => import ('./EditAdminModal'));
+const RemoveAdminModal = AsyncComponent(() => import ('./RemoveAdminModal'));
 const AddModal = AsyncComponent(() => import ('./AddModal'));
 const EditModal = AsyncComponent(() => import ('./EditModal'));
 
@@ -125,14 +126,10 @@ class Dashboard extends Component {
 
 	removeAdmin = (data) => e => {
 		e.preventDefault();
-		const { dispatch } = this.props;
+		const { dispatch, details } = this.props;
 		dispatch({
 			type:c.SET_FORM_DATA,
-			data:{
-				first_name:data.get('first_name'),
-				last_name:data.get('last_name'),
-				email:data.get('email')
-			}
+			data:data.toJS()
 		})
 		
 		dispatch({
@@ -141,8 +138,8 @@ class Dashboard extends Component {
 					isOpen: true,
 					title: 'Add Admin',
 					modalSize: 'modal-md',
-					content: <EditAdminModal 
-							data={data}
+					content: <RemoveAdminModal 
+							data={details}
 						/>
 			}
 		})
@@ -220,6 +217,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state, routeParams) => {
 	const organizationBranch = state.organizationBranch;
+
 	return {
 		list : organizationBranch.get('list'),
 		details : organizationBranch.get('details'),

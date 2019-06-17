@@ -9,10 +9,6 @@ import {
   IconMembers,
   IconAttendance,
   IconReminders,
-  IconEvents,
-  IconAnnouncements,
-  IconGuest,
-  IconComment
 } from "./Icons";
 
 class SidebarNavigation extends Component {
