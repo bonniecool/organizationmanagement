@@ -10,6 +10,7 @@ use App\Modules\Notification\Models\SmsLog;
 use App\Modules\Wallet\Services\LoadWalletService;
 use App\Modules\Notification\Repositories\SmsLogRepository;
 use App\Modules\Notification\Http\Resources\SmsLogCollection;
+use App\Modules\Notification\Repositories\ReminderRepository;
 
 class SmsLogsController extends Controller
 {
