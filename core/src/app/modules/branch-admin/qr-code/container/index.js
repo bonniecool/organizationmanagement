@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-// import { AsyncComponent } from 'app/Utils';
-import Organization from '../component/List'
 import * as c from '../constant';
-import DatePicker from 'react-datepicker';
 
 class Dashboard extends Component {
 
@@ -17,7 +14,7 @@ class Dashboard extends Component {
 
 
 	render() {
-		const { details } = this.props;
+
 		const token = sessionStorage.getItem('token')
 		return (
 			<div className="">
@@ -47,10 +44,8 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state, routeParams) => {
-	const branchQRCode = state.branchQRCode;
+
 	return {
-		details : branchQRCode.get('details'),
-		form_data : branchQRCode.get('form_data'),
 	};
 };
 
