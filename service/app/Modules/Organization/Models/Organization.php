@@ -30,6 +30,7 @@ class Organization extends Model
         'name',
         'organization_owner',
         'mobile_number',
+        'photo',
         'region_code',
         'province_code',
         'municipality_code',
