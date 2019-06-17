@@ -9485,22 +9485,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-header {
   height: 50px;
-  padding: 5px 0 5px 24px;
-  background: #ffffff;
-  border-bottom: 1px solid #d1e0fd;
-  box-shadow: 0 4px 8px 0 rgba(209, 224, 253, 0.05);
+  padding: 10px 0 10px 24px;
+  background: #266ef5;
+  border-bottom: 1px solid #266ef5;
+  box-shadow: 0 4px 8px 0 rgba(38, 110, 245, 0.05);
   display: flex; }
   .sidebar-header .brand-logo {
-    height: 40px;
+    height: 30px;
     width: auto; }
-  .sidebar-header .brand-text {
-    line-height: 40px;
-    letter-spacing: 1px;
-    color: #073895; }
   .sidebar-header .brand-menu {
     width: 40px;
     height: 40px;
-    padding: 8px; }
+    padding: 4px; }
 
 .sidebar-navigation.shrinked .sidebar-header {
   height: 50px;
@@ -10179,8 +10175,8 @@ h1, h2, h3, h4, h5, h6 {
     .login-card .login-form .login-container {
       width: 100%; }
     .login-card .login-form .logo {
-      width: 100px;
-      height: auto;
+      width: auto;
+      height: 40px;
       margin: 0 auto 16px; }
     .login-card .login-form .message {
       margin-bottom: 24px;

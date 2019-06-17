@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "assets/img/logo.svg";
+import logo from "assets/img/logo-white.svg";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import _ from "lodash";

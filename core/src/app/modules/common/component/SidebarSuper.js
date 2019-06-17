@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import nbiLogo from "assets/img/logo.svg";
+import logo from "assets/img/logo-white.svg";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import _ from "lodash";
@@ -51,7 +51,7 @@ class SidebarNavigation extends Component {
             style={{ display: isShinked ? "block" : "none" }}
             className="mr-auto"
           >
-            <img className="brand-logo" src={nbiLogo} alt="Who's In" />
+            <img className="brand-logo" src={logo} alt="Who's In" />
           </div>
           <a
             onClick={this.handleToggle}
