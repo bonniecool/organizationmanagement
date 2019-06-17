@@ -2,22 +2,25 @@
 
 namespace App\Modules\Member\Http\Controllers\Ste;
 
-use App\Modules\Member\Http\Requests\AttendRequest;
-use App\Modules\Member\Http\Requests\RegisterDeviceRequest;
-use App\Modules\Member\Http\Resources\Member;
-use App\Modules\Member\Http\Resources\MemberAttendance;
-use App\Modules\Member\Http\Resources\MemberAttendanceCollection;
-use App\Modules\Member\Repositories\MemberAttendanceRepository;
-use App\Modules\Member\Repositories\MemberRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Damnyan\Cmn\Services\ApiResponse;
 use Illuminate\Support\Facades\Hash;
+use Damnyan\Cmn\Services\ApiResponse;
+use App\Modules\Member\Http\Resources\Member;
+use App\Modules\Member\Http\Requests\AttendRequest;
+use App\Modules\Branch\Repositories\BranchRepository;
+use App\Modules\Member\Repositories\MemberRepository;
+use App\Modules\Member\Http\Resources\MemberAttendance;
+use App\Modules\Member\Http\Requests\RegisterDeviceRequest;
+use App\Modules\Member\Repositories\MemberAttendanceRepository;
+use App\Modules\Member\Http\Resources\MemberAttendanceCollection;
 
 class MemberController extends Controller
 {
 
     protected $member;
+
+    protected $branch;
 
     protected $attendance;
 
@@ -29,11 +32,13 @@ class MemberController extends Controller
      * @param memberRepository $member [member repo]
      */
     public function __construct(
+        BranchRepository $branch,
         MemberRepository $member,
         ApiResponse $apiResponse,
         MemberAttendanceRepository $attendance
     )
     {
+        $this->branchRepository = $branch;
         $this->memberRepository = $member;
         $this->attendance = $attendance;
         $this->apiResponse      = $apiResponse;
@@ -75,11 +80,16 @@ class MemberController extends Controller
      */
     public function attendance(AttendRequest $request, $uuid)
     {
-        $data = $request->only('pin');
+        $data = $request->only('pin', 'uuid');
 
         $member = $this->memberRepository
             ->findUuid($uuid)
             ->firstOrFail();
+
+        $branchId = $this->branchRepository
+            ->where('uuid', $data['uuid'])
+            ->first()
+            ->id;
 
         if(!Hash::check($data['pin'], $member->pin))
         {
@@ -87,7 +97,7 @@ class MemberController extends Controller
         }
         $payload = [
             'uuid' => $member->uuid,
-            'branch_id' => $member->branch_id,
+            'branch_id' => $branchId,
             'attendance_date' => now()
         ];
         $attendance = $this->attendance
