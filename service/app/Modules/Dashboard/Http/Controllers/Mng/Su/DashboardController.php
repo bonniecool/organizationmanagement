@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Damnyan\Cmn\Services\ApiResponse;
 use App\Modules\Member\Repositories\MemberRepository;
+use App\Modules\Payment\Repositories\PaymentRepository;
+use App\Modules\Payment\Http\Resources\PaymentCollection;
 use App\Modules\Organization\Repositories\OrganizationRepository;
 
 class DashboardController extends Controller
@@ -15,17 +17,21 @@ class DashboardController extends Controller
 
     protected $organization;
 
+    protected $payment;
+
     protected $member;
 
     public function __construct(
         ApiResponse $apiResponse,
         OrganizationRepository $organization,
-        MemberRepository $member
+        MemberRepository $member,
+        PaymentRepository $payment
     )
     {
         $this->apiResponse            = $apiResponse;
         $this->organizationRepository = $organization;
         $this->memberRepository       = $member;
+        $this->paymentRepository       = $payment;
     }
 
     public function totalOrganization()
@@ -60,5 +66,14 @@ class DashboardController extends Controller
 
         $response['data'] = $organizationCount;
         return $this->apiResponse->resource($response);
+    }
+
+    public function recentSubscribers()
+    {
+        $payment = $this->paymentRepository
+            ->orderBy('created_at', 'DESC')
+            ->limit(5)
+            ->get();
+        return $this->apiResponse->resource(new PaymentCollection($payment));
     }
 }
