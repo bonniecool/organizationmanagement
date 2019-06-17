@@ -2,8 +2,6 @@
 
 namespace App\Modules\Branch\Models;
 
-
-use App\Modules\Member\Repositories\MemberRepository;
 use App\Modules\Notification\Repositories\ReminderRepository;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
