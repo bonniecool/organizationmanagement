@@ -12,6 +12,17 @@ $ua-blue: #0233ab;
 $chrome-yellow: #ffa900;
 $misty-rose: #ffe5e4;
 
+$blue-050: #e9f0fe;
+$blue-100: #d1e0fd;
+$blue-200: #b8d0fc;
+$blue-300: #88aff9;
+$blue-400: #578ff7;
+$blue-500: #266ef5;
+$blue-600: #0e5ef4;
+$blue-700: #0a54de;
+$blue-800: #094bc5;
+$blue-900: #073895;
+
 // Primary
 $red-050: #fef0f0;
 $red-100: #f8d9d9;
@@ -86,9 +97,9 @@ $danger-050: #fee8eb;
 $danger-100: #cf1124;
 $danger-200: #ab091e;
 
-$color-primary-darken: $red-800;
-$color-primary: $red-600;
-$color-primary-lighten: $red-100;
+$color-primary-darken: $blue-800;
+$color-primary: $blue-600;
+$color-primary-lighten: $blue-100;
 
 $color-secondary: $yellow-vivid-700;
 $color-accents: $cyan-600;
@@ -101,7 +112,7 @@ $color-background: $warm-grey-050;
 $color-background-shade: $warm-grey-100;
 $color-text: $warm-grey-900;
 $color-text-weak: $warm-grey-300;
-$color-text-strong: $red-500;
+$color-text-strong: $blue-500;
 $color-text-heading: $warm-grey-600;
 
 // Links
@@ -116,7 +127,7 @@ $color-pre: $warm-grey-200;
 $color-pre-background: $warm-grey-900;
 
 // Selections
-$color-selection: $red-050;
+$color-selection: $blue-050;
 
 // Messages
 $color-message: #f4ecbb;

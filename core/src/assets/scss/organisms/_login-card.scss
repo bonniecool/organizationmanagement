@@ -1,25 +1,44 @@
 .login-card {
   background: $white;
   box-shadow: 0 4px 16px 0 rgba($black, 0.05);
-  height: 400px;
-  max-width: 830px;
+  height: 100%;
+  max-width: 100%;
   border-radius: 4px;
 
   .login-form {
-    width: 380px;
+    width: 30%;
     padding: 48px 30px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     border-radius: 4px 0 0 4px;
+    .login-container {
+      width: 100%;
+    }
+    & .logo {
+      width: 100px;
+      height: auto;
+      margin: 0 auto 16px;
+    }
+
+    & .message {
+      margin-bottom: 24px;
+      line-height: 24px;
+      font-size: 14px;
+      font-family: $font-family-sans-2;
+      color: $black;
+    }
     .login-title {
       font-family: $font-family-sans-2;
-      font-size: 22px;
+      font-size: 18px;
       color: $gray-chateau;
       line-height: 32px;
       margin: 0;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .btn-login {
-      margin-top: 57px;
+      margin-top: 16px;
     }
   }
 }

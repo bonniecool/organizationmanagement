@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-
+import logo from "assets/img/logo.svg";
 class SignInContainer extends Component {
   state = {
     email: "",
@@ -31,50 +31,59 @@ class SignInContainer extends Component {
       <div className="page login-page">
         <div className="login-card">
           <div className="login-form">
-            <h3 className="login-title">Sign In</h3>
-            <form
-              id="login-form"
-              onSubmit={this.handleSubmit}
-              autoComplete="off"
-            >
-              <div className="form-group">
-                <label className="form-label">Email Address</label>
-                <input
-                  disabled={isLoading}
-                  id="login-username"
-                  name="email"
-                  required
-                  autoComplete="off"
-                  className="form-control normal"
-                  value={this.state.email}
-                  onChange={this.handleChangeInput}
-                  placeholder="Email Address"
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Password</label>
-                <input
-                  disabled={isLoading}
-                  id="login-password"
-                  type="password"
-                  name="password"
-                  required
-                  autoComplete="off"
-                  className="form-control normal"
-                  value={this.state.password}
-                  onChange={this.handleChangeInput}
-                  placeholder="Password"
-                />
-              </div>
-              <button
-                disabled={isLoading}
-                id="login"
-                className="btn btn-login btn-success btn-block"
+            <div className="login-container">
+              <img className="logo" src={logo} alt="Who's In" />
+              <p className="message">
+                Your professional attendance tracker app that helps to save time
+                and simplify attendance tracking. Whether you are a teacher,
+                leader or a church,
+              </p>
+              <h3 className="login-title">
+                Welcome Back, Please login to your account
+              </h3>
+              <form
+                id="login-form"
+                onSubmit={this.handleSubmit}
+                autoComplete="off"
               >
-                Sign In
-              </button>
-            </form>
-            {/*<a className="forgot-pass">
+                <div className="form-group">
+                  <label className="form-label">Email Address</label>
+                  <input
+                    disabled={isLoading}
+                    id="login-username"
+                    name="email"
+                    required
+                    autoComplete="off"
+                    className="form-control normal"
+                    value={this.state.email}
+                    onChange={this.handleChangeInput}
+                    placeholder="Email Address"
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Password</label>
+                  <input
+                    disabled={isLoading}
+                    id="login-password"
+                    type="password"
+                    name="password"
+                    required
+                    autoComplete="off"
+                    className="form-control normal"
+                    value={this.state.password}
+                    onChange={this.handleChangeInput}
+                    placeholder="Password"
+                  />
+                </div>
+                <button
+                  disabled={isLoading}
+                  id="login"
+                  className="btn btn-login btn-success btn-block"
+                >
+                  Sign In
+                </button>
+              </form>
+              {/*<a className="forgot-pass">
                       Forgot Password?
                     </a>
                     <br />
@@ -82,17 +91,9 @@ class SignInContainer extends Component {
                     <a href="/signup" className="signup">
                       Signup
                     </a>*/}
-          </div>
-          <div className="login-details">
-            <div className="login-content">
-
-              <h3 className="caption">Welcome to NBI HRIS</h3>
-              <p className="message">
-                Access to powered payroll system and process. Manage your
-                staffs, employees and others.
-              </p>
             </div>
           </div>
+          <div className="login-details" />
         </div>
       </div>
     );

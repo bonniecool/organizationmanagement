@@ -123,8 +123,8 @@
 
   &.btn-primary {
     color: $white;
-    background: $red-700;
-    border: 1px solid $red-800;
+    background: $blue-700;
+    border: 1px solid $blue-800;
     box-shadow: 0 1px 1px 0 rgba($black, 0.1),
       inset 0 2px 0 0 rgba($black, 0.06);
     &.btn-icon {
@@ -133,8 +133,8 @@
       }
     }
     &:hover {
-      background: $red-800;
-      border: 1px solid $red-800;
+      background: $blue-800;
+      border: 1px solid $blue-800;
       box-shadow: 0 1px 1px 0 rgba($black, 0.18),
         inset 0 2px 0 0 rgba($black, 0.06);
       &.no-border {
@@ -142,8 +142,8 @@
       }
     }
     &:focus {
-      background: $red-600;
-      border: 1px solid $red-800;
+      background: $blue-600;
+      border: 1px solid $blue-800;
       box-shadow: 0 1px 1px 0 rgba($black, 0.1),
         inset 0 2px 0 0 rgba($black, 0.06);
       &.no-border {
@@ -153,20 +153,20 @@
   }
 
   &.btn-outline-primary {
-    color: $red-800;
+    color: $blue-800;
     background: transparent;
-    border: 1px solid $red-800;
+    border: 1px solid $blue-800;
     box-shadow: 0 1px 1px 0 rgba($black, 0.1),
       inset 0 2px 0 0 rgba($black, 0.06);
     &.btn-icon {
       .icon {
-        fill: $red-800;
+        fill: $blue-800;
       }
     }
     &:hover {
       color: $white;
-      background: $red-800;
-      border: 1px solid $red-800;
+      background: $blue-800;
+      border: 1px solid $blue-800;
       box-shadow: 0 1px 1px 0 rgba($black, 0.18),
         inset 0 2px 0 0 rgba($black, 0.06);
       &.btn-icon {
@@ -180,8 +180,8 @@
     }
     &:focus {
       color: $white;
-      background: $red-600;
-      border: 1px solid $red-800;
+      background: $blue-600;
+      border: 1px solid $blue-800;
       box-shadow: 0 1px 1px 0 rgba($black, 0.1),
         inset 0 2px 0 0 rgba($black, 0.06);
       &.btn-icon {
