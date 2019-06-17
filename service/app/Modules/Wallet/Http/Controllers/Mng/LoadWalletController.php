@@ -35,7 +35,7 @@ class LoadWalletController extends Controller
             return $this->apiResponse->badRequest('Transaction cannot be processed. Please contact the administrator.');
         }
 
-        return $this->apiResponse->responseOk([
+        return $this->apiResponse->resource([
             'data' => $payment,
             'message' => 'Please pay the load amount reference number.'
         ]);
