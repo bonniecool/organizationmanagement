@@ -4,8 +4,7 @@ import * as c from './constant';
 const initState = Map({
 
 	list:List([]),
-	form_data:Map({
-	}),
+	form_data:Map({}),
 })
 
 export default (state = initState, action) => {

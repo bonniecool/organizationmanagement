@@ -23,21 +23,21 @@ function* list() {
 }
 
 function* show({id}) {
-	yield put(loading('GET_ORGANIZATION'));
+	yield put(loading('SHOW_BRANCH'));
 
 	const response = yield call(services.get(`/mng/branch/${id}`))
 
 	yield put(loading(null));
 
-	yield call(watchApiResponse, response, function*() {
-		const { data } = response.data
+	// yield call(watchApiResponse, response, function*() {
+	// 	const { data } = response.data
 
-		yield put({
-			type: c.GOT_DETAIL,
-			data
-		})
-		yield members({id})
-	})
+	// 	yield put({
+	// 		type: c.GOT_DETAILS,
+	// 		data
+	// 	})
+	// 	// yield members({id})
+	// })
 }
 
 function* create({args}) {
@@ -177,7 +177,7 @@ function* members({id}) {
 }
 
 function* createMember({id, args}) {
-	yield put(loading('GET_MEMBERS'));
+	yield put(loading('CREATE_MEMBER'));
 
 	const response = yield call(services.post(`mng/branch/${id}/user`), args)
 
@@ -198,7 +198,7 @@ function* createMember({id, args}) {
 }
 
 function* updateMember({id, args}) {
-	yield put(loading('GET_MEMBERS'));
+	yield put(loading('UPDATE_MEMBER'));
 
 	const response = yield call(services.put(`mng/branch/${id}/user/${args.id}`), args)
 
@@ -219,7 +219,7 @@ function* updateMember({id, args}) {
 }
 
 function* removeMember({id, args}) {
-	yield put(loading('GET_MEMBERS'));
+	yield put(loading('REMOVE_MEMBER'));
 
 	const response = yield call(services.remove(`mng/branch/${id}/user/${args.id}`), args)
 
@@ -242,7 +242,7 @@ function* removeMember({id, args}) {
 export default function* (){
 	yield all([
 		takeEvery(c.GET_LIST, list),
-		takeEvery(c.GET_DETAIL, show),
+		takeEvery(c.GET_DETAILS, show),
 		takeEvery(c.CREATE, create),
 		takeEvery(c.UPDATE, update),
 		takeEvery(c.GET_REGIONS, regions),

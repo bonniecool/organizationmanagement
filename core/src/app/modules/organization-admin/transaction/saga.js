@@ -3,9 +3,9 @@ import { loading, services, watchApiResponse } from 'app/Utils';
 import * as c from './constant';
 
 function* list() {
-	yield put(loading('GET_STATISTIC'));
+	yield put(loading('GET_PAYMENT'));
 
-	const response = yield call(services.get(`/mng/dashboard`))
+	const response = yield call(services.get(`/mng/payment`))
 
 	yield put(loading(null));
 

@@ -6,6 +6,7 @@ import superAdminTransaction from 'app/modules/super-admin/transaction/saga';
 import superAdminDataSet from 'app/modules/super-admin/dataset/saga';
 
 import organizationBranch from 'app/modules/organization-admin/branches/saga';
+import organizationTransaction from 'app/modules/organization-admin/branches/saga';
 
 import branchMembers from 'app/modules/branch-admin/members/saga';
 import branchAttendance from 'app/modules/branch-admin/attendance/saga';
@@ -19,7 +20,10 @@ export default function* rootSaga() {
         superAdminOrganization(),
         superAdminTransaction(),
         superAdminDataSet(),
+
         organizationBranch(),
+        organizationTransaction(),
+
         branchMembers(),
         branchAttendance(),
         branchReminders(),

@@ -6,6 +6,7 @@ import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
 import Profile from '../component/Profile'
 import MemberList from '../component/MemberList'
+import DatePicker from 'react-datepicker';
 
 const AddAdminModal = AsyncComponent(() => import ('./AddAdminModal'));
 const EditAdminModal = AsyncComponent(() => import ('./EditAdminModal'));
@@ -123,6 +124,16 @@ class Dashboard extends Component {
 		})
 	}
 
+	handleOnChangeDate = key => (value) => {
+		const { dispatch } = this.props;
+		dispatch({
+			type: c.SET_FORM_DATA,
+			data: {
+				[key]: value,
+			},
+		});
+	}
+
 	removeAdmin = (data) => e => {
 		e.preventDefault();
 		const { dispatch } = this.props;
@@ -149,7 +160,7 @@ class Dashboard extends Component {
 
 
 	render() {
-		const { list, details, members } = this.props;
+		const { list, details, form_data, attendance } = this.props;
 
 		return (
 			<div className="">
@@ -195,14 +206,34 @@ class Dashboard extends Component {
 							</div>
 							<div className="card mt-3">
 								<div className="card-header">
-								 <b className="text-uppercase">Member</b>
-								 <div className="pull-right">
-										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAddAdmin(details)}>Add Admin</button>
+								 <b className="text-uppercase">Attendance</b>
+								</div>
+								<div className="card-header">
+										<div className="input-group input-group-sm">
+											<DatePicker
+												selected={form_data.get('date_from')}
+												name="date_from"
+												onChange={this.handleOnChangeDate('date_from')}
+												dateFormat="YYYY/MM/DD"
+												className="form-control"
+												placeholderText="Date From"
+										/>
+										<DatePicker
+											selected={form_data.get('date_to')}
+											name="date_to"
+											onChange={this.handleOnChangeDate('date_to')}
+											dateFormat="YYYY/MM/DD"
+											className="form-control"
+											placeholderText="Date To"
+										/>
+										<div className="input-group-append">
+											<button className="btn btn-primary btn-sm" id="">Filter</button>
+										</div>
 									</div>
 								</div>
 								<div className="">
 										<MemberList 
-											data={members}
+											data={attendance}
 											editAdmin={this.editAdmin}
 											removeAdmin={this.removeAdmin}
 										/>
@@ -224,6 +255,7 @@ const mapStateToProps = (state, routeParams) => {
 		details : branchMembers.get('details'),
 		form_data : branchMembers.get('form_data'),
 		members : branchMembers.get('members'),
+		attendance : branchMembers.get('attendance'),
 	};
 };
 

@@ -6,6 +6,8 @@ import * as c from '../constant';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import moment from 'moment-timezone';
+import Uploader from 'app/modules/uploadcare/Uploader';
+import { _ } from 'app/Utils';
 
 class AddDeductionModal extends Component {
 
@@ -69,6 +71,17 @@ class AddDeductionModal extends Component {
         }
     }
 
+    uploadPhoto = (key) => (files) => {
+		const { dispatch } = this.props
+        dispatch({
+            type: c.SET_FORM_DATA,
+            data: {
+                key: key,
+                value: files
+            }
+        });
+	};
+
     closeModal = () => {
         const { dispatch } = this.props;
         dispatch({
@@ -121,6 +134,13 @@ class AddDeductionModal extends Component {
              <form onSubmit={ this.onSubmit }>
                 <Modal.Body>
                         <div className="row">
+                            <div className="col-md-12">
+                                    <Uploader
+                                    crop={"400x400"}
+                                    label={`${_.isEmpty(form_data.get('photo')) ? 'Upload Photo' : 'Update Photo'}`}
+                                    icon={`fa fa-camera`}
+                                    onUploaded={ this.uploadPhoto('photo') }/>
+                            </div>
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label>First Name</label>

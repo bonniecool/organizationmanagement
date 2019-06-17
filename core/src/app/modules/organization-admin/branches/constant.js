@@ -1,10 +1,10 @@
-export const MODULE = 'SUPER-ADMIN-BRANCH';
+export const MODULE = 'ADMIN-ORGANIZATION-BRANCHES';
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`
 
-export const GET_DETAIL = `${MODULE}/GET_DETAIL`
-export const GOT_DETAIL = `${MODULE}/GOT_DETAIL`
+export const GET_DETAILS = `${MODULE}/GET_DETAILS`
+export const GOT_DETAILS = `${MODULE}/GOT_DETAILS`
 
 export const GET_REGIONS = `${MODULE}/GET_REGIONS`
 export const GOT_REGIONS = `${MODULE}/GOT_REGIONS`

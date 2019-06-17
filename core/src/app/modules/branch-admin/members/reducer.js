@@ -12,6 +12,7 @@ const initState = Map({
 	municipalities:List([]),
 	barangays:List([]),
 	members:List([]),
+	attendance:List([]),
 })
 
 export default (state = initState, action) => {
@@ -28,6 +29,8 @@ export default (state = initState, action) => {
 			return state.set('municipalities', fromJS(action.data))
 		case c.GOT_MEMBERS:
 			return state.set('members', fromJS(action.data))
+		case c.GOT_ATTENDANCE:
+			return state.set('attendance', fromJS(action.data))
 		case c.GOT_BARANGAYS:
 			return state.set('barangays', fromJS(action.data))
 		case c.SET_FORM_DATA:

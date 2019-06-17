@@ -18,7 +18,7 @@ export default (state = initState, action) => {
 	switch(action.type){
 		case c.GOT_LIST:
 			return state.set('list', fromJS(action.data))
-		case c.GOT_DETAIL:
+		case c.GOT_DETAILS:
 			return state.set('details', fromJS(action.data))
 		case c.GOT_REGIONS:
 			return state.set('regions', fromJS(action.data))

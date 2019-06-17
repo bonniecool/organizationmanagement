@@ -1,4 +1,4 @@
-export const MODULE = 'BRANCH-MEMBERS';
+export const MODULE = 'BRANCH-ADMIN-MEMBERS';
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`
@@ -20,6 +20,9 @@ export const GOT_BARANGAYS = `${MODULE}/GOT_BARANGAYS`
 
 export const GET_MEMBERS = `${MODULE}/GET_MEMBERS`
 export const GOT_MEMBERS = `${MODULE}/GOT_MEMBERS`
+
+export const GET_ATTENDANCE = `${MODULE}/GET_ATTENDANCE`
+export const GOT_ATTENDANCE = `${MODULE}/GOT_ATTENDANCE`
 
 export const CREATE_MEMBER = `${MODULE}/CREATE_MEMBER`
 export const UPDATE_MEMBER = `${MODULE}/UPDATE_MEMBER`

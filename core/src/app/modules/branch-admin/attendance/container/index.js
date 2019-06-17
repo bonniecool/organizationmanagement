@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import * as c from '../constant';
-import { AsyncComponent } from 'app/Utils';
+// import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
-import Profile from '../component/Profile'
-import { fromJS } from 'immutable';
-const AddModal = AsyncComponent(() => import ('./AddModal'));
+import * as c from '../constant';
+import DatePicker from 'react-datepicker';
 
 class Dashboard extends Component {
-
 
 	componentWillMount() {
 		const { dispatch } = this.props;
@@ -18,55 +15,20 @@ class Dashboard extends Component {
 		})
 	}
 
-	onAdd = e => {
-		e.preventDefault();
+	handleOnChangeDate = key => (value) => {
 		const { dispatch } = this.props;
 		dispatch({
-			type:'MODAL',
+			type: c.SET_FORM_DATA,
 			data: {
-					isOpen: true,
-					title: 'Add Organization',
-					modalSize: 'modal-md',
-					content: <AddModal 
-
-						/>
-			}
-		})
+				[key]: value,
+			},
+		});
 	}
 
 
 	render() {
-		const data = fromJS([
-			{
-				name:'Company A',
-				address:'Manila Makati PHilippines',
-				contact:'+63 12345678',
-				email:'george@companya.com',
-				photo:'',
-			},
-			{
-				name:'Company B',
-				address:'Ortigas Pasig PHilippines',
-				contact:'+63 11122233',
-				email:'john@companyb.com',
-				photo:'',
-			},
-			{
-				name:'Company C',
-				address:'BGC Taguig PHilippines',
-				contact:'+63 11122233',
-				email:'paul@companyc.com',
-				photo:'',
-			},
-			{
-				name:'Company D',
-				address:'Rotonda Quezon City PHilippines',
-				contact:'+63 8765432',
-				email:'lina@companyd.com',
-				photo:'',
-			}
-		])
-		console.log('here')
+		const { list, form_data } = this.props;
+
 		return (
 			<div className="">
 				<header className="page-header">
@@ -76,35 +38,42 @@ class Dashboard extends Component {
 				</header>
 				<div className="container-fluid">
 					<div className="row">
-						<div className="col-md-4">
+						<div className="col-md-12">
 							<div className="card">
 								<div className="card-header">
-									<button className="btn btn-primary btn-sm btn-block mb-2" type="button" onClick={this.onAdd}>Add Branches</button>
 									<div className="input-group input-group-sm">
-									<input type="text" className="form-control" placeholder="Search Branches" />
-									<div className="input-group-append">
-										<button className="btn btn-sm btn-primary" type="button" >Search</button>
+										<DatePicker
+											selected={form_data.get('date_from')}
+											name="date_from"
+											onChange={this.handleOnChangeDate('date_from')}
+											dateFormat="YYYY/MM/DD"
+											className="form-control"
+											placeholderText="Date From"
+									/>
+										<DatePicker
+											selected={form_data.get('date_to')}
+											name="date_to"
+											onChange={this.handleOnChangeDate('date_to')}
+											dateFormat="YYYY/MM/DD"
+											className="form-control"
+											placeholderText="Date To"
+										/>
+										<div className="input-group-append">
+											<button className="btn btn-primary btn-sm" id="">Filter</button>
+										</div>
 									</div>
 								</div>
+								<div className="card-header">
+									<div className="input-group input-group-sm">
+										<input type="text" className="form-control" placeholder="Search Organization" />
+										<div className="input-group-append">
+											<button className="btn btn-sm btn-primary" type="button" >Search Name</button>
+										</div>
+									</div>
 								</div>
 								<div className="">
 										<Organization
-											data={data}
-										/>
-								</div>
-							</div>
-						</div>
-						<div className="col-md-8">
-							<div className="card">
-								<div className="card-header">
-								 Organization Name
-								 	<div className="pull-right">
-										<button className="btn btn-primary btn-sm mb-2" type="button" onClick={this.onAdd}>Add Company</button>
-									</div>
-								</div>
-								<div className="card-body">
-										<Profile 
-											data={data.getIn([0])}
+											data={list}
 										/>
 								</div>
 							</div>
@@ -122,6 +91,7 @@ const mapStateToProps = (state, routeParams) => {
 	const branchAttendance = state.branchAttendance;
 	return {
 		list : branchAttendance.get('list'),
+		form_data : branchAttendance.get('form_data'),
 	};
 };
 

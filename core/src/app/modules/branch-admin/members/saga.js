@@ -18,7 +18,7 @@ function* list() {
 		})
 		if(data.length > 0){
 			yield show({id:data[0].uuid})
-			// yield members({id:data[0].id})
+			yield attendance({id:data[0].uuid})
 		}
 			
 	})
@@ -38,7 +38,7 @@ function* show({id}) {
 			type: c.GOT_DETAIL,
 			data
 		})
-		// yield members({id})
+		yield attendance({id})
 	})
 }
 
@@ -240,6 +240,24 @@ function* removeMember({id, args}) {
 	})
 }
 
+function* attendance({id}) {
+	yield put(loading('GET_MEMBERS'));
+
+	const response = yield call(services.get(`mng/brc/member/${id}/attendance`))
+
+	yield put(loading(null));
+
+	yield call(watchApiResponse, response, function*() {
+		const { data } = response.data
+
+		yield put({
+			type: c.GOT_ATTENDANCE,
+			data
+		})
+
+	})
+}
+
 export default function* (){
 	yield all([
 		takeEvery(c.GET_LIST, list),
@@ -251,6 +269,7 @@ export default function* (){
 		takeEvery(c.GET_MUNICIPALITIES, municipalities),
 		takeEvery(c.GET_BARANGAYS, barangays),
 		takeEvery(c.GET_MEMBERS, members),
+		takeEvery(c.GET_ATTENDANCE, attendance),
 		takeEvery(c.CREATE_MEMBER, createMember),
 		takeEvery(c.UPDATE_MEMBER, updateMember),
 		takeEvery(c.REMOVE_MEMBER, removeMember),

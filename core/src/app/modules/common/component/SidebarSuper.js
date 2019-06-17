@@ -118,16 +118,6 @@ class SidebarNavigation extends Component {
               </Link>
             </li>
           </ul>
-
-          <span className="sidebar-title">Settings</span>
-          <ul className="sidebar-list list-unstyled">
-            <li className={`sidebar-menu ${getClassName("dataset")}`}>
-              <Link to="/dataset" className="link collapsed">
-                <IconUserManagement />{" "}
-                <span className="menu-text">Data Set</span>
-              </Link>
-            </li>
-          </ul>
         </div>
         <div
           className="sidebar-poweredby"

@@ -24,7 +24,7 @@ class Dashboard extends Component {
 	onSelectRow = (data) => {
 		const { dispatch } = this.props;
 		dispatch({
-				type:c.GET_DETAIL,
+				type:c.GET_DETAILS,
 				id:data.get('id')     
 		})
 	}
@@ -134,6 +134,7 @@ class Dashboard extends Component {
 				email:data.get('email')
 			}
 		})
+		
 		dispatch({
 			type:'MODAL',
 			data: {

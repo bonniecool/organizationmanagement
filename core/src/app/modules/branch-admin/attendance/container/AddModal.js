@@ -3,6 +3,8 @@ import Modal from 'app/modules/common/component/Modal';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
+// import Select from 'react-select';
+// import { _ } from '../../../Utils';
 
 class AddDeductionModal extends Component {
 
@@ -93,7 +95,7 @@ class AddDeductionModal extends Component {
 }
 
 const mapPropsToState = (state, routeParams) => {
-    const form_data = state.superAdminOrganization.get('form_data')
+    const form_data = state.branchAttendance.get('form_data')
     return {
         form_data
     };

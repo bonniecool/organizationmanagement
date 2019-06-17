@@ -1,4 +1,4 @@
-export const MODULE = 'SUPER-ADMIN-ORGANIZATION';
+export const MODULE = 'ORGANIZATION-ADMIN-MEMBERS';
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`

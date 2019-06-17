@@ -66,13 +66,11 @@ class EmployeeList extends Component {
                                 rowGetter={({index}) => data.get(index)}>
 
                                 <Column
-                                    width={ 300 }
-                                    flex={ 1 }
+                                    width={ width }
                                     label="Organization"
                                     dataKey='name'
                                     cellRenderer={
                                             ({ rowData }) => {
-                                                console.log(rowData.toJS())
                                                 return (
                                                     <div className="item d-flex align-items-center">
                                                         <div className="text">
@@ -84,7 +82,7 @@ class EmployeeList extends Component {
                                         }
                                 />
                                 <Column
-                                    width={ 100 }
+                                    width={ width }
                                     label="Subscription"
                                     dataKey=''
                                     cellRenderer={
@@ -100,7 +98,7 @@ class EmployeeList extends Component {
                                         }
                                 />
                                 <Column
-                                    width={ 100 }
+                                    width={ width }
                                     flex={ 1 }
                                     label="Status"
                                     dataKey=''
@@ -117,7 +115,7 @@ class EmployeeList extends Component {
                                         }
                                 />
                                 <Column
-                                    width={ 200 }
+                                    width={ width }
                                     flex={ 1 }
                                     label="Date Subscribed"
                                     dataKey=''

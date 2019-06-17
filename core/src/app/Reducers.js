@@ -8,6 +8,7 @@ import superAdminTransaction from 'app/modules/super-admin/transaction/reducer';
 import superAdminDataSet from 'app/modules/super-admin/dataset/reducer';
 
 import organizationBranch from 'app/modules/organization-admin/branches/reducer';
+import organizationTransaction from 'app/modules/organization-admin/transaction/reducer';
 
 import branchMembers from 'app/modules/branch-admin/members/reducer';
 import branchAttendance from 'app/modules/branch-admin/attendance/reducer';
@@ -28,7 +29,9 @@ const app = combineReducers({
     superAdminOrganization,
     superAdminTransaction,
     superAdminDataSet,
+
     organizationBranch,
+    organizationTransaction,
 
     branchMembers,
     branchAttendance,
