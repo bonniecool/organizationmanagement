@@ -68,5 +68,15 @@ class Reminder extends Model implements AuditableContract
         return $this->belongsTo(UserRepository::class, 'updated_by');
     }
 
+    /**
+     * sms logs
+     *
+     * @return string
+     */
+    public function smsLogs()
+    {
+        return $this->hasMany(SmsLogRepository::class, 'reminder_id', 'id');
+    }
+
 
 }
