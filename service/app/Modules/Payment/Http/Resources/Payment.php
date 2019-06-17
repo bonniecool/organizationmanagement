@@ -24,6 +24,7 @@ class Payment extends Resource
             'amount' => $this->amount,
             'remarks' => $this->remarks,
             'organization_id' => $this->organization_id,
+            'organization_name' => $this->organization->name,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
             'created_date_readable' => self::parseDate($this->created_at),

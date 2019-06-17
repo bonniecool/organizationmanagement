@@ -10,6 +10,7 @@ use App\Modules\Branch\Http\Resources\Branch;
 use App\Modules\Branch\Repositories\BranchRepository;
 use App\Modules\Branch\Http\Requests\Mng\BranchRequest;
 use App\Modules\Branch\Http\Resources\BranchCollection;
+use App\Modules\Member\Http\Resources\MemberAttendanceCollection;
 use App\Modules\User\Http\Requests\Mng\CreateAdministratorRequest;
 use App\Modules\User\Http\Requests\Mng\UpdateAdministratorRequest;
 
@@ -246,5 +247,26 @@ class BranchController extends Controller
     
         $response['message'] = 'Successfully deleted branch admin.';
         return $this->apiResponse->resource($response);
+    }
+
+    /**
+     * attendance list per branch.
+     *
+     * @return \Damnyan\Cmn\Services\ApiResponse;
+     */
+    public function attendancePerBranch(Request $request, $branchId)
+    {
+        $params = $request->only('attendance_date');
+
+        $attendance = $request
+            ->user()
+            ->organization
+            ->branches()
+            ->findOrFail($branchId)
+            ->attendance()
+            ->filter($params)
+            ->getOrPaginate();
+
+            return $this->apiResponse->resource(new MemberAttendanceCollection($attendance));
     }
 }
