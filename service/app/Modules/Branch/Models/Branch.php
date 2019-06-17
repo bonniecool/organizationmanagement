@@ -2,15 +2,16 @@
 
 namespace App\Modules\Branch\Models;
 
-use App\Modules\Notification\Repositories\ReminderRepository;
 use OwenIt\Auditing\Auditable;
 use Emadadly\LaravelUuid\Uuids;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
 use App\Modules\Common\Repositories\RegionRepository;
+use App\Modules\Member\Repositories\MemberRepository;
 use App\Modules\User\Repositories\SiteUserRepository;
 use App\Modules\Common\Repositories\BarangayRepository;
 use App\Modules\Common\Repositories\ProvinceRepository;
 use App\Modules\Common\Repositories\MunicipalityRepository;
+use App\Modules\Notification\Repositories\ReminderRepository;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use App\Modules\Member\Repositories\MemberAttendanceRepository;
 use App\Modules\User\Repositories\BranchAdministratorRepository;
