@@ -2,10 +2,10 @@ import { takeEvery, put, call, all } from 'redux-saga/effects';
 import { loading, services, watchApiResponse } from 'app/Utils';
 import * as c from './constant';
 
-function* getAttendees() {
-	yield put(loading('GET_ATTENDEES'));
+function* list() {
+	yield put(loading('GET_ATTENDANCESS'));
 
-	const response = yield call(services.get(`/mng/brc/dashboard/top_attendees`))
+	const response = yield call(services.get(`/mng/brc/sms_logs`))
 
 	yield put(loading(null));
 
@@ -13,7 +13,7 @@ function* getAttendees() {
 		const { data } = response.data
 
 		yield put({
-			type: c.GOT_ATTENDEES,
+			type: c.GOT_LIST,
 			data
 		})
 	})
@@ -22,6 +22,6 @@ function* getAttendees() {
 
 export default function* (){
 	yield all([
-		takeEvery(c.GET_ATTENDEES, getAttendees),
+		takeEvery(c.GET_LIST, list),
 	]);
 };

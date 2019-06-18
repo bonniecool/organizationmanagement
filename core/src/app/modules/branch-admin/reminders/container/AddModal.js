@@ -6,6 +6,9 @@ import * as c from '../constant';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import moment from 'moment-timezone';
+import { _ } from 'app/Utils';
+import Uploader from 'app/modules/uploadcare/Uploader';
+import thumbnail from "assets/img/image-thumbnail.jpg";
 
 class AddModal extends Component {
 
@@ -53,6 +56,17 @@ class AddModal extends Component {
         
     }
 
+
+    uploadPhoto = (key) => (files) => {
+        const { dispatch } = this.props
+        dispatch({
+            type: c.SET_FORM_DATA,
+            data: {
+                [key]: files
+            }
+        });
+	};
+
     onSubmit = (e) => {
         e.preventDefault();
         const { dispatch, form_data } = this.props;
@@ -62,6 +76,7 @@ class AddModal extends Component {
                 subject:form_data.get('subject'),
                 content:form_data.get('content'),
                 status:form_data.get('status'),
+                image:form_data.get('image'),
                 expiration_date:moment(form_data.get('expiration_date')).format('YYYY-MM-DD'),
             }
             
@@ -79,6 +94,30 @@ class AddModal extends Component {
              <form onSubmit={ this.onSubmit }>
                 <Modal.Body>
                         <div className="row">
+                            <div className="col-md-12">
+                                <div className="form-group">
+                                <div className="col-md-6 offset-md-3">
+                                    <div className="employee-photo ">
+                                        <div className="ml-auto">
+                                        <img
+                                            src={
+                                            !_.isNil(form_data.get('image'))
+                                                ? form_data.get('image')
+                                                : thumbnail
+                                            }
+                                            alt="..."
+                                            className="w-100 img-fluid img-thumbnail"
+                                        />
+                                        </div>
+                                        <Uploader
+                                            crop={"400x400"}
+                                            label={`${_.isEmpty(form_data.get('image')) ? 'Upload Image' : 'Update Image'}`}
+                                            icon={`fa fa-camera`}
+                                            onUploaded={ this.uploadPhoto('image') }/>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                             <div className="col-md-12">
                                 <div className="form-group">
                                     <label>Subject</label>
