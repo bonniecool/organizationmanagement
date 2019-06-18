@@ -15,6 +15,19 @@ class SignInContainer extends Component {
     this.setState({ [name]: value });
   };
 
+  onChangeInput = e => {
+    e.preventDefault();
+    const {dispatch} = this.props;
+    const { name, value } = e.target;
+    dispatch({
+        type:c.SET_FORM_DATA,
+        data:{
+            [name] : value
+        }
+    })
+}
+
+
 
   handleChangeSelect = (key) => (value) => {
     const {dispatch, form_data} = this.props;

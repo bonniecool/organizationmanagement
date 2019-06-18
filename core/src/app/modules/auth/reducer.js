@@ -11,6 +11,9 @@ const initState = Map({
 	municipalities:List([]),
 	barangays:List([]),
 	members:List([]),
+	form_data:Map({
+		
+	})
 })
 
 export default (state = initState, action) => {
