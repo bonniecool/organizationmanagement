@@ -62,7 +62,7 @@ class PaymentService
             'name' => $payment->organization->name,
             'email' => 'janreyguyjoco@gmail.com',
             'mobile' => $payment->organization->mobile_number,
-            'callback_url' => 'https://b2c2c69b.ngrok.io/payment/receive'//secure_url('payment/receive')
+            'callback_url' => secure_url('payment/receive')
         ]);
 
         if (is_null($transaction)) {
