@@ -15,7 +15,6 @@ import branchMembers from 'app/modules/branch-admin/members/saga';
 import branchAttendance from 'app/modules/branch-admin/attendance/saga';
 import branchReminders from 'app/modules/branch-admin/reminders/saga';
 import branchQRCode from 'app/modules/branch-admin/qr-code/saga';
-import branchSMSLogs from 'app/modules/branch-admin/sms-logs/saga';
 
 
 export default function* rootSaga() {
@@ -36,6 +35,5 @@ export default function* rootSaga() {
         branchAttendance(),
         branchReminders(),
         branchQRCode(),
-        branchSMSLogs(),
     ]);
 }

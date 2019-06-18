@@ -97,11 +97,6 @@ class SidebarNavigation extends Component {
                 <IconReminders /> <span className="menu-text">QR Code</span>
               </Link>
             </li>
-            <li className={`sidebar-menu ${getClassName("sms-logs")}`}>
-              <Link to="/sms-logs" className="link collapsed">
-                <IconReminders /> <span className="menu-text">SMS Logs</span>
-              </Link>
-            </li>
           </ul>
         </div>
         <div

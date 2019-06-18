@@ -145,16 +145,31 @@ function* changePassword({ args, cb }){
     history.push('/');
 }
 
+// function* register({ args }){
+//     yield put(loading('REGISTER'));
+
+//     yield put(loading(null));
+    
+//     alert.success(`Account Created!`);
+
+//     history.push({
+//         pathname: `/`
+//     })
+// }
+
 function* register({ args }){
     yield put(loading('REGISTER'));
 
-    yield put(loading(null));
-    
-    alert.success(`Account Created!`);
+    const response = yield call(services.post(`organization/register`), args);
 
-    history.push({
-        pathname: `/`
+    yield put(loading(null));
+
+    yield call(watchApiResponse, response, function*(){
+        const{ message } = response.data
+        alert.success(message)
+        history.push('/signin')
     })
+    
 }
 
 function* myProfile({user_type}) {

@@ -17,7 +17,7 @@ class SignInContainer extends Component {
     e.preventDefault();
     const { dispatch } = this.props;
     dispatch({
-      type: "LOGIN",
+      type: "REGISTER",
       args: this.state
     });
   };
@@ -80,7 +80,7 @@ class SignInContainer extends Component {
                   id="login"
                   className="btn btn-login btn-success btn-block"
                 >
-                  Sign In
+                  Sign Up
                 </button>
               </form>
               {/*<a className="forgot-pass">
