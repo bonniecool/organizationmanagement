@@ -25,7 +25,7 @@ class BranchRequest extends ApiRequest
     {
         return [
             'uuid' => '',
-            'name' => 'required',
+            'name' => 'required|unique:organization_branches',
             'region_code' => 'required',
             'province_code' => 'required',
             'municipality_code' => 'required',
