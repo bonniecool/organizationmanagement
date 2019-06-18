@@ -4,14 +4,14 @@ import _ from "lodash";
 
 export default class ProfileInfo extends PureComponent {
   render() {
-    const { data } = this.props;
+    const { data, generateId } = this.props;
 
     return (
       <Fragment>
         <div className="card-body p-4">
           <div className="row">
-            <div className="col-4 col-md-3">
-              <div className="employee-photo ml-auto">
+            <div className="employee-photo ">
+              <div className="ml-auto">
                 <img
                   src={
                     !_.isNil(data.get('photo'))
@@ -22,13 +22,14 @@ export default class ProfileInfo extends PureComponent {
                   className="w-100 img-fluid img-thumbnail"
                 />
               </div>
+              <button className="btn btn-sm btn-primary btn-block" type="button" onClick={generateId(data)}>Print ID</button>
             </div>
-            <div className="col">
+            <div className="col-md-9">
               <div className="row">
                 <div className="col-12">
                   <div className="details-item">
                     <h3>
-                      {data.get('first_name')}{" "}
+                      {data.get('first_name')}{", "}
                       {data.get('middle_name')}{" "}
                       {data.get('last_name')}
                     </h3>

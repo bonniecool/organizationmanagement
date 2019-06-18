@@ -75,16 +75,17 @@ function* update({id,args}) {
 		const { message } = response.data
 		alert.success(message)
 
-		yield list()
-		yield show({id:id})
-		
-
 		yield put({
 			type: 'MODAL',
 			data: {
 					isOpen: false
 			}
 		})
+
+		yield list()
+		yield show({id:id})
+		
+
 	})
 }
 
@@ -160,87 +161,6 @@ function* barangays({region_id, province_id, municipality_id}) {
 
 	})
 }
-
-// function* members({id}) {
-// 	yield put(loading('GET_MEMBERS'));
-
-// 	const response = yield call(services.get(`mng/branch/${id}/user`))
-
-// 	yield put(loading(null));
-
-// 	yield call(watchApiResponse, response, function*() {
-// 		const { data } = response.data
-
-// 		yield put({
-// 			type: c.GOT_MEMBERS,
-// 			data
-// 		})
-
-// 	})
-// }
-
-// function* createMember({id, args}) {
-// 	yield put(loading('GET_MEMBERS'));
-
-// 	const response = yield call(services.post(`mng/branch/${id}/user`), args)
-
-// 	yield put(loading(null));
-
-// 	yield call(watchApiResponse, response, function*() {
-// 		const { message } = response.data
-// 		alert.success(message)
-// 		yield members({id:id})
-// 		yield put({
-// 			type: 'MODAL',
-// 			data: {
-// 					isOpen: false
-// 			}
-// 		})
-
-// 	})
-// }
-
-// function* updateMember({id, args}) {
-// 	yield put(loading('GET_MEMBERS'));
-
-// 	const response = yield call(services.put(`mng/branch/${id}/user/${args.id}`), args)
-
-// 	yield put(loading(null));
-
-// 	yield call(watchApiResponse, response, function*() {
-// 		const { message } = response.data
-// 		alert.success(message)
-// 		yield members({id:id})
-// 		yield put({
-// 			type: 'MODAL',
-// 			data: {
-// 					isOpen: false
-// 			}
-// 		})
-
-// 	})
-// }
-
-// function* removeMember({id, args}) {
-// 	yield put(loading('GET_MEMBERS'));
-
-// 	const response = yield call(services.remove(`mng/branch/${id}/user/${args.id}`), args)
-
-// 	yield put(loading(null));
-
-// 	yield call(watchApiResponse, response, function*() {
-// 		const { message } = response.data
-// 		alert.success(message)
-// 		yield members({id:id})
-// 		yield put({
-// 			type: 'MODAL',
-// 			data: {
-// 					isOpen: false
-// 			}
-// 		})
-
-// 	})
-// }
 
 function* attendance({id}) {
 	yield put(loading('GET_MEMBERS'));

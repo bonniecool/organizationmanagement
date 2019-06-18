@@ -1,103 +1,31 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import GeoMap from 'app/modules/chart/GeoMap';
-// import { List } from 'immutable';
 import * as c from '../constant';
 import { AsyncComponent } from 'app/Utils';
-import Table from '../component/Table';
 
-// const LineChartMultiple = AsyncComponent(() => import('app/modules/chart/LineChartMultiple'));
-// const HorizontalBar = AsyncComponent(() => import('app/modules/chart/HorizontalBar'));
-// const Bar = AsyncComponent(() => import('app/modules/chart/Bar'));
-// const Pie = AsyncComponent(() => import('app/modules/chart/Pie'));
-const Doughnut = AsyncComponent(() => import('app/modules/chart/DoughnutSuper'));
-// const Polar = AsyncComponent(() => import('app/modules/chart/Polar'));
-
-const randomInt = (min, max, withFormat = false) =>  {
-	const rand = Math.floor(Math.random() * (max - min + 1)) + min;;
-	if(withFormat)
-		return formatNumber(rand);
-  	return rand
-}
-
-const formatNumber = (n, minimumFractionDigits = 2, maximumFractionDigits = 2) => {
-    return n.toLocaleString('en', { minimumFractionDigits, maximumFractionDigits });
-}
+const Bar = AsyncComponent(() => import('app/modules/chart/Bar'));
 
 class Dashboard extends Component {
 
 	componentWillMount() {
 		const { dispatch } = this.props;
 		dispatch({
-			type:c.GET_STATISTIC
+			type:c.GET_ACTIVE_BRANCHES
+		})
+		dispatch({
+			type:c.GET_MEMBERS_PER_BRANCH
+		})
+		dispatch({
+			type:c.GET_TOTAL_BRANCH
 		})
 	}
 
 	render() {
 
-		const { statistic } = this.props;
-		const government_status = statistic.getIn(['agencies','type',0,'status'])
-		const private_status = statistic.getIn(['agencies','type',1,'status'])
-		const mapData = [
-		{
-			region_code: '010000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '020000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '030000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '040000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '170000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '050000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '060000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '070000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '080000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '090000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '100000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '110000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '120000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '160000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '130000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '140000000',
-			aggregate: randomInt(0, 100)
-		},{
-			region_code: '150000000',
-			aggregate: randomInt(0, 100)
-		}
-	]
-	const color = {background:'#'+(Math.random()*0xFFFFFF<<0).toString(16)};
-	const govcolor = {background:'#'+(Math.random()*0xFFFFFF<<0).toString(16)};
-	const privatecolor = {background:'#'+(Math.random()*0xFFFFFF<<0).toString(16)};
+		const { total_branch, members, branch_status } = this.props;
+		const color = {background:'#'+(Math.random()*0xFFFFFF<<0).toString(16)};
 
-	console.log(statistic.toJS())
 		return (
 			<div className="">
 				<header className="page-header">
@@ -107,29 +35,22 @@ class Dashboard extends Component {
 				</header>
 				<div className="container-fluid">
 					<div className="row">
-						<div className="col-md-4">
+						<div className="col">
 							<div className="card mt-2">
 								<div className="card-body">
 									<div className="">
 										<div className="d-flex align-items-center">
 											<div className="circularIcon-wrapper-big">
 												<div className="circularIcon-big" style={color} >
-												{statistic.get('departments')}
+												{
+													total_branch.get('total')
+												}
 												</div>
 											</div>
 											<div style={{'width':'100px', 'height':'100px','zIndex':9}}>
-											{
-												statistic &&
-												<Doughnut
-													// height={300}
-													data={[statistic.toJS()]}
-													index_name="departments"
-													index_value="departments"
-													/>
-											}
 											</div>
 											<div className="numberItem ml-auto">
-											<b>Departments</b>
+											<b>Total Branches</b>
 											</div>
 										</div>
 										<div className="titleItem mt-2">
@@ -139,30 +60,22 @@ class Dashboard extends Component {
 								</div>
 							</div>
 						</div>
-						<div className="col-md-4">
+						<div className="col">
 							<div className="card mt-2">
 								<div className="card-body">
 									<div className="">
 										<div className="d-flex align-items-center">
-										
 											<div className="circularIcon-wrapper-big">
-												<div className="circularIcon-big" style={govcolor} >
-													{statistic.getIn(['agencies','type',0,'count'])}
+												<div className="circularIcon-big" style={{background:"#" + ((Math.random() * 0xffffff) << 0).toString(16)}} >
+												{
+													branch_status.get('active')
+												}
 												</div>
 											</div>
 											<div style={{'width':'100px', 'height':'100px','zIndex':9}}>
-											{
-												government_status &&
-												<Doughnut
-													// height={300}
-													data={government_status.toJS()}
-													index_name="status"
-													index_value="count"
-													/>
-											}
 											</div>
 											<div className="numberItem ml-auto">
-											<b>Government</b>
+											<b>Active Branches</b>
 											</div>
 										</div>
 										<div className="titleItem mt-2">
@@ -172,33 +85,22 @@ class Dashboard extends Component {
 								</div>
 							</div>
 						</div>
-						<div className="col-md-4">
+						<div className="col">
 							<div className="card mt-2">
 								<div className="card-body">
 									<div className="">
-
-
-
 										<div className="d-flex align-items-center">
-										
 											<div className="circularIcon-wrapper-big">
-												<div className="circularIcon-big" style={privatecolor} >
-													{statistic.getIn(['agencies','type',1,'count'])}
+												<div className="circularIcon-big" style={{background:"#" + ((Math.random() * 0xffffff) << 0).toString(16)}} >
+												{
+													branch_status.get('inactive')
+												}
 												</div>
 											</div>
 											<div style={{'width':'100px', 'height':'100px','zIndex':9}}>
-										{
-											private_status &&
-											<Doughnut
-												// height={300}
-												data={private_status.toJS()}
-												index_name="status"
-												index_value="count"
-												/>
-										}
-										</div>
+											</div>
 											<div className="numberItem ml-auto">
-											<b>Private</b>
+											<b>InActive Branches</b>
 											</div>
 										</div>
 										<div className="titleItem mt-2">
@@ -208,38 +110,31 @@ class Dashboard extends Component {
 								</div>
 							</div>
 						</div>
-						{
-							// statistic.get('active_employees').map((item,key) => {
-							// 	const color = {background:'#'+(Math.random()*0xFFFFFF<<0).toString(16)};
-							// 	return(
-							// 		<div key={`user-${key}`} className="col-md-3 col-sm-4">
-							// 			<div className="card mt-2">
-							// 				<div className="card-body">
-							// 					<div className="">
-							// 						<div className="d-flex align-items-center">
-							// 							<div className="circularIcon-wrapper">
-							// 							<div className="circularIcon" style={color} />
-							// 							</div>
-							// 							<div className="numberItem ml-auto">
-							// 							<b>{item.get('count')}</b>
-							// 							</div>
-							// 						</div>
-							// 						<div className="titleItem mt-2">
-							// 							{item.get('status')}
-							// 						</div>
-							// 					</div>
-							// 				</div>
-							// 			</div>
-							// 		</div>
-							// 	)
-							// })
-						}
+
 					</div>
 				</div>
 
 				<section className="">
 					<div className="container-fluid">
 						<div className="row">
+							<div className="col-md-8">
+								<div className="list-box card d-flex align-items-stretch">
+									<div className="card-header d-flex align-items-center">
+										<h2 className="mr-auto">Members Count</h2>
+									</div>
+									<div className="card-body list">
+										<div className="row">
+											<div className="col">
+												<Bar
+													data={members.toJS()}
+													index_name="name"
+													index_value="member_count"
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div className="col d-flex">
 								<div className="list-box card d-flex align-items-stretch" style={{width:"100%"}}>
 									<div className="card-header d-flex align-items-center">
@@ -249,16 +144,17 @@ class Dashboard extends Component {
 										<div className="row">
 											<div className="col">
 											{
-												statistic &&
-												<Table 
-													data={statistic.get('agency_list') || [] }
-												/>
+												// statistic &&
+												// <Table 
+												// 	data={statistic.get('agency_list') || [] }
+												// />
 											}
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							
 
 						</div>
 					</div>
@@ -275,9 +171,9 @@ class Dashboard extends Component {
 										<div className="row">
 											<div className="col">
 											{
-												<GeoMap
-													data={ mapData }
-												/>
+												// <GeoMap
+												// 	data={ mapData }
+												// />
 											}
 											</div>
 										</div>
@@ -293,9 +189,11 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state, routeParams) => {
-	const dashboardSuperAdmin = state.dashboardSuperAdmin;
+	const organizationDashboard = state.organizationDashboard;
 	return {
-		statistic : dashboardSuperAdmin.get('statistic'),
+		branch_status : organizationDashboard.get('branch_status'),
+		members : organizationDashboard.get('members'),
+		total_branch : organizationDashboard.get('total_branch'),
 	};
 };
 

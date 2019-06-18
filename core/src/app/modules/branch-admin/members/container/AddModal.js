@@ -130,7 +130,6 @@ class AddDeductionModal extends Component {
             {name:'MALE'},
             {name:'FEMALE'},
         ]
-        console.log(form_data.toJS())
         return (
             <div>
              <form onSubmit={ this.onSubmit }>

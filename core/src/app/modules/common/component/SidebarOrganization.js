@@ -79,7 +79,7 @@ class SidebarNavigation extends Component {
             <li className={`sidebar-menu ${getClassName("branches")}`}>
               <Link to="/branches" className="link collapsed">
                 <IconOrganization />
-                <span className="menu-text">Branches</span>
+                <span className="menu-text">Branch</span>
               </Link>
             </li>
             <li className={`sidebar-menu ${getClassName("transaction")}`}>

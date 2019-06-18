@@ -30,7 +30,7 @@ class Dashboard extends Component {
 	componentWillMount() {
 		const { dispatch } = this.props;
 		dispatch({
-			type:c.GET_STATISTIC
+			type:c.GET_ATTENDEES
 		})
 	}
 

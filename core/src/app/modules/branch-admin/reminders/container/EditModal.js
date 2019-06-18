@@ -6,8 +6,11 @@ import * as c from '../constant';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import moment from 'moment-timezone';
+import { _ } from 'app/Utils';
+import Uploader from 'app/modules/uploadcare/Uploader';
+import thumbnail from "assets/img/image-thumbnail.jpg";
 
-class EditModal extends Component {
+class AddModal extends Component {
 
 
     onChangeInput = e => {
@@ -53,6 +56,17 @@ class EditModal extends Component {
         
     }
 
+
+    uploadPhoto = (key) => (files) => {
+        const { dispatch } = this.props
+        dispatch({
+            type: c.SET_FORM_DATA,
+            data: {
+                [key]: files
+            }
+        });
+	};
+
     onSubmit = (e) => {
         e.preventDefault();
         const { dispatch, form_data } = this.props;
@@ -83,6 +97,30 @@ class EditModal extends Component {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="form-group">
+                                <div className="col-md-6 offset-md-3">
+                                    <div className="employee-photo ">
+                                        <div className="ml-auto">
+                                        <img
+                                            src={
+                                            !_.isNil(form_data.get('image'))
+                                                ? form_data.get('image')
+                                                : thumbnail
+                                            }
+                                            alt="..."
+                                            className="w-100 img-fluid img-thumbnail"
+                                        />
+                                        </div>
+                                        <Uploader
+                                            crop={"400x400"}
+                                            label={`${_.isEmpty(form_data.get('image')) ? 'Upload Image' : 'Update Image'}`}
+                                            icon={`fa fa-camera`}
+                                            onUploaded={ this.uploadPhoto('image') }/>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div className="col-md-12">
+                                <div className="form-group">
                                     <label>Subject</label>
                                     <input name="subject" className="form-control" onChange={this.onChangeInput} value={form_data.get('subject')} />
                                 </div>
@@ -99,7 +137,7 @@ class EditModal extends Component {
                                     <label>Expiry Date</label>
                                     <DatePicker
                                         required
-                                        selected={form_data.get('expiration_date') || ''}
+                                        selected={form_data.get('expiration_date')}
                                         name="expiration_date"
                                         onChange={this.handleOnChangeDate('expiration_date')}
                                         dateFormat="YYYY/MM/DD"
@@ -149,4 +187,4 @@ const mapPropsToState = (state, routeParams) => {
     };
 };
 
-export default withRouter(connect(mapPropsToState)(EditModal));
+export default withRouter(connect(mapPropsToState)(AddModal));

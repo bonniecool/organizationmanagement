@@ -6,14 +6,17 @@ import dashboardSuperAdmin from 'app/modules/super-admin/dashboard/reducer';
 import superAdminOrganization from 'app/modules/super-admin/organization/reducer';
 import superAdminTransaction from 'app/modules/super-admin/transaction/reducer';
 
+import organizationDashboard from 'app/modules/organization-admin/dashboard/reducer';
 import organizationBranch from 'app/modules/organization-admin/branches/reducer';
 import organizationTransaction from 'app/modules/organization-admin/transaction/reducer';
 import organizationWallet from 'app/modules/organization-admin/wallet/reducer';
 
+import branchDashboard from 'app/modules/branch-admin/dashboard/reducer';
 import branchMembers from 'app/modules/branch-admin/members/reducer';
 import branchAttendance from 'app/modules/branch-admin/attendance/reducer';
 import branchReminders from 'app/modules/branch-admin/reminders/reducer';
 import branchQRCode from 'app/modules/branch-admin/qr-code/reducer';
+import branchSMSLogs from 'app/modules/branch-admin/sms-logs/reducer';
 
 
 const app = combineReducers({
@@ -30,14 +33,17 @@ const app = combineReducers({
     superAdminOrganization,
     superAdminTransaction,
 
+    organizationDashboard,
     organizationBranch,
     organizationTransaction,
     organizationWallet,
     
+    branchDashboard,
     branchMembers,
     branchAttendance,
     branchReminders,
-    branchQRCode
+    branchQRCode,
+    branchSMSLogs,
 
 })
 
