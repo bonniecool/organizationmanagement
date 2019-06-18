@@ -17,7 +17,7 @@ class Payment extends Resource
     {
         return [
             'id' => $this->id,
-            'status' => self::parseStatus($this->status),
+            'status' => config('module_payment.constants.status.'.$this->status),//self::parseStatus($this->status),
             'refno' => $this->refno,
             'txnid' => $this->txnid,
             'payment_channel' => $this->payment_channel,

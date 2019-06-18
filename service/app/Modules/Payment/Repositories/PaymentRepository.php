@@ -6,14 +6,13 @@ use App\Modules\Payment\Models\Payment;
 
 class PaymentRepository extends Payment
 {
-    public static function createPayment($paymentData, $data)
+    public static function createPayment($data)
     {
         $organization = request()->user()->organization;
 
         return $organization->payments()->create([
-            'status' => 'P',
-            'refno' => $paymentData['refno'],
-            'txnid' => $paymentData['txnid'],
+            'status' => 'D',
+            'txnid' => $data['txnid'],
             'payment_channel' => 'MPAY',
             'amount' => $data['amount'],
             'remarks' => 'WAITING FOR PAYMENT'

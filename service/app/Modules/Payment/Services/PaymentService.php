@@ -36,6 +36,46 @@ class PaymentService
         return $payment;
     }
 
+    public function processViaPgi($organization, $data)
+    {
+        DB::beginTransaction();
+
+        $data['txnid'] = self::generateTransactionNumber(20);
+        if (!$payment = $this->payment->createPayment($data)) {
+            return false;
+        }
+
+        if (!$paymentData = self::generateMultipayPgi($organization, $payment)) {
+            return false;
+        }
+
+        DB::commit();
+        return $paymentData;
+    }
+
+    private static function generateMultipayPgi($organization, $payment)
+    {
+        $multiPay = new MultipayPgi();
+        $transaction = $multiPay->generate([
+            'amount' => $payment['amount'] ?? 0,
+            'txnid' => $payment->txnid,
+            'name' => $payment->organization->name,
+            'email' => 'janreyguyjoco@gmail.com',
+            'mobile' => $payment->organization->mobile_number,
+            'callback_url' => 'https://b2c2c69b.ngrok.io/payment/receive'//secure_url('payment/receive')
+        ]);
+
+        if (is_null($transaction)) {
+            throw new BadRequestHttpException('Failed to generate reference number');
+        }
+
+        if ($transaction['status'] >= 400) {
+            throw new BadRequestHttpException(json_encode($transaction));
+        }
+
+        return $transaction['data'];
+    }
+
     private function generateMultipayReferenceNumber($organization, $amount)
     {
         $multiPay = new Multipay(config('multipay.code'), config('multipay.token'));
@@ -65,17 +105,9 @@ class PaymentService
 
     public function receive($payment, $payload)
     {
-        if ($payload['status'] != 'S') {
-            return $payment->update([
-                'status' => $payload['status'],
-                'remarks' => $payload['message']
-            ]);
-        }
-
         return $payment->update([
-            'status' => $payload['status'],
-            'remarks' => $payload['message'],
-            'transaction_date' => self::validateTransactionDate($payment)
+            'refno' => $payload['refno'],
+            'status' => $payload['status']
         ]);
     }
 
@@ -88,15 +120,6 @@ class PaymentService
             [
                 'amount' => $amount + $payment->amount
             ]);
-    }
-
-    private function validateTransactionDate($payment)
-    {
-        if (is_null($payment->transaction_date)) {
-            return Carbon::now();
-        }
-
-        return $payment->transaction_date;
     }
 
     private function generateTransactionNumber($len = 24)

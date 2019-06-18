@@ -26,8 +26,7 @@ class PaymentReceiveRequest extends ApiRequest
         return [
             'refno' => 'required',
             'txnid' => 'required|exists:payments,txnid',
-            'status' => 'required',
-            'message' => 'required'
+            'status' => 'required'
         ];
     }
 }
