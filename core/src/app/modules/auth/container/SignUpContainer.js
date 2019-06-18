@@ -226,13 +226,13 @@ class SignInContainer extends Component {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="email" name="password" className="form-control" onChange={this.onChangeInput} value={form_data.get('password')} />
+                        <input type="password" name="password" className="form-control" onChange={this.onChangeInput} value={form_data.get('password')} />
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="form-group">
                         <label>Confirm Password</label>
-                        <input type="email" name="password" className="form-control" onChange={this.onChangeInput} value={form_data.get('password')} />
+                        <input type="password_confirmation" name="password" className="form-control" onChange={this.onChangeInput} value={form_data.get('password_confirmation')} />
                     </div>
                 </div>
             </div>
