@@ -226,10 +226,10 @@ const mapStateToProps = (state, routeParams) => {
   const { loadingTypes } = state.loading;
   const isAuthenticated = state.auth.get("isAuthenticated");
   const form_data = state.auth.get("form_data");
-  const regions = state.organizationBranch.get('regions')
-  const provinces = state.organizationBranch.get('provinces')
-  const municipalities = state.organizationBranch.get('municipalities')
-  const barangays = state.organizationBranch.get('barangays')
+  const regions = state.auth.get('regions')
+  const provinces = state.auth.get('provinces')
+  const municipalities = state.auth.get('municipalities')
+  const barangays = state.auth.get('barangays')
 
   return {
     isLoading: loadingTypes.length > 0,
