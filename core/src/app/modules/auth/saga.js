@@ -278,6 +278,10 @@ export default function* authSaga() {
         takeEvery("CHANGE_PASSWORD", changePassword),
         takeEvery("REGISTER", register),
         takeEvery("MY_PROFILE", myProfile),
-        takeEvery("GET_PERMISSIONS", permissions)
+        takeEvery("GET_PERMISSIONS", permissions),
+        takeEvery(c.GET_REGIONS, regions),
+		takeEvery(c.GET_PROVINCES, provinces),
+		takeEvery(c.GET_MUNICIPALITIES, municipalities),
+		takeEvery(c.GET_BARANGAYS, barangays),
     ])
 }
