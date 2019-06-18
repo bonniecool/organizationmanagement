@@ -27,10 +27,8 @@ return [
             'received' => [
                 'txnid',
                 'refno',
-                'digest',
                 'status',
-                'proc_id',
-                'message'
+                'transaction_date'
             ]
         ],
         'mng' => [
@@ -124,9 +122,9 @@ return [
     ],
     'constants' => [
         'status' => [
-            'draft' => 'D',
-            'pending' => 'P',
-            'paid' => 'S'
+            'D' => 'Draft',
+            'P' =>'Pending',
+            'S' =>'Paid'
         ],
     ]
 ];

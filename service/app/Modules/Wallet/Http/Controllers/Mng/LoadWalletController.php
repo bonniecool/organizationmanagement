@@ -41,4 +41,22 @@ class LoadWalletController extends Controller
         ]);
     }
 
+
+
+
+    public function pgiLoad(LoadWalletRequest $request)
+    {
+        $payload = $request->only('amount');
+        $organization = request()->user()->organization()->firstOrFail();
+
+        if(!$payment = $this->service->processViaPgi($organization, $payload))
+        {
+            return $this->apiResponse->badRequest('Transaction cannot be processed. Please contact the administrator.');
+        }
+
+        return $this->apiResponse->resource([
+            'data' => $payment
+        ]);
+    }
+
 }
