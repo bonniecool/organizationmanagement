@@ -193,6 +193,80 @@ function* myProfile({user_type}) {
     })
 }
 
+
+
+function* regions() {
+	yield put(loading('GET_REGIONS'));
+
+	const response = yield call(services.get(`/common/regions`))
+
+	yield put(loading(null));
+
+	yield call(watchApiResponse, response, function*() {
+		const { data } = response.data
+
+		yield put({
+			type: c.GOT_REGIONS,
+			data
+		})
+
+	})
+}
+
+function* provinces({region_id}) {
+	yield put(loading('GET_PROVINCES'));
+
+	const response = yield call(services.get(`/common/regions/${region_id}/provinces`))
+
+	yield put(loading(null));
+
+	yield call(watchApiResponse, response, function*() {
+		const { data } = response.data
+
+		yield put({
+			type: c.GOT_PROVINCES,
+			data
+		})
+
+	})
+}
+
+function* municipalities({region_id, province_id}) {
+	yield put(loading('GET_MUNICIPALITIES'));
+
+	const response = yield call(services.get(`/common/regions/${region_id}/provinces/${province_id}/municipalities`))
+
+	yield put(loading(null));
+
+	yield call(watchApiResponse, response, function*() {
+		const { data } = response.data
+
+		yield put({
+			type: c.GOT_MUNICIPALITIES,
+			data
+		})
+
+	})
+}
+
+function* barangays({region_id, province_id, municipality_id}) {
+	yield put(loading('GET_BARANGAYS'));
+
+	const response = yield call(services.get(`/common/regions/${region_id}/provinces/${province_id}/municipalities/${municipality_id}/barangay`))
+
+	yield put(loading(null));
+
+	yield call(watchApiResponse, response, function*() {
+		const { data } = response.data
+
+		yield put({
+			type: c.GOT_BARANGAYS,
+			data
+		})
+
+	})
+}
+
 export default function* authSaga() {
     yield all([ 
         takeEvery("CHECK_AUTH", checkAuthentication),
