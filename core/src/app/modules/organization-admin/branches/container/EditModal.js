@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
 import Select from 'react-select';
+import { _ } from 'app/Utils';
 
 class EditModal extends Component {
 
@@ -185,18 +186,6 @@ class EditModal extends Component {
                                     <input type="text" name="zip_code" className="form-control" onChange={this.onChangeInput} value={form_data.get('zip_code')} />
                                 </div>
                             </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <label>Contact Number</label>
-                                    <input type="text" name="number" className="form-control" onChange={this.onChangeInput} value={form_data.get('number')} />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" className="form-control" onChange={this.onChangeInput} value={form_data.get('email')} />
-                                </div>
-                            </div>
                         </div>
                         
                 </Modal.Body>
@@ -225,6 +214,7 @@ const mapPropsToState = (state, routeParams) => {
     const provinces = state.organizationBranch.get('provinces')
     const municipalities = state.organizationBranch.get('municipalities')
     const barangays = state.organizationBranch.get('barangays')
+
     return {
         loadingTypes,
         form_data,

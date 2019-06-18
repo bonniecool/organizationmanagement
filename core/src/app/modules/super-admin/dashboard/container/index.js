@@ -11,7 +11,7 @@ import Table from '../component/Table';
 // const HorizontalBar = AsyncComponent(() => import('app/modules/chart/HorizontalBar'));
 // const Bar = AsyncComponent(() => import('app/modules/chart/Bar'));
 // const Pie = AsyncComponent(() => import('app/modules/chart/Pie'));
-const Doughnut = AsyncComponent(() => import('app/modules/chart/DoughnutSuper'));
+// const Doughnut = AsyncComponent(() => import('app/modules/chart/DoughnutSuper'));
 // const Polar = AsyncComponent(() => import('app/modules/chart/Polar'));
 
 const randomInt = (min, max, withFormat = false) =>  {
@@ -30,15 +30,21 @@ class Dashboard extends Component {
 	componentWillMount() {
 		const { dispatch } = this.props;
 		dispatch({
-			type:c.GET_STATISTIC
+			type:c.GET_MEMBERS
+		})
+		dispatch({
+			type:c.GET_ORGANIZATION_TYPE
+		})
+		dispatch({
+			type:c.GET_TOTAL_ORGANIZATION
 		})
 	}
 
 	render() {
 
-		const { statistic } = this.props;
-		const government_status = statistic.getIn(['agencies','type',0,'status'])
-		const private_status = statistic.getIn(['agencies','type',1,'status'])
+	// 	const { statistic } = this.props;
+	// 	const government_status = statistic.getIn(['agencies','type',0,'status'])
+	// 	const private_status = statistic.getIn(['agencies','type',1,'status'])
 		const mapData = [
 		{
 			region_code: '010000000',
@@ -97,7 +103,6 @@ class Dashboard extends Component {
 	const govcolor = {background:'#'+(Math.random()*0xFFFFFF<<0).toString(16)};
 	const privatecolor = {background:'#'+(Math.random()*0xFFFFFF<<0).toString(16)};
 
-	console.log(statistic.toJS())
 		return (
 			<div className="">
 				<header className="page-header">
@@ -114,18 +119,20 @@ class Dashboard extends Component {
 										<div className="d-flex align-items-center">
 											<div className="circularIcon-wrapper-big">
 												<div className="circularIcon-big" style={color} >
-												{statistic.get('departments')}
+												{
+													// statistic.get('departments')
+												}
 												</div>
 											</div>
 											<div style={{'width':'100px', 'height':'100px','zIndex':9}}>
 											{
-												statistic &&
-												<Doughnut
-													// height={300}
-													data={[statistic.toJS()]}
-													index_name="departments"
-													index_value="departments"
-													/>
+												// statistic &&
+												// <Doughnut
+												// 	// height={300}
+												// 	data={[statistic.toJS()]}
+												// 	index_name="departments"
+												// 	index_value="departments"
+												// 	/>
 											}
 											</div>
 											<div className="numberItem ml-auto">
@@ -147,18 +154,20 @@ class Dashboard extends Component {
 										
 											<div className="circularIcon-wrapper-big">
 												<div className="circularIcon-big" style={govcolor} >
-													{statistic.getIn(['agencies','type',0,'count'])}
+													{
+														// statistic.getIn(['agencies','type',0,'count'])
+													}
 												</div>
 											</div>
 											<div style={{'width':'100px', 'height':'100px','zIndex':9}}>
 											{
-												government_status &&
-												<Doughnut
-													// height={300}
-													data={government_status.toJS()}
-													index_name="status"
-													index_value="count"
-													/>
+												// government_status &&
+												// <Doughnut
+												// 	// height={300}
+												// 	data={government_status.toJS()}
+												// 	index_name="status"
+												// 	index_value="count"
+												// 	/>
 											}
 											</div>
 											<div className="numberItem ml-auto">
@@ -183,18 +192,20 @@ class Dashboard extends Component {
 										
 											<div className="circularIcon-wrapper-big">
 												<div className="circularIcon-big" style={privatecolor} >
-													{statistic.getIn(['agencies','type',1,'count'])}
+													{
+														// statistic.getIn(['agencies','type',1,'count'])
+													}
 												</div>
 											</div>
 											<div style={{'width':'100px', 'height':'100px','zIndex':9}}>
 										{
-											private_status &&
-											<Doughnut
-												// height={300}
-												data={private_status.toJS()}
-												index_name="status"
-												index_value="count"
-												/>
+											// private_status &&
+											// <Doughnut
+											// 	// height={300}
+											// 	data={private_status.toJS()}
+											// 	index_name="status"
+											// 	index_value="count"
+											// 	/>
 										}
 										</div>
 											<div className="numberItem ml-auto">
@@ -249,10 +260,10 @@ class Dashboard extends Component {
 										<div className="row">
 											<div className="col">
 											{
-												statistic &&
-												<Table 
-													data={statistic.get('agency_list') || [] }
-												/>
+												// statistic &&
+												// <Table 
+												// 	data={statistic.get('agency_list') || [] }
+												// />
 											}
 											</div>
 										</div>
@@ -275,9 +286,9 @@ class Dashboard extends Component {
 										<div className="row">
 											<div className="col">
 											{
-												<GeoMap
-													data={ mapData }
-												/>
+												// <GeoMap
+												// 	data={ mapData }
+												// />
 											}
 											</div>
 										</div>
@@ -295,7 +306,9 @@ class Dashboard extends Component {
 const mapStateToProps = (state, routeParams) => {
 	const dashboardSuperAdmin = state.dashboardSuperAdmin;
 	return {
-		statistic : dashboardSuperAdmin.get('statistic'),
+		members : dashboardSuperAdmin.get('members'),
+		organization_type : dashboardSuperAdmin.get('organization_type'),
+		total_organization : dashboardSuperAdmin.get('total_organization'),
 	};
 };
 

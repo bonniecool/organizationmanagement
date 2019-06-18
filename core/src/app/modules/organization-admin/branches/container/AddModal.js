@@ -4,10 +4,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
 import Select from 'react-select';
-import Uploader from 'app/modules/uploadcare/Uploader';
-import thumbnail from "assets/img/image-thumbnail.jpg";
 import { _ } from 'app/Utils';
-class AddDeductionModal extends Component {
+
+class AddModal extends Component {
 
     componentWillMount() {
         const { dispatch } = this.props;
@@ -75,19 +74,17 @@ class AddDeductionModal extends Component {
         const { dispatch, form_data } = this.props;
         dispatch({
             type:c.CREATE,
-            args:form_data.toJS()
+            args:{
+                barangay_code:form_data.get('barangay_code'),
+                municipality_code:form_data.get('municipality_code'),
+                name:form_data.get('name'),
+                province_code:form_data.get('province_code'),
+                region_code:form_data.get('region_code'),
+                street:form_data.get('street'),
+                zip_code:form_data.get('zip_code'),
+            }
         })
     }
-
-    uploadPhoto = (key) => (files) => {
-        const { dispatch } = this.props
-        dispatch({
-            type: c.SET_FORM_DATA,
-            data: {
-                [key]: files
-            }
-        });
-	};
 
     render() {
         const { form_data, 
@@ -102,28 +99,6 @@ class AddDeductionModal extends Component {
              <form onSubmit={ this.onSubmit }>
                 <Modal.Body>
                         <div className="row">
-                            <div className="col-md-12">
-                                <div className="col-md-6 offset-md-3">
-                                    <div className="col-md-6 offset-md-3">
-                                        <div className="employee-photo ml-auto">
-                                            <img
-                                            src={
-                                                !_.isNil(form_data.get('photo'))
-                                                ? form_data.get('photo')
-                                                : thumbnail
-                                            }
-                                            alt="..."
-                                            className="w-100 img-fluid img-thumbnail"
-                                            />
-                                        </div>
-                                            <Uploader
-                                            crop={"400x400"}
-                                            label={`${_.isEmpty(form_data.get('photo')) ? 'Upload Photo' : 'Update Photo'}`}
-                                            icon={`fa fa-camera`}
-                                            onUploaded={ this.uploadPhoto('photo') }/>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="col-md-12">
                                 <div className="form-group">
                                     <label>Organization Name</label>
@@ -218,18 +193,6 @@ class AddDeductionModal extends Component {
                                     <input type="text" name="zip_code" className="form-control" onChange={this.onChangeInput} value={form_data.get('zip_code')} />
                                 </div>
                             </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <label>Contact Number</label>
-                                    <input type="text" name="number" className="form-control" onChange={this.onChangeInput} value={form_data.get('number')} />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" className="form-control" onChange={this.onChangeInput} value={form_data.get('email')} />
-                                </div>
-                            </div>
                         </div>
                         
                 </Modal.Body>
@@ -269,4 +232,4 @@ const mapPropsToState = (state, routeParams) => {
     };
 };
 
-export default withRouter(connect(mapPropsToState)(AddDeductionModal));
+export default withRouter(connect(mapPropsToState)(AddModal));

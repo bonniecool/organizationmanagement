@@ -28,10 +28,8 @@ class EmployeeShortInfo extends PureComponent {
               <div className="row">
                 <div className="col-12">
                   <div className="details-item">
-                    <h3>
-                      {data.get('first_name')}{" "}
-                      {data.get('middle_name')}{" "}
-                      {data.get('last_name')}
+                    <h3 className="text-uppercase">
+                      {data.get('name')}
                     </h3>
                   </div>
                 </div>
@@ -39,31 +37,7 @@ class EmployeeShortInfo extends PureComponent {
                   <div className="details-item">
                     <p className="title">Address :</p>
                     <p className="answer">
-                      {data.get('street')}, {data.getIn(['barangay','name'])}, {data.getIn(['municipality','name'])}, {data.getIn(['province','name'])}, {data.getIn(['region','name'])}, {data.get('zip_code')}
-                    </p>
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div className="details-item">
-                    <p className="title">Gender :</p>
-                    <p className="answer">
-                    {data.get('gender')}
-                    </p>
-                  </div>
-                </div>
-                <div className="col-4">
-                  <div className="details-item">
-                    <p className="title">Birth Date :</p>
-                    <p className="answer">
-                    {data.get('birth_date')}
-                    </p>
-                  </div>
-                </div>
-                <div className="col-4">
-                  <div className="details-item">
-                    <p className="title">Mobile Number :</p>
-                    <p className="answer">
-                    {data.get('mobile_number')}
+                      {data.get('street')}, {data.get('barangay_name')}, {data.get('municipality_name')}, {data.get('province_name')}, {data.get('region_name')}, {data.get('zip_code')}
                     </p>
                   </div>
                 </div>

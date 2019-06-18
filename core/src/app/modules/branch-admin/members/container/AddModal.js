@@ -139,7 +139,7 @@ class AddDeductionModal extends Component {
                             <div className="col-md-12">
                                 <div className="col-md-6 offset-md-3">
                                     <div className="col-md-6 offset-md-3">
-                                        <div className="employee-photo ml-auto">
+                                        <div className="ml-auto">
                                             <img
                                             src={
                                                 !_.isNil(form_data.get('photo'))
@@ -149,12 +149,13 @@ class AddDeductionModal extends Component {
                                             alt="..."
                                             className="w-100 img-fluid img-thumbnail"
                                             />
-                                        </div>
                                             <Uploader
                                             crop={"400x400"}
                                             label={`${_.isEmpty(form_data.get('photo')) ? 'Upload Photo' : 'Update Photo'}`}
                                             icon={`fa fa-camera`}
                                             onUploaded={ this.uploadPhoto('photo') }/>
+                                        </div>
+                                            
                                     </div>
                                 </div>
                             </div>
