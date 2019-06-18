@@ -232,7 +232,7 @@ class SignInContainer extends Component {
                 <div className="col-md-6">
                     <div className="form-group">
                         <label>Confirm Password</label>
-                        <input type="password_confirmation" name="password" className="form-control" onChange={this.onChangeInput} value={form_data.get('password_confirmation')} />
+                        <input type="password" name="password_confirmation" className="form-control" onChange={this.onChangeInput} value={form_data.get('password_confirmation')} />
                     </div>
                 </div>
             </div>
