@@ -27,15 +27,14 @@ function* create({args}) {
 	yield put(loading(null));
 
 	yield call(watchApiResponse, response, function*() {
-		const { data, message } = response.data
+		const { data } = response.data
 		window.open(data.url)
-		// yield put({
-		// 	type:c.SET_FORM_DATA,
-		// 	// data:{
-		// 	// 	refno:data.refno,
-		// 	// 	message:message || ''
-		// 	// }
-		// })
+		yield put({
+			type: 'MODAL',
+			data: {
+					isOpen: false
+			}
+		})
 	})
 }
 
