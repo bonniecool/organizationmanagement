@@ -31,7 +31,16 @@ class PaymentController extends Controller
 
     public function receive(PaymentReceiveRequest $request)
     {
-        $payload = $request->only(config('module_payment.requests.ste.received'));
+//        $payload = $request->only(config('module_payment.requests.ste.received'));
+        $payload = $request->only([
+            'txnid',
+            'refno',
+            'status',
+            'digest',
+            'message',
+            'payment_channel'
+        ]);
+
         $payment = $this->payment->where('txnid', $payload['txnid'])->firstOrFail();
 
         if ($payment->status == 'S') {

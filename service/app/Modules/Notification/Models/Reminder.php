@@ -2,13 +2,14 @@
 
 namespace App\Modules\Notification\Models;
 
-use App\Modules\Branch\Repositories\BranchRepository;
-use App\Modules\User\Repositories\UserRepository;
-use Damnyan\Cmn\Traits\Models\CreatorUpdaterTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 use OwenIt\Auditing\Auditable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Modules\User\Repositories\UserRepository;
 use Damnyan\Cmn\Abstracts\AbstractModel as Model;
+use Damnyan\Cmn\Traits\Models\CreatorUpdaterTrait;
+use App\Modules\Branch\Repositories\BranchRepository;
+use App\Modules\Notification\Repositories\SmsLogRepository;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Reminder extends Model implements AuditableContract
@@ -26,6 +27,7 @@ class Reminder extends Model implements AuditableContract
         'subject',
         'content',
         'status',
+        'image',
         'has_expiration',
         'expiration_date'
     ];

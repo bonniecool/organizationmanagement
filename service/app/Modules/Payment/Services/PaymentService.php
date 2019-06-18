@@ -62,7 +62,7 @@ class PaymentService
             'name' => $payment->organization->name,
             'email' => 'janreyguyjoco@gmail.com',
             'mobile' => $payment->organization->mobile_number,
-            'callback_url' => secure_url('payment/receive')
+            'callback_url' => 'https://b0d3a453.ngrok.io/payment/receive'//secure_url('payment/receive')
         ]);
 
         if (is_null($transaction)) {
@@ -107,7 +107,11 @@ class PaymentService
     {
         return $payment->update([
             'refno' => $payload['refno'],
-            'status' => $payload['status']
+            'status' => $payload['status'],
+            'digest' => $payload['digest'],
+            'payment_channel' => $payload['payment_channel'],
+            'remarks' => $payload['message'],
+            'transaction_date' => Carbon::now()
         ]);
     }
 

@@ -96,4 +96,42 @@ class DashboardController extends Controller
         $response['data'] = $newMember;
         return $this->apiResponse->resource($response);
     }
+
+    public function topAttendees(Request $request)
+    {
+        $newMember = $request
+            ->user()
+            ->profile
+            ->branch
+            ->members()
+            ->join('branch_member_attendance','branch_member_attendance.uuid', '=', 'profile_branch_members.uuid')
+            ->addSelect(DB::raw('profile_branch_members.first_name'))
+            ->addSelect(DB::raw('profile_branch_members.middle_name'))
+            ->addSelect(DB::raw('profile_branch_members.last_name'))
+            ->addSelect(DB::raw('count(branch_member_attendance.id) as count'))
+            ->groupBy(DB::raw('profile_branch_members.first_name, profile_branch_members.middle_name, profile_branch_members.last_name'))
+            ->orderBy('count', 'DESC')
+            ->limit(5)
+            ->get();
+
+        $response['data'] = $newMember;
+        return $this->apiResponse->resource($response);
+    }
+
+    public function attendeesPerMonth(Request $request)
+    {
+        $newMember = $request
+            ->user()
+            ->profile
+            ->branch
+            ->members()
+            ->join('branch_member_attendance','branch_member_attendance.uuid', '=', 'profile_branch_members.uuid')
+            ->addSelect(DB::raw('DATE_FORMAT(branch_member_attendance.attendance_date, "%m-%Y") as date'))
+            ->addSelect(DB::raw('count(branch_member_attendance.id) as count'))
+            ->groupBy(DB::raw('DATE_FORMAT(branch_member_attendance.attendance_date, "%m-%Y")'))
+            ->get();
+
+        $response['data'] = $newMember;
+        return $this->apiResponse->resource($response);
+    }
 }

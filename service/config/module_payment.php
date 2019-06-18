@@ -28,7 +28,10 @@ return [
                 'txnid',
                 'refno',
                 'status',
-                'transaction_date'
+                'transaction_date',
+                'digest',
+                'remarks',
+                'message'
             ]
         ],
         'mng' => [

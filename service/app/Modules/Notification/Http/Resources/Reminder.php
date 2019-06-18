@@ -20,6 +20,7 @@ class Reminder extends Resource
             'subject' => $this->subject,
             'content' => $this->content,
             'status' => $this->status,
+            'image' => $this->image,
             'has_expiration' => $this->has_expiration,
             'expiration_date' => $this->expiration_date,
             'posted_by' => $this->creator->profile->full_name,

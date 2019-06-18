@@ -76,4 +76,17 @@ class DashboardController extends Controller
             ->get();
         return $this->apiResponse->resource(new PaymentCollection($payment));
     }
+
+    public function revenuePerMonth()
+    {
+        $payment = $this->paymentRepository
+            ->addSelect(DB::raw('DATE_FORMAT(created_at, "%m-%Y") as date'))
+            ->addSelect(DB::raw('count(*) as count'))
+            ->addSelect(DB::raw('sum(amount) as amount'))
+            ->groupBy(DB::raw('DATE_FORMAT(created_at, "%m-%Y")'))
+            ->get();
+    
+        $response['data'] = $payment;
+        return $this->apiResponse->resource($response);
+    }
 }

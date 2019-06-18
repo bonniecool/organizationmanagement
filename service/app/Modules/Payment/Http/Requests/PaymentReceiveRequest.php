@@ -24,9 +24,11 @@ class PaymentReceiveRequest extends ApiRequest
     public function rules()
     {
         return [
-            'refno' => 'required',
-            'txnid' => 'required|exists:payments,txnid',
-            'status' => 'required'
+            'refno' => '',
+            'txnid' => 'exists:payments,txnid',
+            'status' => '',
+            'digest' => '',
+            'message' => ''
         ];
     }
 }
