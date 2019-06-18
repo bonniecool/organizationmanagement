@@ -10,6 +10,13 @@ class SignInContainer extends Component {
     password: ""
   };
 
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch({
+			type:c.GET_REGIONS
+		})
+  }
+
   handleChangeInput = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
