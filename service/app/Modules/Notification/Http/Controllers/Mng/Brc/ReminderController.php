@@ -77,6 +77,7 @@ class ReminderController extends Controller
             'subject',
             'content',
             'status',
+            'image',
             'has_expiration',
             'expiration_date');
 
@@ -122,6 +123,7 @@ class ReminderController extends Controller
             'subject',
             'content',
             'status',
+            'image',
             'has_expiration',
             'expiration_date');
 
