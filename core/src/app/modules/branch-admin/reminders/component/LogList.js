@@ -32,9 +32,9 @@ class EmployeeList extends Component {
                         return (
                             <Table
                                 width={ width }
-                                height={ 620 }
-                                headerHeight={ 30 }
-                                rowHeight={ 40 }
+                                height={ 300 }
+                                headerHeight={ 0 }
+                                rowHeight={ 30 }
                                 rowCount={ data.size }
                                 onRowClick={this.onSelectRow}
                                 rowClassName={
@@ -66,41 +66,40 @@ class EmployeeList extends Component {
                                 rowGetter={({index}) => data.get(index)}>
 
                                 <Column
-                                    width={ width }
-                                    flex={1}
-                                    label="Members"
-                                    dataKey=''
-                                    cellRenderer={
-                                            ({ rowData }) => {
-                                                return (
-                                                    <div className="item d-flex align-items-center">
-                                                        <div className="text">
-                                                            <a><h3 className="h5 text-uppercase">{rowData.getIn(['member','last_name'])}, {rowData.getIn(['member','first_name'])} {rowData.getIn(['member','middle_name'])} {rowData.getIn(['member','suffix'])}</h3></a>
-                                                        </div>
-                                                    </div>  
-                                                )
-                                            }
-                                        }
-                                />
-                                <Column
-                                    width={ width }
+                                    width={ 300 }
                                     flex={ 1 }
-                                    label="Date Attended"
-                                    dataKey=''
+                                    label="Organization"
+                                    dataKey='name'
                                     cellRenderer={
                                             ({ rowData }) => {
                                                 return (
                                                     <div className="item d-flex align-items-center">
                                                         <div className="text">
-                                                            <a><h3 className="h5 text-uppercase">{rowData.get('date')}</h3></a>
+                                                            <small>{rowData.getIn(['recipient','last_name'])}, {rowData.getIn(['recipient','first_name'])} {rowData.getIn(['recipient','middle_name'])} {rowData.getIn(['recipient','suffix'])}</small>
                                                         </div>
                                                     </div>  
                                                 )
                                             }
                                         }
                                 />
-                                
 
+                                <Column
+                                    width={ 300 }
+                                    flex={ 1 }
+                                    label="Organization"
+                                    dataKey='name'
+                                    cellRenderer={
+                                            ({ rowData }) => {
+                                                return (
+                                                    <div className="item d-flex align-items-center">
+                                                        <div className="text">
+                                                            <a><h3 className="h5 text-uppercase">{rowData.get('date_time')} </h3></a>
+                                                        </div>
+                                                    </div>  
+                                                )
+                                            }
+                                        }
+                                />
                             </Table>
                         )
                     }}

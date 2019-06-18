@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as c from '../constant';
 import { AsyncComponent } from 'app/Utils';
 import Organization from '../component/List'
+import LogList from '../component/LogList'
 import Profile from '../component/Profile'
 import moment from 'moment-timezone';
 const AddModal = AsyncComponent(() => import ('./AddModal'));
@@ -102,7 +103,7 @@ class Dashboard extends Component {
 
 	render() {
 
-		const { list, details } = this.props;
+		const { list, details, log_list } = this.props;
 		return (
 			<div className="">
 				<header className="page-header">
@@ -160,6 +161,11 @@ class Dashboard extends Component {
 								 <div className="pull-left text-uppercase"><b>SMS Logs</b></div>
 								</div>
 								<div className="card-body">
+								{
+									<LogList 
+										data={log_list}
+									/>
+								}
 										
 								</div>
 							</div>
@@ -178,6 +184,7 @@ const mapStateToProps = (state, routeParams) => {
 	return {
 		list : branchReminders.get('list'),
 		details : branchReminders.get('details'),
+		log_list : branchReminders.get('log_list'),
 	};
 };
 

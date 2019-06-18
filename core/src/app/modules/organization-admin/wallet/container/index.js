@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { AsyncComponent } from 'app/Utils';
 import * as c from '../constant';
 const AddModal = AsyncComponent(() => import ('./AddModal'));
+const PGIModal = AsyncComponent(() => import ('./PGIModal'));
 
 class Dashboard extends Component {
 

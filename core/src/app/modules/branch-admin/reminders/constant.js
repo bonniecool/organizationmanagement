@@ -3,6 +3,9 @@ export const MODULE = 'SUPER-ADMIN-REMINDERS';
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`
 
+export const GET_LOG_LIST = `${MODULE}/GET_LOG_LIST`
+export const GOT_LOG_LIST = `${MODULE}/GOT_LOG_LIST`
+
 export const GET_DETAIL = `${MODULE}/GET_DETAIL`
 export const GOT_DETAIL = `${MODULE}/GOT_DETAIL`
 

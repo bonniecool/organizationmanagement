@@ -16,7 +16,6 @@ import branchMembers from 'app/modules/branch-admin/members/reducer';
 import branchAttendance from 'app/modules/branch-admin/attendance/reducer';
 import branchReminders from 'app/modules/branch-admin/reminders/reducer';
 import branchQRCode from 'app/modules/branch-admin/qr-code/reducer';
-import branchSMSLogs from 'app/modules/branch-admin/sms-logs/reducer';
 
 
 const app = combineReducers({
@@ -43,7 +42,6 @@ const app = combineReducers({
     branchAttendance,
     branchReminders,
     branchQRCode,
-    branchSMSLogs,
 
 })
 

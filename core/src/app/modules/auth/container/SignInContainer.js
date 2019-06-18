@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import logo from "assets/img/logo.svg";
 class SignInContainer extends Component {
@@ -82,6 +82,7 @@ class SignInContainer extends Component {
                 >
                   Sign In
                 </button>
+              <Link to="/register" className="btn btn-login btn-success btn-block" >Register</Link>
               </form>
               {/*<a className="forgot-pass">
                       Forgot Password?

@@ -22,17 +22,17 @@ function* list() {
 function* create({args}) {
 	yield put(loading('PAY_CREDIT'));
 
-	const response = yield call(services.post(`/wallet/load`), args)
+	const response = yield call(services.post(`/wallet/load/pgi`), args)
 
 	yield put(loading(null));
 
 	yield call(watchApiResponse, response, function*() {
-		const { data, message } = response.data
+		const { data } = response.data
+		window.open(data.url)
 		yield put({
-			type:c.SET_FORM_DATA,
-			data:{
-				refno:data.refno,
-				message:message || ''
+			type: 'MODAL',
+			data: {
+					isOpen: false
 			}
 		})
 	})

@@ -4,6 +4,7 @@ import { AsyncComponent } from './Utils';
 
 const AsyncHomeContainer = AsyncComponent(() => import('./modules/home/container/Home'));
 const AsyncSignInContainer = AsyncComponent(() => import('./modules/auth/container/SignInContainer'));
+const AsyncRegisterContainer = AsyncComponent(() => import('./modules/auth/container/SignUpContainer'));
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
@@ -26,6 +27,7 @@ class MainRoutes extends Component{
             <Switch>
                 <PrivateRoute key="home" exact={ !isAuthenticated } isAuthenticated={isAuthenticated} path="/" component={ AsyncHomeContainer }/>,
                 <Route key="signin" path="/signin" component={ AsyncSignInContainer }/>
+                <Route key="register" path="/register" component={ AsyncRegisterContainer }/>
                 <Route component={ () => <div>404 Page</div> } />
             </Switch>
         )

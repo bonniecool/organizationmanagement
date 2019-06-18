@@ -5,7 +5,15 @@ const initState = Map({
 	isAuthenticated: false,
     profile: Map({}),
 	user_type: null,
-	permissions:List([])
+	permissions:List([]),
+	regions:List([]),
+	provinces:List([]),
+	municipalities:List([]),
+	barangays:List([]),
+	members:List([]),
+	form_data:Map({
+		
+	})
 })
 
 export default (state = initState, action) => {
@@ -20,7 +28,20 @@ export default (state = initState, action) => {
             	.set('profile', fromJS(action.data))
             	.set('user_type', action.user_type)
         case "RESET_AUTH":
-            return initState;
+			return initState;
+		
+			case c.GOT_REGIONS:
+			return state.set('regions', fromJS(action.data))
+		case c.GOT_PROVINCES:
+			return state.set('provinces', fromJS(action.data))
+		case c.GOT_MUNICIPALITIES:
+			return state.set('municipalities', fromJS(action.data))
+		case c.GOT_MEMBERS:
+			return state.set('members', fromJS(action.data))
+		case c.GOT_BARANGAYS:
+			return state.set('barangays', fromJS(action.data))
+		case c.SET_FORM_DATA:
+			return state.update('form_data',form_data => form_data.merge(fromJS(action.data)));
 		default:
 			return state;
 	}

@@ -18,6 +18,7 @@ function* list() {
 		})
 		if(data.length > 0)
 		 yield show({id:data[0].id})
+		 yield logList({id:data[0].id})
 	})
 }
 
@@ -36,6 +37,7 @@ function* show({id}) {
 			type: c.GOT_DETAIL,
 			data
 		})
+		yield logList({id:id})
 	})
 }
 
@@ -123,6 +125,23 @@ function* sendsms({id}) {
 	})
 }
 
+function* logList({id}) {
+	yield put(loading('SEND_SMS'));
+
+	const response = yield call(services.get(`mng/brc/reminder/${id}/sms_logs`))
+
+	yield put(loading(null));
+
+	yield call(watchApiResponse, response, function*() {
+		const { data } = response.data
+
+		yield put({
+			type: c.GOT_LOG_LIST,
+			data
+		})
+	})
+}
+
 
 export default function* (){
 	yield all([
@@ -132,5 +151,6 @@ export default function* (){
 		takeEvery(c.UPDATE, update),
 		takeEvery(c.REMOVE, remove),
 		takeEvery(c.SEND_SMS, sendsms),
+		takeEvery(c.GET_LOG_LIST, logList),
 	]);
 };
