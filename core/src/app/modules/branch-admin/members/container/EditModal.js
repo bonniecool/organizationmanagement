@@ -130,7 +130,7 @@ class EditModdal extends Component {
             {name:'MALE'},
             {name:'FEMALE'},
         ]
-
+        console.log(!_.isNil(form_data.get('photo')))
         return (
             <div>
              <form onSubmit={ this.onSubmit }>

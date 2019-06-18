@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';
 import Select from 'react-select';
-import { _ } from 'app/Utils';
 
 class AddModal extends Component {
 

@@ -5,10 +5,12 @@ import superAdminOrganization from 'app/modules/super-admin/organization/saga';
 import superAdminTransaction from 'app/modules/super-admin/transaction/saga';
 import dashboardSuperAdmin from 'app/modules/super-admin/dashboard/saga';
 
+import organizationDashboard from 'app/modules/organization-admin/dashboard/saga';
 import organizationBranch from 'app/modules/organization-admin/branches/saga';
 import organizationTransaction from 'app/modules/organization-admin/transaction/saga';
 import organizationWallet from 'app/modules/organization-admin/wallet/saga';
 
+import branchDashboard from 'app/modules/branch-admin/dashboard/saga';
 import branchMembers from 'app/modules/branch-admin/members/saga';
 import branchAttendance from 'app/modules/branch-admin/attendance/saga';
 import branchReminders from 'app/modules/branch-admin/reminders/saga';
@@ -23,10 +25,12 @@ export default function* rootSaga() {
         superAdminTransaction(),
         dashboardSuperAdmin(),
 
+        organizationDashboard(),
         organizationBranch(),
         organizationTransaction(),
         organizationWallet(),
 
+        branchDashboard(),
         branchMembers(),
         branchAttendance(),
         branchReminders(),

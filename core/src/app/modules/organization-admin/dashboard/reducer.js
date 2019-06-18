@@ -3,18 +3,19 @@ import * as c from './constant';
 
 const initState = Map({
 
-	statistic: Map({
-		departments:0,
-		applicaagenciesnts:List([]),
-		agency_list:List([])
-	}),
-	
+	branch_status: Map({}),
+	members: List([]),
+	total_branch: Map({}),
 })
 
 export default (state = initState, action) => {
 	switch(action.type){
-		case c.GOT_STATISTIC:
-			return state.set('statistic', fromJS(action.data))
+		case c.GOT_ACTIVE_BRANCHES:
+			return state.set('branch_status', fromJS(action.data))
+		case c.GOT_MEMBERS_PER_BRANCH:
+			return state.set('members', fromJS(action.data))
+		case c.GOT_TOTAL_BRANCH:
+			return state.set('total_branch', fromJS(action.data))
 		default:
 			return state;
 	}

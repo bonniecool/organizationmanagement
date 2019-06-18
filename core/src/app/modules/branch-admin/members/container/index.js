@@ -10,6 +10,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment-timezone';
 const AddModal = AsyncComponent(() => import ('./AddModal'));
 const EditModal = AsyncComponent(() => import ('./EditModal'));
+const GenerateIDModal = AsyncComponent(() => import ('./GenerateIDModal'));
 
 class index extends Component {
 
@@ -39,6 +40,22 @@ class index extends Component {
 					modalSize: 'modal-lg',
 					content: <AddModal 
 
+						/>
+			}
+		})
+	}
+
+	generateID = data => e => {
+		e.preventDefault();
+		const { dispatch } = this.props;
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Generate ID',
+					modalSize: 'modal-md',
+					content: <GenerateIDModal 
+						data={data}
 						/>
 			}
 		})
@@ -155,6 +172,7 @@ class index extends Component {
 								<div className="card-body">
 										<Profile 
 											data={details}
+											generateId={this.generateID}
 										/>
 								</div>
 							</div>
