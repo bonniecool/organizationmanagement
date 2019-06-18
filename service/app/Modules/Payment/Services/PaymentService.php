@@ -107,7 +107,11 @@ class PaymentService
     {
         return $payment->update([
             'refno' => $payload['refno'],
-            'status' => $payload['status']
+            'status' => $payload['status'],
+            'digest' => $payload['digest'],
+            'payment_channel' => $payload['payment_channel'],
+            'remarks' => $payload['message'],
+            'transaction_date' => Carbon::now()
         ]);
     }
 
