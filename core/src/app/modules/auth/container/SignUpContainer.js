@@ -203,6 +203,18 @@ class SignInContainer extends Component {
                         <input type="text" name="zip_code" className="form-control" onChange={this.onChangeInput} value={form_data.get('zip_code')} />
                     </div>
                 </div>
+                <div className="col-md-12">
+                    <div className="form-group">
+                        <label>Owner</label>
+                        <input type="text" name="organzation_owner" className="form-control" onChange={this.onChangeInput} value={form_data.get('organzation_owner')} />
+                    </div>
+                </div>
+                <div className="col-md-12">
+                    <div className="form-group">
+                        <label>Mobile No.</label>
+                        <input type="text" name="mobile_number" className="form-control" onChange={this.onChangeInput} value={form_data.get('mobile_number')} />
+                    </div>
+                </div>
             </div>
                 <button
                   disabled={isLoading}

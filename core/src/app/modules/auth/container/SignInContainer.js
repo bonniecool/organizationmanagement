@@ -82,7 +82,7 @@ class SignInContainer extends Component {
                 >
                   Sign In
                 </button>
-              <Link to="/register">Register</Link>
+              <Link to="/register" className="btn btn-login btn-success btn-block" >Register</Link>
               </form>
               {/*<a className="forgot-pass">
                       Forgot Password?
