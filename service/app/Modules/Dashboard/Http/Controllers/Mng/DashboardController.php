@@ -65,7 +65,7 @@ class DashboardController extends Controller
             ->user()
             ->organization
             ->branches()
-            ->where('is_active', 1)
+            ->where('is_active', 0)
             ->count();
 
         $response['data'] = ['active' => $active, 'inactive' => $inactive];
