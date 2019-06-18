@@ -10,6 +10,7 @@ use App\Modules\Notification\Models\SmsLog;
 use App\Modules\Wallet\Services\LoadWalletService;
 use App\Modules\Notification\Repositories\SmsLogRepository;
 use App\Modules\Notification\Http\Resources\SmsLogCollection;
+use App\Modules\Notification\Http\Resources\SmsLog as SmsLogResource;
 use App\Modules\Notification\Repositories\ReminderRepository;
 
 class SmsLogsController extends Controller
@@ -41,17 +42,15 @@ class SmsLogsController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function index(Request $request)
+    public function index(Request $request, $reminderId)
     {
         $branchIds = request()->user()
             ->organization
             ->branches()
             ->pluck('id');
-        $reminderIds = $this->reminder->whereIn('branch_id', $branchIds)
-            ->pluck('id');
-
-        $smsLogs = $this->smsLogs->whereIn('reminder_id', $reminderIds)
-            ->getOrPaginate();
+        
+        $smsLogs = $this->reminder->whereIn('branch_id', $branchIds)
+            ->findOrFail($reminderId)->smsLogs()->getOrPaginate();
 
         return $this->apiResponse->resource(new SmsLogCollection($smsLogs));
     }
@@ -61,10 +60,16 @@ class SmsLogsController extends Controller
      *
      * @return \Damnyan\Cmn\Services\ApiResponse;
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $reminderId, $smsLogsId)
     {
-        $smsLogs = $this->smsLogs->findOrFail($id);
+        $branchIds = request()->user()
+            ->organization
+            ->branches()
+            ->pluck('id');
+        
+        $smsLogs = $this->reminder->whereIn('branch_id', $branchIds)
+            ->findOrFail($reminderId)->smsLogs()->findOrFail($smsLogsId);
     
-        return $this->apiResponse->resource(new SmsLog($smsLogs));
+        return $this->apiResponse->resource(new SmsLogResource($smsLogs));
     }
 }
