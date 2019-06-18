@@ -27,6 +27,7 @@ class Reminder extends Model implements AuditableContract
         'subject',
         'content',
         'status',
+        'image',
         'has_expiration',
         'expiration_date'
     ];
