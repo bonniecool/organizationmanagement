@@ -1,0 +1,38 @@
+.recent-activities .item {
+  padding: 0 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.recent-activities .item div[class*='col-'] {
+  padding: 15px;
+}
+
+.recent-activities h5 {
+  font-weight: 400;
+  color: #333;
+}
+
+.recent-activities p {
+  font-size: 0.75em;
+  color: #999;
+}
+
+.recent-activities .icon {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  background: #f5f5f5;
+  text-align: center;
+  display: inline-block;
+}
+
+.recent-activities .date {
+  font-size: 0.75em;
+  color: #999;
+  padding: 10px;
+}
+
+.recent-activities .date-holder {
+  padding: 0 !important;
+  border-right: 1px solid #eee;
+}

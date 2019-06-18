@@ -1,0 +1,48 @@
+.card-list-item {
+  cursor: pointer;
+  & > .check {
+    margin-right: 16px;
+    & > .form-check-input {
+      margin-left: 0;
+    }
+  }
+
+  & > .image {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+  }
+
+  & > .image > .image-thumbnail {
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    max-width: 44px;
+    border: 2px solid $loblolly;
+  }
+
+  & > .details {
+    margin-left: 8px;
+    padding: 3px 0;
+    .title {
+      margin: 0;
+      line-height: 24px;
+      font-size: 14px;
+      font-family: $font-family-sans-2;
+      font-weight: 600;
+      display: block;
+      text-transform: capitalize;
+      width: 210px;
+    }
+    .status,
+    .email,
+    .item {
+      margin: 0;
+      line-height: 18px;
+      font-size: 12px;
+      font-weight: 400;
+      display: block;
+      font-family: $font-family-sans-2;
+    }
+  }
+}

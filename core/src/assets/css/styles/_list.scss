@@ -1,0 +1,44 @@
+.list-items{
+    color: $primary-color;
+    font-size: $font-size-xs;
+} 
+.list-items.active{
+    background-color: #fd871f;
+    border-color: #fd871f;
+    position: relative;
+}
+.list-items.active:after {
+        right: -6px;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 10px;
+    margin-top: -10px;
+    z-index: 1;
+}
+.list-items a{
+  color: #000;
+  padding: 5px 0;
+  width: 100%;
+}
+.list-items.active a.btn-circle{
+  color: #000;
+}
+.list-items a:hover, .list-items a:focus{
+  text-decoration: none;
+}
+.list-items.active a{
+  color: #fff;
+}
+.list-items:first-child{
+    border-radius: 0;
+}
+.list-items:last-child{
+    border-radius: 0;
+}

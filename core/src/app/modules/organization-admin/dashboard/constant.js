@@ -1,0 +1,5 @@
+export const MODULE = 'ADMIN-ORGANIZATION-DASHBOARD';
+
+export const GET_STATISTIC = `${MODULE}/GET_STATISTIC`
+export const GOT_STATISTIC = `${MODULE}/GOT_LIST`
+

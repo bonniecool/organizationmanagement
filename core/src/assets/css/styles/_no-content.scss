@@ -1,0 +1,18 @@
+.no-content h6 {
+  font-weight: 400;
+}
+.no-content i {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  font-size: 40px;
+  color: #9aadbf;
+  display: inline-block;
+  background-color: $light-color;
+  @include box-shadow($box-shadow);
+}
+.no-content .title {
+  font-weight: 400;
+}

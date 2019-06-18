@@ -1,0 +1,135 @@
+section.dashboard-counts .icon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  min-width: 40px;
+  max-width: 40px;
+  border-radius: 50%;
+}
+
+section.dashboard-counts .title {
+  font-size: 1em;
+  font-weight: 300;
+  color: #777;
+  margin: 0 20px;
+}
+
+section.dashboard-counts .progress {
+  margin-top: 10px;
+}
+
+section.dashboard-counts .number {
+  font-size: 1.8em;
+  font-weight: 300;
+}
+
+section.dashboard-counts .number strong {
+  font-weight: 700;
+}
+
+section.dashboard-counts .row {
+  padding: 30px 15px;
+  margin: 0;
+}
+
+section.dashboard-counts div[class*='col-'] .item {
+  border-right: 1px solid #eee;
+  padding: 15px 0;
+}
+
+section.dashboard-counts div[class*='col-']:last-of-type .item {
+  border-right: none;
+}
+
+/*  DASHBOARD COUNTS MEDIAQUERIES ------------------------ */
+@media (max-width: 1200px) {
+  section.dashboard-counts div[class*='col-']:nth-of-type(2) .item {
+    border-right: none;
+  }
+}
+
+@media (max-width: 575px) {
+  section.dashboard-counts div[class*='col-'] .item {
+    border-right: none;
+  }
+}
+
+/*
+* ==========================================================
+*     DASHBOARD HEADER SECTION
+* ==========================================================
+*/
+.statistic {
+  padding: 20px 15px;
+  margin-bottom: 15px;
+}
+
+.statistic:last-of-type {
+  margin-bottom: 0;
+}
+
+.statistic strong {
+  font-size: 1.5em;
+  color: #333;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statistic small {
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.statistic .icon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  min-width: 40px;
+  max-width: 40px;
+  color: #fff;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.chart .title {
+  padding: 15px 0 0 15px;
+}
+
+.chart .title strong {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.chart .title small {
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.chart .line-chart {
+  width: 100%;
+  height: 100%;
+  padding: 20px 0;
+}
+
+.chart .line-chart canvas {
+  width: calc(100% - 30px) !important;
+}
+
+.chart .bar-chart {
+  margin-bottom: 15px;
+}
+
+.chart .bar-chart canvas {
+  padding: 15px;
+  width: 100%;
+  margin: 0;
+}
+
+/*  DASHBOARD HEADER  MEDIAQUERIES ------------------------*/
+@media (max-width: 991px) {
+  section.dashboard-header div[class*='col-'] {
+    margin-bottom: 20px;
+  }
+}

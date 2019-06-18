@@ -1,0 +1,40 @@
+.text-name {
+  font-size: 14px;
+  color: $white;
+  line-height: 20px;
+  margin: 0;
+  display: block;
+  font-family: $font-family-sans-2;
+  font-weight: 600;
+}
+
+.text-role {
+  font-size: 10px;
+  color: $white;
+  line-height: 12px;
+  font-family: $font-family-sans-2;
+  font-weight: 400;
+  margin: 0;
+  display: block;
+}
+
+.text-email {
+  font-size: 12px;
+  color: $color-secondary;
+  line-height: 12px;
+  font-family: $font-family-sans-2;
+  font-weight: 400;
+  margin: 0;
+  display: block;
+}
+
+.text-position {
+  font-size: 10px;
+  color: $gray-chateau;
+  line-height: 12px;
+  font-family: $font-family-sans-2;
+  font-weight: 400;
+  margin-top: 8px;
+  margin-bottom: 0;
+  display: block;
+}

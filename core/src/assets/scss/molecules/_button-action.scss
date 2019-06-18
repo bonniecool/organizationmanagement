@@ -1,0 +1,21 @@
+.btn-action {
+  display: inline-block;
+  &.btn-small {
+    height: 28px;
+  }
+  & > * {
+    &:not(:last-child) {
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+
+    &:first-child {
+      margin-right: 4px;
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-left: 4px;
+      margin-right: 0;
+    }
+  }
+}

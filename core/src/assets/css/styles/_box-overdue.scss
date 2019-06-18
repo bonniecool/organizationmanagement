@@ -1,0 +1,28 @@
+.overdue .chart canvas {
+  width: 100% !important;
+  z-index: 1;
+}
+
+.overdue .card {
+  margin-bottom: 0;
+}
+
+.overdue .card-body {
+  padding: 20px;
+}
+
+.overdue .card-body small {
+  font-weight: 300;
+  color: #aaa;
+}
+
+.overdue .card-body h3 {
+  margin-bottom: 5px;
+}
+
+.overdue .number {
+  font-size: 1.8em;
+  font-weight: 400;
+  color: #555;
+  margin: 35px 0;
+}

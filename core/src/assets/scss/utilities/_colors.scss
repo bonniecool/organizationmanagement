@@ -1,0 +1,60 @@
+// Color Palette
+// examples based on the official Sass styleguide
+
+// descriptive colors
+// =============
+$endeavour: #00539f;
+$navy-blue: #2082cc;
+$alizarin-crimson: #ee262e;
+$fire-engine-red: #d12026;
+$romance: #ffffff;
+$lily-white: #eaeaea;
+$light-gray: #d3d3d3;
+$black: #050505;
+$gray-chateau: #9ea0a5;
+$lightning-yellow: #f9bc23;
+$banana-yellow: #ffe62c;
+$loblolly: #bdc7d2;
+
+$hawkes-blue: #cce6ff;
+
+// main color palette
+// =============
+$color-primary: $endeavour;
+$color-primary-lighten: $hawkes-blue;
+$color-secondary: $lightning-yellow;
+$color-accent: $alizarin-crimson;
+$color-shadow: rgba($black, 0.125);
+$color-note: #666;
+
+// Common colors
+$color-background: $romance;
+$color-background-shade: $lily-white;
+$color-background-invert: $endeavour;
+$color-text: darken($black, 15);
+$color-text-weak: $light-gray;
+$color-text-strong: $alizarin-crimson;
+$color-text-heading: $light-gray;
+$color-text-invert: rgba($color-background, 0.75);
+$color-text-strong-invert: $color-background;
+
+// Links
+$color-link: $color-primary;
+$color-link-hover: $navy-blue;
+$color-link-visited: $alizarin-crimson;
+
+// Code
+$color-code: #333;
+$color-code-background: $light-gray;
+$color-pre: #d4d4d4;
+$color-pre-background: #333;
+
+// Selections
+$color-selection: #b3d4fc;
+
+// Messages
+$color-message: #f4ecbb;
+$color-success: #2cde2c;
+$color-warning: #cf8600;
+$color-important: #d00;
+$color-notice: #66b;

@@ -1,0 +1,56 @@
+.input-group {
+  position: relative;
+  &.input-group-prepend {
+    .btn {
+      border-radius: 4px 0 0 4px;
+      display: inline-block;
+      &:focus {
+        outline: none;
+      }
+    }
+    .form-control {
+      border-radius: 0 4px 4px 0;
+      display: inline-block;
+    }
+  }
+  &.input-group-sm {
+    .form-control {
+      height: 28px;
+    }
+  }
+  & > .form-control:not(:last-child) {
+    border-radius: 4px;
+  }
+  & > .form-control {
+    z-index: 3;
+    position: relative;
+    border-radius: 4px;
+  }
+  & > .btn {
+    position: absolute;
+    z-index: 4;
+    right: 16px;
+    opacity: 0.5;
+    padding: 0;
+    &:hover {
+      opacity: 1;
+    }
+    &.btn-icon .icon {
+      width: 18px;
+      height: 18px;
+    }
+    &.btn-refresh {
+      right: 40px;
+      display: none;
+      visibility: hidden;
+      transform: 500ms all ease;
+      .icon {
+        fill: $gray-chateau;
+      }
+      &.active {
+        display: block;
+        visibility: visible;
+      }
+    }
+  }
+}

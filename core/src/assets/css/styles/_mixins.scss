@@ -1,0 +1,59 @@
+$font: 'K2D', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+$lightest-color: #EEF5F9;
+$light-color: #ecf0f1;
+
+$primary-color: #000;
+$btn-primary-color: #073b7f;
+$btn-danger-color: #dc3545;
+$hover-btn-primary-color: #073B7F;
+$btn-info-color: #17a2b8;
+$hover-btn-info-color: #17a2b8;
+$btn-warning-color: #FF8000;
+$hover-btn-warning-color: #FF8000;
+$btn-danger-color: #dc3545;
+$hover-btn-danger-color: #dc3545;
+$btn-secondary-color: #E2E1EC;
+$hover-btn-secondary-color: #D3D2E0;
+$btn-success-color: #33BE25;
+$hover-btn-success-color: #33BE25;
+$btn-dark-color: #4C4C4C;
+$btn-link-color: #007bff;
+$link-color: #073b7f;
+
+$regular-size: 14px;
+$font-size-lg: 30px;
+$font-size-md: 25px;
+$font-size-sm: 18px;
+$font-size-xs: 14px;
+$font-size-xxs: 11px;
+$font-weight-thin: 100;
+$radius-lg: 15px;
+$radius-md: 10px;
+$radius-sm: 5px;
+$box-shadow: 0 8px 15px rgba(0,0,0,.1);
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+@mixin box-shadow($box-shadow) {
+    box-shadow: $box-shadow;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    -ms-box-shadow: $box-shadow;
+}
+.box-shadow {
+    @include box-shadow($box-shadow);
+}
+
+.br-sm {
+    @include border-radius($radius-sm);
+}
+.br-md{
+    @include border-radius($radius-md);
+}
+.br-lg{
+    @include border-radius($radius-lg);
+}
