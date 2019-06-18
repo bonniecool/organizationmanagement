@@ -1,0 +1,7 @@
+{
+    "name": "Notification",
+    "slug": "notification",
+    "version": "1.0",
+    "description": "This is the description for the Notification module.",
+    "order": 900
+}

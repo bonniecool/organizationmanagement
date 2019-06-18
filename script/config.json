@@ -1,0 +1,16 @@
+{
+  "fbUrl": "https://church-management-c412f.firebaseio.com/",
+  "apiKey": "AIzaSyCl2Ixs7-5EOlyhRPMbsHXyZXrPcIxwaDw",
+  "database" : {
+    "mysql": {
+      "host": "ubox.cuaubtfbqjii.ap-southeast-1.rds.amazonaws.com",
+      "port": 3306,
+      "database": "orgcms",
+      "user": "ubox",
+      "password": "3oU2bhu5N61O"
+    }
+  },
+  "txtbox": {
+    "X-TXTBOX-Auth": "3a9607d8435211394037443799615296"
+  }
+}

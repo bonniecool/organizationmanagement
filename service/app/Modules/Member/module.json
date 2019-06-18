@@ -1,0 +1,7 @@
+{
+    "name": "member",
+    "slug": "member",
+    "version": "1.0",
+    "description": "This is the description for the Member module.",
+    "order": 600
+}

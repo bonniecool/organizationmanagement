@@ -1,0 +1,7 @@
+{
+    "name": "Organization",
+    "slug": "organization",
+    "version": "1.0",
+    "description": "This is the description for the Organization module.",
+    "order":200
+}

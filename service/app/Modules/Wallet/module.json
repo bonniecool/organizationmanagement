@@ -1,0 +1,7 @@
+{
+    "name": "Wallet",
+    "slug": "wallet",
+    "version": "1.0",
+    "description": "This is the description for the Wallet module.",
+    "order": 800
+}

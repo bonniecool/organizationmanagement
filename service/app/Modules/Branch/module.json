@@ -1,0 +1,7 @@
+{
+    "name": "branch",
+    "slug": "branch",
+    "version": "1.0",
+    "description": "This is the description for the Branch module.",
+    "order": 400
+}
