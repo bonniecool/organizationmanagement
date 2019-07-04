@@ -47,10 +47,10 @@ class ReminderController extends Controller
             ->findUuid($uuid)
             ->firstOrFail();
 
-        if(!Hash::check($pin, $member->pin))
-        {
-            return $this->apiResponse->badRequest('Incorrect Pin.');
-        }
+//        if(!Hash::check($pin, $member->pin))
+//        {
+//            return $this->apiResponse->badRequest('Incorrect Pin.');
+//        }
 
         $reminders = $member
             ->branch
