@@ -37,11 +37,11 @@ class ReminderController extends Controller
      */
     public function index(Request $request, $uuid)
     {
-        $pin = $request->header('pin');
-        if(is_null($request->header('pin')))
-        {
-            return $this->apiResponse->forbidden('Unauthorized access.');
-        }
+//        $pin = $request->header('pin');
+//        if(is_null($request->header('pin')))
+//        {
+//            return $this->apiResponse->forbidden('Unauthorized access.');
+//        }
 
         $member = $this->memberRepository
             ->findUuid($uuid)
