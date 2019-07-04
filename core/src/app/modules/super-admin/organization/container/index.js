@@ -47,10 +47,10 @@ class Dashboard extends Component {
 								</div>
 								</div>
 								<div className="">
-										<Organization
-											data={list}
-											onSelectRow={this.onSelectRow}
-										/>
+									<Organization
+										data={list}
+										onSelectRow={this.onSelectRow}
+									/>
 								</div>
 							</div>
 						</div>
@@ -60,15 +60,11 @@ class Dashboard extends Component {
 									<div className="pull-left">{details.get('name')}</div>
 								</div>
 								<div className="card-body">
-										<Profile 
-											data={details}
-										/>
+										<Profile data={details} />
 								</div>
 							</div>
 						</div>
 					</div>
-					
-						
 				</div>
 			</div>
 		);
