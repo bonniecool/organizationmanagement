@@ -1,0 +1,61 @@
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .icon {
+  position: absolute;
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+  margin: 12px 4px 12px 10px;
+  fill: $santas-gray;
+  z-index: 999;
+}
+
+.inner-addon .btn {
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  margin: 0;
+  z-index: 999;
+  outline: 0;
+  padding: 0 8px;
+  &:focus,
+  &:hover {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+.inner-addon > .form-control {
+  &:focus {
+    & ~ .icon {
+      fill: $color-primary;
+    }
+  }
+}
+
+/* align glyph */
+.left-addon .icon {
+  left: 0;
+  top: 0;
+}
+
+.right-addon-button .icon-right {
+  top: 0;
+  right: 0;
+}
+
+.right-addon-button .btn-right {
+  top: 0;
+  right: 0;
+}
+
+/* add padding  */
+.left-addon .form-control {
+  padding-left: 32px;
+}
+.right-addon .form-control {
+  padding-right: 32px;
+}

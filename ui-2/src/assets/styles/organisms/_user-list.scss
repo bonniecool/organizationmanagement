@@ -1,0 +1,18 @@
+.user-listing-wrapper {
+  background-color: #eef0f4;
+  padding: 20px;
+}
+
+.user-details-wrapper {
+  display: flex;
+}
+
+.user-details-image-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.user-information-wrapper {
+  border: 1px solid #eef0f4;
+  padding: 15px;
+}

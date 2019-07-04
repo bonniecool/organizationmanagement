@@ -1,0 +1,63 @@
+.user-listing {
+  height: 100%;
+  overflow-y: scroll;
+  max-height: 100%;
+  & > .user-item {
+    width: 100%;
+    height: 70px;
+    padding: 0 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid rgba($black, 0.2);
+    cursor: pointer;
+    &:last-child {
+      border-bottom: 0;
+    }
+    // .user-name {
+    //   margin: 0;
+    //   font-size: 16px;
+    //   color: $black;
+    // }
+
+    .thumbnail {
+      margin-right: 8px;
+      width: 43px;
+      height: 43px;
+      width: 45px;
+      .user-photo {
+        border: 2px solid $white;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .user-info {
+      flex: 1;
+      .user-group {
+        opacity: 0.5;
+        color: $black;
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 16px;
+        margin-bottom: 0;
+      }
+      .user-fullname {
+        color: $black;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+      }
+    }
+    &.selected {
+      background: $white;
+      .thumbnail {
+        .user-photo {
+          border: 2px solid $merlot;
+        }
+      }
+    }
+  }
+}

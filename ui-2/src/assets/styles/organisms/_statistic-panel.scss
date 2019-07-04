@@ -1,0 +1,12 @@
+.statistic-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  z-index: 3;
+
+  &.hide {
+    bottom: -110px;
+  }
+}

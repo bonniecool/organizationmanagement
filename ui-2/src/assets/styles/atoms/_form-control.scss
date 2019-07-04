@@ -1,0 +1,45 @@
+.form-control {
+  &.question {
+    border-radius: 0;
+    font-size: 14px;
+    color: $black;
+    outline: none;
+    line-height: 24px;
+    padding: 8px 4px;
+    height: 40px;
+    border: 0;
+    border-bottom: 1px solid $black;
+    background: transparent;
+    &:focus,
+    &:hover {
+      border-color: $color-primary;
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  &.normal {
+    border: 1px solid $athens-gray;
+    border-radius: 4px;
+    background-color: $white;
+    font-size: 14px;
+    color: $black;
+    outline: none;
+    line-height: 24px;
+    padding: 8px;
+    height: 40px;
+    &:focus,
+    &:hover {
+      border-color: $color-primary;
+      outline: none;
+      box-shadow: none;
+    }
+
+    &.border-black {
+      border-color: $santas-gray;
+    }
+  }
+}
+
+.custom-input {
+  border: none;
+}

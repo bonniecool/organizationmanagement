@@ -1,0 +1,87 @@
+.services-questionnaires-container {
+  background-color: #ffffff;
+  border: 1px solid #eef0f4;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.questionnaires-item {
+  border: none;
+  &:nth-child(even) {
+    background-color: #e5e8ee;
+  }
+
+  &:nth-child(odd) {
+    background-color: #f7f7f7;
+  }
+
+  .action {
+    position: relative;
+    transition: 500ms ease all;
+    .btn-more {
+      position: relative;
+      font-size: 14px;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      transition: 500ms ease all;
+      &.hide {
+        display: none;
+      }
+      &.show {
+        display: block;
+      }
+    }
+    .btn-close {
+      border-radius: 50px;
+      background: $merlot;
+      color: $white;
+      position: relative;
+      font-size: 14px;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      z-index: 4;
+      transition: 500ms ease all;
+      &.hide {
+        display: none;
+      }
+      &.show {
+        display: block;
+      }
+    }
+  }
+  .action-menu {
+    border-radius: 4px;
+    background-color: $white;
+    box-shadow: 0 2px 10px 0 rgba($black, 0.09);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3;
+    transition: 500ms ease all;
+    &.hide {
+      display: none;
+    }
+    &.show {
+      display: block;
+    }
+    .action-list {
+      .action-item {
+        .btn {
+          color: $black;
+          text-decoration: none;
+          display: block;
+          border-radius: 0;
+          width: 100%;
+          text-align: left;
+          &:hover,
+          &:focus {
+            background: $concrete;
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+}

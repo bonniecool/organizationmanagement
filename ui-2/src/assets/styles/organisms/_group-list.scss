@@ -1,0 +1,46 @@
+.group-list-container {
+  border: 1px solid #eef0f4;
+  border-radius: 4px;
+  background-color: #eef0f4;
+  padding: 25px;
+}
+
+.groups {
+  padding-right: 40px;
+}
+
+.group-user-item {
+  border: none;
+  &:nth-child(even) {
+    background-color: #e5e8ee;
+  }
+}
+
+.group-status-container {
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.group-list-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+}
+
+.group-search-container {
+  background-color: #eef0f4;
+}
+
+.group-list-form-wrapper {
+  padding: 15px 20px 0px;
+}
+
+.group-list-items {
+  border: none;
+  background-color: #eef0f4;
+  line-height: 35px;
+  &:hover {
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+}

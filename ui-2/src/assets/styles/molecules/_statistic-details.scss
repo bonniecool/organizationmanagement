@@ -1,0 +1,37 @@
+.statistic-details {
+  &.with-divider {
+    background: url("../images/divider.png") no-repeat center right;
+  }
+  .value {
+    color: $white;
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 76px;
+    text-align: center;
+    &.highlight {
+      color: $bright-sun;
+      font-weight: 700;
+    }
+  }
+  .icon-arrow {
+    width: 14px;
+    height: 18px;
+    margin-left: 16px;
+    margin-bottom: 24px;
+  }
+  .text {
+    margin-left: 24px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    line-height: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    .name {
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .increase {
+      color: $bright-sun;
+    }
+  }
+}

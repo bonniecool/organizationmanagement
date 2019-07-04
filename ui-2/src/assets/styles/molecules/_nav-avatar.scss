@@ -1,0 +1,14 @@
+.nav-avatar {
+  .full-name {
+    font-weight: 600;
+    color: $black;
+    font-size: 14px;
+    margin-right: 4px;
+  }
+  .img-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    border: 1px solid $athens-gray;
+  }
+}

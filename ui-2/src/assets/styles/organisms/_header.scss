@@ -1,0 +1,28 @@
+.main-header {
+  width: 100%;
+  border-bottom: 1px solid $athens-gray;
+  background-color: $white;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  .navbar {
+    padding: 15px 24px;
+  }
+  .navbar-brand {
+    img {
+      height: 40px;
+    }
+    padding: 0;
+  }
+
+  .navbar-nav {
+    .nav-link {
+      padding: 0;
+    }
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 42px;
+  }
+}

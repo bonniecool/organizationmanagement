@@ -1,0 +1,109 @@
+.mini-loader-wrapper {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .mini-grid-box {
+    position: relative;
+    box-sizing: border-box;
+    > div {
+      position: relative;
+      box-sizing: border-box;
+    }
+    display: block;
+    font-size: 0;
+    color: $color-secondary;
+    > div {
+      display: inline-block;
+      float: none;
+      background-color: currentColor;
+      border: 0 solid currentColor;
+      width: 8px;
+      height: 8px;
+      margin: 2px;
+      border-radius: 100%;
+      animation-name: ball-grid-beat;
+      animation-iteration-count: infinite;
+      &:nth-child(1) {
+        animation-duration: 0.65s;
+        animation-delay: 0.03s;
+      }
+      &:nth-child(2) {
+        animation-duration: 1.02s;
+        animation-delay: 0.09s;
+      }
+      &:nth-child(3) {
+        animation-duration: 1.06s;
+        animation-delay: -0.69s;
+      }
+      &:nth-child(4) {
+        animation-duration: 1.5s;
+        animation-delay: -0.41s;
+      }
+      &:nth-child(5) {
+        animation-duration: 1.6s;
+        animation-delay: 0.04s;
+      }
+      &:nth-child(6) {
+        animation-duration: 0.84s;
+        animation-delay: 0.07s;
+      }
+      &:nth-child(7) {
+        animation-duration: 0.68s;
+        animation-delay: -0.66s;
+      }
+      &:nth-child(8) {
+        animation-duration: 0.93s;
+        animation-delay: -0.76s;
+      }
+      &:nth-child(9) {
+        animation-duration: 1.24s;
+        animation-delay: -0.76s;
+      }
+    }
+    width: 36px;
+    height: 36px;
+    &.la-sm {
+      width: 18px;
+      height: 18px;
+      > div {
+        width: 4px;
+        height: 4px;
+        margin: 1px;
+      }
+    }
+    &.2x {
+      width: 72px;
+      height: 72px;
+      > div {
+        width: 16px;
+        height: 16px;
+        margin: 4px;
+      }
+    }
+    &.3x {
+      width: 108px;
+      height: 108px;
+      > div {
+        width: 24px;
+        height: 24px;
+        margin: 6px;
+      }
+    }
+  }
+}
+
+@keyframes ball-grid-beat {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

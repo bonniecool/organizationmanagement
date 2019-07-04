@@ -1,0 +1,49 @@
+// Color Palette
+// examples based on the official Sass styleguide
+
+// descriptive colors
+// =============
+
+$cardinal: #d31c2a;
+$merlot: #811e2d;
+$big-stone: #192646;
+$tundora: #484848;
+$black: #333;
+$white: #ffffff;
+$concrete: #f3f3f3;
+$santas-gray: #a0a2a8;
+$athens-gray: #eef0f4;
+$mantis: #71b848;
+$bright-sun: #ffc94a;
+
+// main color palette
+// =============
+$color-primary: $cardinal;
+$color-secondary: $merlot;
+$color-accent: $big-stone;
+$color-shadow: rgba($tundora, 0.125);
+$color-note: tundora;
+
+// Common colors
+$color-background: $white;
+$color-background-shade: $concrete;
+$color-background-invert: $athens-gray;
+$color-text: $tundora;
+
+// Links
+$color-link: $big-stone;
+$color-link-hover: darken($big-stone, 10%);
+$color-link-visited: lighten($big-stone, 10%);
+
+// Code4
+$color-code: $black;
+$color-code-background: $athens-gray;
+$color-pre: $athens-gray;
+$color-pre-background: $tundora;
+
+// Messages
+$color-message: $bright-sun;
+$color-success: $mantis;
+$color-warning: #cf8600;
+$color-important: #d00;
+$color-notice: #66b;

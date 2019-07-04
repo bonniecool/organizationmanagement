@@ -1,0 +1,13 @@
+.main-sidebar {
+  height: calc(100vh - 70px);
+  width: 280px;
+  max-width: 280px;
+  display: inline-block;
+  border-right: 1px solid $athens-gray;
+  background-color: $white;
+  box-shadow: 0 2px 20px 0 rgba($black, 0.08);
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 4;
+}

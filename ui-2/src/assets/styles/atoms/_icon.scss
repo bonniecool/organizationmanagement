@@ -1,0 +1,30 @@
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: $athens-gray;
+}
+
+.icon-arrow {
+  width: 7px;
+  height: 9px;
+  fill: $bright-sun;
+}
+
+.icon-pass {
+  width: 18px;
+  height: 18px;
+  fill: $black;
+  &.hide {
+    opacity: 1;
+  }
+  &.show {
+    opacity: 1;
+  }
+}
+
+.icon-check,
+.icon-radio {
+  width: 18px;
+  height: 18px;
+  fill: $santas-gray;
+}

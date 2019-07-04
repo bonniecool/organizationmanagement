@@ -1,0 +1,21 @@
+.copyright {
+  margin-top: 60px;
+  padding: 30px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border-top: 1px solid $athens-gray;
+  align-content: center;
+
+  .copyright-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: $color-text;
+  }
+  .help-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-primary;
+  }
+}

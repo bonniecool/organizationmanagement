@@ -1,0 +1,11 @@
+.main-content {
+  height: 100%;
+  width: calc(100% - 280px);
+  max-height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+  margin-left: 280px;
+  position: relative;
+  background: hsla(355, 10, 90, 1);
+}
