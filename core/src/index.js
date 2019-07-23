@@ -7,21 +7,15 @@ import { ConnectedRouter } from "react-router-redux";
 import history from "./app/History";
 import registerServiceWorker from "./registerServiceWorker";
 
-// import "react-s-alert/dist/s-alert-default.css";
-// import "./assets/fonts/material/material.css";
-// import "react-s-alert/dist/s-alert-css-effects/slide.css";
-// import "react-select/dist/react-select.css";
-// import "./assets/css/bootstrap.css";
-import "./assets/css/font-awesome.min.css";
-// import "./assets/css/react-modal.css";
-import "./assets/css/style_finger_print.css";
-import "./assets/css/style.css";
-import "./assets/css/toggle-switch.css";
-import "./assets/fonts/K2D/stylesheet.css";
-import "./assets/scss/styles.css";
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import 'assets/css/fontawesome/css/all.min.css';
+import 'assets/fonts/typicons.font/typicons.css';
+import 'assets/fonts/ionicons/css/ionicons.min.css';
+import "assets/css/superStyle.css";
+
 
 import "react-datepicker/dist/react-datepicker.css";
-import "react-virtualized/styles.css";
 
 const rootElement = document.getElementById("root");
 

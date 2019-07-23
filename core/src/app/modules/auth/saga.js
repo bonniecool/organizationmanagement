@@ -99,7 +99,7 @@ function* logout(){
     })
 
 
-    history.push({ pathname: '/signin'});
+    history.push({ pathname: '/'});
 }
 
 function* forgotPassword({ args }){
@@ -167,7 +167,7 @@ function* register({ args }){
     yield call(watchApiResponse, response, function*(){
         const{ message } = response.data
         alert.success(message)
-        history.push('/signin')
+        history.push('/')
     })
     
 }

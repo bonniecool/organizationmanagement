@@ -2,14 +2,14 @@ import { combineReducers } from 'redux';
 import auth from 'app/modules/auth/reducer';
 import common from 'app/modules/common/reducer';
 // import dashboard from 'app/modules/dashboard/reducer';
-import dashboardSuperAdmin from 'app/modules/super-admin/dashboard/reducer';
-import superAdminOrganization from 'app/modules/super-admin/organization/reducer';
-import superAdminTransaction from 'app/modules/super-admin/transaction/reducer';
+import dashboardSuperAdmin from 'app/modules/superAdmin/dashboard/reducer';
+import superAdminOrganization from 'app/modules/superAdmin/organization/reducer';
+import superAdminTransaction from 'app/modules/superAdmin/transaction/reducer';
 
-import organizationDashboard from 'app/modules/organization-admin/dashboard/reducer';
-import organizationBranch from 'app/modules/organization-admin/branches/reducer';
-import organizationTransaction from 'app/modules/organization-admin/transaction/reducer';
-import organizationWallet from 'app/modules/organization-admin/wallet/reducer';
+import organizationDashboard from 'app/modules/organizationAdmin/dashboard/reducer';
+import organizationBranch from 'app/modules/organizationAdmin/branch/reducer';
+import organizationTransaction from 'app/modules/organizationAdmin/transaction/reducer';
+import organizationWallet from 'app/modules/organizationAdmin/wallet/reducer';
 
 import branchDashboard from 'app/modules/branch-admin/dashboard/reducer';
 import branchMembers from 'app/modules/branch-admin/members/reducer';
@@ -35,13 +35,13 @@ const app = combineReducers({
     organizationDashboard,
     organizationBranch,
     organizationTransaction,
-    organizationWallet,
+    // organizationWallet,
     
-    branchDashboard,
-    branchMembers,
-    branchAttendance,
-    branchReminders,
-    branchQRCode,
+    // branchDashboard,
+    // branchMembers,
+    // branchAttendance,
+    // branchReminders,
+    // branchQRCode,
 
 })
 

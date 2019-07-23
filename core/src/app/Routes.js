@@ -1,37 +1,48 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter} from "react-router-dom";
 import { AsyncComponent } from './Utils';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
-const AsyncHomeContainer = AsyncComponent(() => import('./modules/home/container/Home'));
-const AsyncSignInContainer = AsyncComponent(() => import('./modules/auth/container/SignInContainer'));
-const AsyncRegisterContainer = AsyncComponent(() => import('./modules/auth/container/SignUpContainer'));
+// const AsyncHomeContainer = AsyncComponent(() => import('./modules/home/container/Home'));
+// const AsyncSignInContainer = AsyncComponent(() => import('./modules/auth/container/SignInContainer'));
+// const AsyncRegisterContainer = AsyncComponent(() => import('./modules/auth/container/SignUpContainer'));
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-        rest.isAuthenticated ? (
-            <Component {...props}/>
-        ) : (
-            <Redirect to={{
-                pathname: '/signin',
-                state: { from: props.location }
-            }}/>
-        )
-    )}/>
-)
+const Main = AsyncComponent(() => import('./modules/auth/container/Main'));
+const SuperAdminRoute = AsyncComponent(() => import('./modules/superAdmin/main/containers/Main'));
+const OrganizationAdminRoute = AsyncComponent(() => import('./modules/organizationAdmin/main/containers/Main'));
+// const BranchAdminRoute = AsyncComponent(() => import('./modules/branchAdmin/main/containers/Main'));
 
-class MainRoutes extends Component{
+class Routes extends Component{
+
 
     render(){
-        const { isAuthenticated } = this.props
-        return (
-            <Switch>
-                <PrivateRoute key="home" exact={ !isAuthenticated } isAuthenticated={isAuthenticated} path="/" component={ AsyncHomeContainer }/>,
-                <Route key="signin" path="/signin" component={ AsyncSignInContainer }/>
-                <Route key="register" path="/register" component={ AsyncRegisterContainer }/>
-                <Route component={ () => <div>404 Page</div> } />
-            </Switch>
-        )
+      const { isAuthenticated, profileType } = this.props;
+          if (!isAuthenticated) {
+            return <Main />;
+          }
+          return (
+            <div>
+              <Switch>
+                {profileType === 'SuperAdmin' && <Route path="/" component={SuperAdminRoute} />}
+                {profileType === 'Administrator' && <Route path="/" component={OrganizationAdminRoute} />}
+                {
+                // {profileType === 'BranchAdministrator' && <Route path="/" component={BranchAdminRoute} />}
+              }
+                <Redirect to="/" />
+              </Switch>
+            </div>
+          );
     }
 }
 
-export default MainRoutes;
+const mapStateToProps = (state, routeParams) => {
+  const profileType =  state.auth.get('user_type')
+  return {
+    profileType
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(Routes));
+
+
