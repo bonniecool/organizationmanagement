@@ -11,11 +11,11 @@ import organizationBranch from 'app/modules/organizationAdmin/branch/reducer';
 import organizationTransaction from 'app/modules/organizationAdmin/transaction/reducer';
 import organizationWallet from 'app/modules/organizationAdmin/wallet/reducer';
 
-import branchDashboard from 'app/modules/branch-admin/dashboard/reducer';
-import branchMembers from 'app/modules/branch-admin/members/reducer';
-import branchAttendance from 'app/modules/branch-admin/attendance/reducer';
-import branchReminders from 'app/modules/branch-admin/reminders/reducer';
-import branchQRCode from 'app/modules/branch-admin/qr-code/reducer';
+import branchDashboard from 'app/modules/branchAdmin/dashboard/reducer';
+import branchMembers from 'app/modules/branchAdmin/members/reducer';
+import branchAttendance from 'app/modules/branchAdmin/attendance/reducer';
+// import branchReminders from 'app/modules/branchAdmin/reminders/reducer';
+import branchQRCode from 'app/modules/branchAdmin/qr-code/reducer';
 
 
 const app = combineReducers({
@@ -35,9 +35,9 @@ const app = combineReducers({
     organizationDashboard,
     organizationBranch,
     organizationTransaction,
-    // organizationWallet,
+    organizationWallet,
     
-    // branchDashboard,
+    branchDashboard,
     // branchMembers,
     // branchAttendance,
     // branchReminders,

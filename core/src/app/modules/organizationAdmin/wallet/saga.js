@@ -28,6 +28,7 @@ function* create({args}) {
 
 	yield call(watchApiResponse, response, function*() {
 		const { data } = response.data
+		window.open(data.url)
 		yield put({
 			type: 'MODAL',
 			data: {

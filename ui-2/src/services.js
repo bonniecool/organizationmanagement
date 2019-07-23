@@ -122,9 +122,9 @@ function* handleRequest(request, args, loadId) {
   const status = _.get(response, 'status');
   if (status >= 400 || !status) {
     if (status === 403 && (response.data.message === 'Token Expired' || response.data.message === 'Invalid token.')) {
-      // yield sagaPut({
-      //   type: 'AUTH/LOGOUT',
-      // });
+      yield sagaPut({
+        type: 'AUTH/LOGOUT',
+      });
     }
 
     if (status === 403 && response.data.message === 'Invalid login') {

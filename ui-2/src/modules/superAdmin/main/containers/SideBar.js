@@ -40,7 +40,6 @@ class SideBar extends PureComponent {
   }
 }
 const mapStateToProps = ({api}) => {
-  console.log(api)
   return ({
   
 })};

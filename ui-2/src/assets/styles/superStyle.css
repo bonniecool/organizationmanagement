@@ -12130,7 +12130,7 @@ textarea.parsley-success:focus {
     border-top-color: #e9ecef;
     border-bottom-color: #e9ecef; }
   .az-contact-item.selected {
-    z-index: 1;
+    /* z-index: 1; */
     border-left-color: #6610f2;
     border-top-color: #e9ecef;
     border-bottom-color: #e9ecef;

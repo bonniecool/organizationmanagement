@@ -44,11 +44,12 @@ class App extends PureComponent {
     return (
       <ScrollToTop>
         <PotentialError>
-          <Routes />
+
           <Alert key="alert" stack={{ limit: 1 }} effect="slide" contentTemplate={AlertTemplate} />
           <Modal key="modal-component" data={modal} onClose={this.onCloseModal}>
             {_.get(modal, 'content')}
           </Modal>
+          <Routes />
         </PotentialError>
       </ScrollToTop>
     );

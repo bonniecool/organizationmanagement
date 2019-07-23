@@ -11,7 +11,7 @@ import _ from 'lodash';
 const Main = AsyncComponent(() => import('./modules/auth/container/Main'));
 const SuperAdminRoute = AsyncComponent(() => import('./modules/superAdmin/main/containers/Main'));
 const OrganizationAdminRoute = AsyncComponent(() => import('./modules/organizationAdmin/main/containers/Main'));
-// const BranchAdminRoute = AsyncComponent(() => import('./modules/branchAdmin/main/containers/Main'));
+const BranchAdminRoute = AsyncComponent(() => import('./modules/branchAdmin/main/containers/Main'));
 
 class Routes extends Component{
 
@@ -26,9 +26,7 @@ class Routes extends Component{
               <Switch>
                 {profileType === 'SuperAdmin' && <Route path="/" component={SuperAdminRoute} />}
                 {profileType === 'Administrator' && <Route path="/" component={OrganizationAdminRoute} />}
-                {
-                // {profileType === 'BranchAdministrator' && <Route path="/" component={BranchAdminRoute} />}
-              }
+                {profileType === 'BranchAdministrator' && <Route path="/" component={BranchAdminRoute} />}
                 <Redirect to="/" />
               </Switch>
             </div>

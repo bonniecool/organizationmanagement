@@ -6,39 +6,32 @@ import {
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import BranchInfo from '../component/BranchInfo';
-import AddModal from './AddModal';
+import Info from '../component/Info';
 import * as actions from '../actions';
 import * as c from '../constants';
 import thumbnail from 'assets/images/500x500.png';
 
-class Branches extends PureComponent {
+class Members extends PureComponent {
   
 
   static propTypes = {
-    getBranches: PropTypes.instanceOf(Function).isRequired,
+    getList: PropTypes.instanceOf(Function).isRequired,
     getDetails: PropTypes.instanceOf(Function).isRequired,
-    branchList: PropTypes.instanceOf(Array).isRequired,
-    branchDetails: PropTypes.instanceOf(Object).isRequired,
+    list: PropTypes.instanceOf(Array),
+    details: PropTypes.instanceOf(Object),
     callback: PropTypes.instanceOf(Object),
     search: PropTypes.instanceOf(Function),
     form_data: PropTypes.instanceOf(Function),
-    addModal: PropTypes.instanceOf(Function),
   }
 
-
-  static contextTypes = {
-    setModal: PropTypes.instanceOf(Function).isRequired,
-  };
-
   static defaultProps = {
-    branchList:[],
-    branchDetails:{}
+    list:[],
+    details:{}
   }
 
   componentDidMount = () => {
-    const { getBranches, getDetails } = this.props;
-    getBranches({} , callback => {
+    const {getOrganization, getDetails } = this.props;
+    getOrganization({} , callback => {
       if(_.get(callback, 'data').length > 0){
         const id = _.get(callback, 'data[0].id')
         getDetails(id)
@@ -53,9 +46,13 @@ class Branches extends PureComponent {
 
   };
 
+  handleChange = () => {
+    
+  }
+
   search = () => {
-    const { getBranches } = this.props;
-    getBranches({} , callback => {
+    const {getOrganization } = this.props;
+    getOrganization({} , callback => {
       if(_.get(callback, 'data').length > 0){
         const id = _.get(callback, 'data[0].id')
         getDetails(id)
@@ -63,38 +60,22 @@ class Branches extends PureComponent {
     });
   }
 
-  handleAddModal = (e) => {
-    e.preventDefault();
-    const { setModal } = this.context;
-    setModal({
-      isOpen: true,
-      content: (
-        <AddModal
-
-        />
-      ),
-      title: 'Add Branch',
-      modalSize: 'modal-lg',
-    });
-  };
-
-
   render() {
     const {
-      branchList,
-      branchDetails
+      list,
+      details
     } = this.props;
     return (
       <Fragment>
         <div className="az-content-header" style={{minHeight: '90px'}}>
           <div className="az-content-header-top">
             <div>
-              <h2 className="az-content-title mg-b-5 mg-b-lg-8">Branch</h2>
-              <p className="mg-b-0">List of organization branches</p>
+              <h2 className="az-content-title mg-b-5 mg-b-lg-8">Members</h2>
+              <p className="mg-b-0">List of members</p>
             </div>
             <div className="az-dashboard-date">
               <div className="date">
-                <button className="btn btn-primary btn-lg" onClick={this.handleAddModal}>Create Branch</button>
+                <button className="btn btn-primary btn-lg">Add Members</button>
               </div>
             </div>
           </div>
@@ -115,24 +96,23 @@ class Branches extends PureComponent {
           </div>
             <div id="azContactList" className="az-contacts-list pre-scrollable">
             {
-              branchList.map( (item, key) => {
+              list.map( (item, key) => {
                 return(
-                  <div key={`branch-${key}`} className={`az-contact-item ${_.get(item,'id') === _.get(branchDetails,'id') && 'selected'}`} onClick={this.handleSelectRow(item)}>
+                  <div key={`member-${key}`} className={`az-contact-item ${_.get(item,'id') === _.get(organizationDetails,'id') && 'selected'}`} onClick={this.handleSelectRow(item)}>
                     <div className="az-img-user online"><img src={ _.get(item,'photo')|| thumbnail } alt="" /></div>
                     <div className={`az-contact-body `}>
                       <h6 className="text-capitalize">{_.get(item, 'name')}</h6>
                       <span className="phone">{_.get(item, 'mobile_number')}</span>
                     </div>
-                    <a href="" className={`az-contact-star ${_.get(item,'id') === _.get(branchDetails,'id') && 'active'}`}><i className="typcn typcn-star"></i></a>
+                    <a href="" className={`az-contact-star ${_.get(item,'id') === _.get(organizationDetails,'id') && 'active'}`}><i className="typcn typcn-star"></i></a>
                   </div>
                 )
               })
             }
             </div>
           </div>
-          <BranchInfo 
-            data={branchDetails}
-            
+          <Info 
+            data={details}
           />
 
         </div>
@@ -142,10 +122,9 @@ class Branches extends PureComponent {
   }
 }
 
-
 const mapStateToProps = ({ api }) => ({
-  branchList: _.get(api, `${c.GET_LIST}.list`) || [],
-  branchDetails: _.get(api, `${c.GET_DETAILS}.item`) || {},
+  list: _.get(api, `${c.GET_LIST}.list`) || [],
+  details: _.get(api, `${c.GET_DETAILS}.item`) || {},
 });
 
 const enhance = _.flowRight([
@@ -153,4 +132,4 @@ const enhance = _.flowRight([
   connect(mapStateToProps, actions),
 ]);
 
-export default enhance(Branches);
+export default enhance(Members);

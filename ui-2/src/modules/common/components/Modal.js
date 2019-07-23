@@ -75,19 +75,21 @@ class Modal extends PureComponent {
         ariaHideApp={false}
         isOpen={_.get(data, 'isOpen')}
         onRequestClose={_.get(data, 'unClose') ? () => {} : onClose}
+        style={{content :{zIndex:'9'}}}
       >
         <div className="modal-content">
           {!_.get(data, 'hideHeader') && (
             <div className="modal-header">
-              <h4 className="modal-title">
+              <h4 className="modal-title">  
                 {_.get(data, 'isOpen') ? _.get(data, 'title') : null}
-                {!_.get(data, 'noCloseButton') && (
-                  <button type="button" className="close" onClick={onClose}>
-                    <span aria-hidden="true">&times;</span>
-                    <span className="sr-only">Close</span>
-                  </button>
-                )}
+                
               </h4>
+              {!_.get(data, 'noCloseButton') && (
+                <button type="button" className="close" onClick={onClose}>
+                  <span aria-hidden="true">&times;</span>
+                  <span className="sr-only">Close</span>
+                </button>
+              )}
             </div>
           )}
           {_.get(data, 'isOpen') ? children : null}

@@ -3,12 +3,14 @@ import React, { PureComponent, Fragment } from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+
 import SideBar from './SideBar';
-import Dashboard from 'app/modules/organizationAdmin/dashboard/container/Dashboard';
-import Branch from 'app/modules/organizationAdmin/branch/container/Branch';
-import Transaction from 'app/modules/organizationAdmin/transaction/container/Transaction';
-import Wallet from 'app/modules/organizationAdmin/wallet/container/Wallet';
-import thumbnail from 'assets/images/500x500.png';
+
+import Dashboard from 'app/modules/branchAdmin/dashboard/container/Dashboard';
+// import Members from 'app/modules/branchAdmin/members/container/Members';
+// import Attendance from 'app/modules/branchAdmin/attendance/container/Attendance';
+// import Wallet from 'app/modules/branchAdmin/wallet/container/Wallet';
+
 import 'assets/fonts/typicons.font/typicons.css';
 import 'assets/fonts/ionicons/css/ionicons.min.css';
 import 'assets/css/superStyle.css';
@@ -17,7 +19,7 @@ class Main extends PureComponent {
 
   state = {
     isOpenDropdown: false
-  };  
+  };
 
   componentDidMount() {
     document.body.addEventListener("click", this.handleClickBody);
@@ -36,19 +38,11 @@ class Main extends PureComponent {
       this.setState({
         isOpenDropdown: !this.state.isOpenDropdown
       });
-  };
 
-  signout = e => {
-    e.preventDefault();
-    const { dispatch } = this.props
-    dispatch({
-      type: 'SIGN_OUT',
-    });
   };
 
   render() {
     const { match } = this.props;
-    const profile = JSON.parse(sessionStorage.getItem('profile'))
 
     return (
       <Fragment>
@@ -77,7 +71,7 @@ class Main extends PureComponent {
                     <p className="az-notification-text">You have 2 unread notification</p>
                     <div className="az-notification-list">
                       <div className="media new">
-                        <div className="az-img-user"><img src="https://via.placeholder.com/500x500" /></div>
+                        <div className="az-img-user"><img src="https://via.placeholder.com/500x500" onClick={this.handleDropDown} data-toggle="dropdown" alt="" /></div>
                         <div className="media-body">
                           <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
                           <span>Mar 15 12:32pm</span>
@@ -108,24 +102,25 @@ class Main extends PureComponent {
                     <div className="dropdown-footer"><a href="">View All Notifications</a></div>
                   </div>
                 </div>
-                <div className={`dropdown az-profile-menu ${ this.state.isOpenDropdown && 'show' }`}>
-                  <a href="" className="az-img-user"><img src={_.get(profile,'photo') || thumbnail} alt="" onClick={this.handleDropDown} data-toggle="dropdown"/></a>
+                <div className="dropdown az-profile-menu">
+                  <a href="" className="az-img-user"><img src="https://via.placeholder.com/500x500" alt="" /></a>
                   <div className="dropdown-menu">
                     <div className="az-dropdown-header d-sm-none">
                       <a href="" className="az-header-arrow"><i className="icon ion-md-arrow-back"></i></a>
                     </div>
                     <div className="az-header-profile">
                       <div className="az-img-user">
-                        <img src={_.get(profile,'photo') || thumbnail} alt="" />
+                        <img src="https://via.placeholder.com/500x500" alt="" />
                       </div>
                       <h6>Aziana Pechon</h6>
                       <span>Premium Member</span>
                     </div>
+
                     <a href="" className="dropdown-item"><i className="typcn typcn-user-outline"></i> My Profile</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-edit"></i> Edit Profile</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-time"></i> Activity Logs</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-cog-outline"></i> Account Settings</a>
-                    <a href="" className="dropdown-item"  onClick={this.signout}><i className="typcn typcn-power-outline"></i> Sign Out</a>
+                    <a href="page-signin.html" className="dropdown-item"><i className="typcn typcn-power-outline"></i> Sign Out</a>
                   </div>
                 </div>
               </div>
@@ -135,9 +130,11 @@ class Main extends PureComponent {
           
           <Switch>
               <Route exact path={`${match.path}`} component={Dashboard}/>
-              <Route path={`${match.path}branch`} component={Branch}/>
-              <Route path={`${match.path}transaction`} component={Transaction}/>
-              <Route path={`${match.path}wallet`} component={Wallet}/>
+              {
+                // <Route path={`${match.path}members`} component={Members}/>
+                // <Route path={`${match.path}attendance`} component={Attendance}/>
+                // <Route path={`${match.path}wallet`} component={Wallet}/>
+              }
               
           </Switch>
           <div className="az-footer">

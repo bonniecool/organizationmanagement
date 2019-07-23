@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { PureComponent } from 'react';
-import { withRouter, Route, Switch } from 'react-router-dom';
+import { withRouter, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
@@ -11,10 +11,12 @@ import Organization from 'modules/superAdmin/organization/container/Organization
 import Transaction from 'modules/superAdmin/transaction/container/Transaction';
 import thumbnail from 'assets/images/500x500.png';
 import 'assets/styles/superStyle.css';
+import * as actions from '../action';
 
 class Main extends PureComponent {
   static propTypes = {
     match: PropTypes.instanceOf(Object).isRequired,
+    logout: PropTypes.instanceOf(Function).isRequired,
   }
 
   state = {
@@ -38,7 +40,12 @@ class Main extends PureComponent {
       this.setState({
         isOpenDropdown: !this.state.isOpenDropdown
       });
+  };
 
+  signout = e => {
+    e.preventDefault();
+    const { logout } = this.props
+    logout();
   };
 
   render() {
@@ -126,7 +133,7 @@ class Main extends PureComponent {
                     <a href="" className="dropdown-item"><i className="typcn typcn-edit"></i> Edit Profile</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-time"></i> Activity Logs</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-cog-outline"></i> Account Settings</a>
-                    <a href="page-signin.html" className="dropdown-item"><i className="typcn typcn-power-outline"></i> Sign Out</a>
+                    <a href="" className="dropdown-item"  onClick={this.signout}><i className="typcn typcn-power-outline"></i> Sign Out</a>
                   </div>
                 </div>
               </div>
@@ -149,12 +156,25 @@ class Main extends PureComponent {
   }
 }
 
+
+const mapDispatchToProps = (dispatch) => {
+  const logout = () => {
+    dispatch({
+      type: 'AUTH/LOGOUT',
+    });
+  };
+
+  return {
+    logout,
+  };
+};
+
 const mapStateToProps = () => ({
 });
 
 const enhance = _.flowRight([
   withRouter,
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 ]);
 
 export default enhance(Main);

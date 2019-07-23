@@ -5,42 +5,32 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import * as c from '../constant';
-import {currency} from 'app/Utils';
-import { AsyncComponent } from 'app/Utils';
-const AddModal = AsyncComponent(() => import ('./AddModal'));
-const PGIModal = AsyncComponent(() => import ('./PGIModal'));
+import PropTypes from 'prop-types';
+import * as actions from '../actions';
+import * as c from '../constants';
 
 class Wallet extends PureComponent {
   
-  componentWillMount() {
-		const { dispatch } = this.props;
-		dispatch({
-			type:c.GET_LIST
-		})  
-	}
 
-	load = e => {
-		e.preventDefault();
-		const { dispatch } = this.props;
-		dispatch({
-			type:'MODAL',
-			data: {
-					isOpen: true,
-					title: 'Add Credits',
-					modalSize: 'modal-md',
-					content: <AddModal 
+  static propTypes = {
+    getDetails: PropTypes.instanceOf(Function).isRequired,
+    form_data: PropTypes.instanceOf(Function),
+  }
 
-						/>
-			}
-		})
-	}
+  static defaultProps = {
+    details:{}
+  }
+
+  componentDidMount = () => {
+    const { getDetails } = this.props;
+    getDetails();
+  }
+
 
   render() {
     const {
-      load_wallet
+      details
     } = this.props;
-
     return (
       <Fragment>
         <div className="az-content-header" style={{minHeight: '90px'}}>
@@ -59,7 +49,7 @@ class Wallet extends PureComponent {
                   <div className="card">
                     <div className="card-header">
                       <div className="text-center display-4">
-                        <h1>{load_wallet ? currency.format(load_wallet.get('amount')) : '00.00'}</h1>
+                        <h1>{details ? _.get(details,'load_wallet.amount') : '00.00'}</h1>
                       </div>
                       <div className="text-uppercase text-center">
                         <p>Current Load Credits</p>
@@ -81,13 +71,14 @@ class Wallet extends PureComponent {
   }
 }
 
-const mapStateToProps = (state, routeParams) => {
-	const organizationWallet = state.organizationWallet;
-	const profile = state.auth.get('profile');
-	return {
-		list : organizationWallet.get('list'),
-		load_wallet : profile.get('load_wallet'),
-	};
-};
+const mapStateToProps = ({ api }) => {
+  return ({
+  details: _.get(api, `${c.GET_DETAILS}.item`) || [],
+})};
 
-export default withRouter(connect(mapStateToProps)(Wallet));
+const enhance = _.flowRight([
+  withRouter,
+  connect(mapStateToProps, actions),
+]);
+
+export default enhance(Wallet);
