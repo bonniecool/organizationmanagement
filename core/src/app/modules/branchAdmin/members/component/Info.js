@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import _ from 'lodash';
 import thumbnail from 'assets/images/500x500.png';
 
@@ -8,7 +8,7 @@ class UserGroups extends Component {
     const { data } = this.props;
 
     return (
-      <>
+      <Fragment>
       <div className="az-content-body az-content-body-contacts">
       <div className="az-contact-info-header">
         <div className="media">
@@ -81,7 +81,7 @@ class UserGroups extends Component {
         </div>
       </div>
     </div>
-      </>
+      </Fragment>
     );
   }
 }

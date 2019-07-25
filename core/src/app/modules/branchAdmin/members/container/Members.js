@@ -5,60 +5,126 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import Info from '../component/Info';
-import * as actions from '../actions';
-import * as c from '../constants';
+import * as c from '../constant';
 import thumbnail from 'assets/images/500x500.png';
 
 class Members extends PureComponent {
   
 
-  static propTypes = {
-    getList: PropTypes.instanceOf(Function).isRequired,
-    getDetails: PropTypes.instanceOf(Function).isRequired,
-    list: PropTypes.instanceOf(Array),
-    details: PropTypes.instanceOf(Object),
-    callback: PropTypes.instanceOf(Object),
-    search: PropTypes.instanceOf(Function),
-    form_data: PropTypes.instanceOf(Function),
-  }
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.GET_LIST
+		})
+	}
 
-  static defaultProps = {
-    list:[],
-    details:{}
-  }
+	onSelectRow = (data) => {
+		const { dispatch } = this.props;
+		dispatch({
+				type:c.GET_DETAIL,
+				id:data.get('uuid')     
+		})
+	}
 
-  componentDidMount = () => {
-    const {getOrganization, getDetails } = this.props;
-    getOrganization({} , callback => {
-      if(_.get(callback, 'data').length > 0){
-        const id = _.get(callback, 'data[0].id')
-        getDetails(id)
-      }
-    });
-  }
+	onAdd = e => {
+		e.preventDefault();
+		const { dispatch } = this.props;
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Add Branch',
+					modalSize: 'modal-lg',
+					content: <AddModal 
+
+						/>
+			}
+		})
+	}
+
+	generateID = data => e => {
+		e.preventDefault();
+		const { dispatch } = this.props;
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Generate ID',
+					modalSize: 'modal-md',
+					content: <GenerateIDModal 
+						data={data}
+						/>
+			}
+		})
+	}
 
 
-  handleSelectRow = ({ id }) => e => {
-    e.preventDefault();
-    this.props.getDetails(id);
+	onEdit = data => e => {
+		e.preventDefault();
+		const { dispatch } = this.props;
+		let newData = data.toJS()
+				newData['first_name'] = data.get('first_name');
+				newData['last_name'] = data.get('last_name');
+				newData['middle_name'] = data.get('middle_name');
+				newData['suffix'] = data.get('suffix');
+				newData['birth_date'] = moment(data.get('birth_date'));
+				newData['gender'] = data.get('gender');
+				newData['mobile_number'] = data.get('mobile_number');
+				newData['region_code'] = data.getIn(['region','code']);
+				newData['province_code'] = data.getIn(['province','code']);
+				newData['municipality_code'] = data.getIn(['municipality','code']);
+				newData['barangay_code'] = data.getIn(['barangay','code']);
+				newData['zip_code'] = data.get('zip_code');
+				newData['street'] = data.get('street');
+				newData['photo'] = data.get('photo');	
+		dispatch({
+			type:c.SET_FORM_DATA,
+			data:newData
+		})
+			if(data.get('region')){
+				dispatch({
+					type:c.GET_PROVINCES,
+					region_id:data.getIn(['region','code']) || '',
+				})
+			}
+			if(data.get('province')){
+				dispatch({
+					type:c.GET_MUNICIPALITIES,
+					region_id:data.getIn(['region','code'])  || '',
+					province_id:data.getIn(['province','code']) || '',
+				})
+			}
+			if(data.get('municipality')){
+				dispatch({
+						type:c.GET_BARANGAYS,
+						region_id:data.getIn(['region','code'])  || '',
+						province_id:data.getIn(['province','code']) || '',
+						municipality_id:data.getIn(['municipality','code']) || '',
+				})
+			}
+		dispatch({
+			type:'MODAL',
+			data: {
+					isOpen: true,
+					title: 'Edit Branch',
+					modalSize: 'modal-lg',
+					content: <EditModal 
+										data={data}
+									/>
+			}
+		})
+	}
 
-  };
-
-  handleChange = () => {
-    
-  }
-
-  search = () => {
-    const {getOrganization } = this.props;
-    getOrganization({} , callback => {
-      if(_.get(callback, 'data').length > 0){
-        const id = _.get(callback, 'data[0].id')
-        getDetails(id)
-      }
-    });
-  }
+	handleOnChangeDate = key => (value) => {
+		const { dispatch } = this.props;
+		dispatch({
+			type: c.SET_FORM_DATA,
+			data: {
+				[key]: value,
+			},
+		});
+	}
 
   render() {
     const {
@@ -122,14 +188,16 @@ class Members extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ api }) => ({
-  list: _.get(api, `${c.GET_LIST}.list`) || [],
-  details: _.get(api, `${c.GET_DETAILS}.item`) || {},
-});
+const mapStateToProps = (state, routeParams) => {
+	const branchMembers = state.branchMembers;
+	
+	return {
+		list : branchMembers.get('list'),
+		details : branchMembers.get('details'),
+		form_data : branchMembers.get('form_data'),
+		members : branchMembers.get('members'),
+		attendance : branchMembers.get('attendance'),
+	};
+};
 
-const enhance = _.flowRight([
-  withRouter,
-  connect(mapStateToProps, actions),
-]);
-
-export default enhance(Members);
+export default withRouter(connect(mapStateToProps)(Members));

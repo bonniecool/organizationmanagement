@@ -7,7 +7,7 @@ import _ from 'lodash';
 import SideBar from './SideBar';
 
 import Dashboard from 'app/modules/branchAdmin/dashboard/container/Dashboard';
-// import Members from 'app/modules/branchAdmin/members/container/Members';
+import Members from 'app/modules/branchAdmin/members/container/Members';
 // import Attendance from 'app/modules/branchAdmin/attendance/container/Attendance';
 // import Wallet from 'app/modules/branchAdmin/wallet/container/Wallet';
 
@@ -129,13 +129,13 @@ class Main extends PureComponent {
           
           
           <Switch>
-              <Route exact path={`${match.path}`} component={Dashboard}/>
-              {
-                // <Route path={`${match.path}members`} component={Members}/>
+                <Route exact path={`${match.path}`} component={Dashboard}/>
+                <Route path={`${match.path}members`} component={Members}/>
+                {
+                  
                 // <Route path={`${match.path}attendance`} component={Attendance}/>
                 // <Route path={`${match.path}wallet`} component={Wallet}/>
               }
-              
           </Switch>
           <div className="az-footer">
             <div className="container-fluid">
