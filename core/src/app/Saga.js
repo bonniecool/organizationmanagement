@@ -32,8 +32,8 @@ export default function* rootSaga() {
 
         branchDashboard(),
         branchMembers(),
-        branchAttendance(),
-        branchReminders(),
+        // branchAttendance(),
+        // branchReminders(),
         // branchQRCode(),
     ]);
 }

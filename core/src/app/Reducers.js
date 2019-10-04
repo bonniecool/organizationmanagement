@@ -39,8 +39,8 @@ const app = combineReducers({
     
     branchDashboard,
     branchMembers,
-    branchAttendance,
-    branchReminders,
+    // branchAttendance,
+    // branchReminders,
     // branchQRCode,
 
 })

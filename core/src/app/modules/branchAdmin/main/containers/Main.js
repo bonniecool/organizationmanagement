@@ -8,8 +8,7 @@ import SideBar from './SideBar';
 
 import Dashboard from 'app/modules/branchAdmin/dashboard/container/Dashboard';
 import Members from 'app/modules/branchAdmin/members/container/Members';
-import Attendance from 'app/modules/branchAdmin/attendance/container/Attendance';
-import Reminders from 'app/modules/branchAdmin/reminders/container/Reminders';
+// import Attendance from 'app/modules/branchAdmin/attendance/container/Attendance';
 // import Wallet from 'app/modules/branchAdmin/wallet/container/Wallet';
 import thumbnail from 'assets/images/500x500.png';
 import 'assets/css/superStyle.css';
@@ -137,9 +136,9 @@ class Main extends PureComponent {
           <Switch>
                 <Route exact path={`${match.path}`} component={Dashboard}/>
                 <Route path={`${match.path}members`} component={Members}/>
-                <Route path={`${match.path}attendance`} component={Attendance}/>
-                <Route path={`${match.path}reminders`} component={Reminders}/>
                 {
+                  
+                // <Route path={`${match.path}attendance`} component={Attendance}/>
                 // <Route path={`${match.path}wallet`} component={Wallet}/>
               }
           </Switch>

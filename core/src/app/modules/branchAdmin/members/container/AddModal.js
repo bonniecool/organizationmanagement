@@ -141,7 +141,7 @@ class AddDeductionModal extends Component {
                                         <div className="ml-auto">
                                             <img
                                             src={
-                                                form_data.get('photo')
+                                                !_.isNil(form_data.get('photo'))
                                                 ? form_data.get('photo')
                                                 : thumbnail
                                             }

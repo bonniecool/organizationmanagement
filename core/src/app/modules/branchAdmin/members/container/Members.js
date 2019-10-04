@@ -23,11 +23,10 @@ class Members extends PureComponent {
 		})
 	}
 
-	handleSelectRow = (data) => e => {
-		e.preventDefault();
+	onSelectRow = (data) => {
 		const { dispatch } = this.props;
 		dispatch({
-				type:c.GET_DETAIL,	
+				type:c.GET_DETAIL,
 				id:data.get('uuid')     
 		})
 	}
@@ -39,9 +38,10 @@ class Members extends PureComponent {
 			type:'MODAL',
 			data: {
 					isOpen: true,
-					title: 'Add Member',
+					title: 'Add Branch',
 					modalSize: 'modal-lg',
 					content: <AddModal 
+
 						/>
 			}
 		})
@@ -57,8 +57,8 @@ class Members extends PureComponent {
 					title: 'Generate ID',
 					modalSize: 'modal-md',
 					content: <GenerateIDModal 
-					data={data}
-				/>
+						data={data}
+						/>
 			}
 		})
 	}
@@ -111,7 +111,7 @@ class Members extends PureComponent {
 			type:'MODAL',
 			data: {
 					isOpen: true,
-					title: 'Edit Member',
+					title: 'Edit Branch',
 					modalSize: 'modal-lg',
 					content: <EditModal 
 										data={data}
@@ -194,7 +194,7 @@ class Members extends PureComponent {
 
 const mapStateToProps = (state, routeParams) => {
 	const branchMembers = state.branchMembers;
-
+	
 	return {
 		list : branchMembers.get('list'),
 		details : branchMembers.get('details'),
