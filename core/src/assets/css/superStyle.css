@@ -9574,7 +9574,8 @@ textarea.parsley-success:focus {
 .az-header {
   height: 60px;
   position: relative;
-  z-index: 100; }
+  z-index: 1; 
+}
   @media (min-width: 992px) {
     .az-header {
       height: 64px;
@@ -41812,3 +41813,9 @@ textarea.parsley-success:focus {
 
 .wd-100v {
   width: 100vw; }
+
+.ReactModal__Overlay{
+  background-color: rgba(25, 25, 25, 0.75)!important;
+  z-index: 100;
+  overflow-y:auto;
+}

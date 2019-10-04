@@ -14,7 +14,7 @@ import organizationWallet from 'app/modules/organizationAdmin/wallet/reducer';
 import branchDashboard from 'app/modules/branchAdmin/dashboard/reducer';
 import branchMembers from 'app/modules/branchAdmin/members/reducer';
 import branchAttendance from 'app/modules/branchAdmin/attendance/reducer';
-// import branchReminders from 'app/modules/branchAdmin/reminders/reducer';
+import branchReminders from 'app/modules/branchAdmin/reminders/reducer';
 import branchQRCode from 'app/modules/branchAdmin/qr-code/reducer';
 
 
@@ -38,9 +38,9 @@ const app = combineReducers({
     organizationWallet,
     
     branchDashboard,
-    // branchMembers,
-    // branchAttendance,
-    // branchReminders,
+    branchMembers,
+    branchAttendance,
+    branchReminders,
     // branchQRCode,
 
 })

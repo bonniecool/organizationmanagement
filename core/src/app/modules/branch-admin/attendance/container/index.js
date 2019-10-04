@@ -25,7 +25,6 @@ class Dashboard extends Component {
 		});
 	}
 
-
 	render() {
 		const { list, form_data } = this.props;
 

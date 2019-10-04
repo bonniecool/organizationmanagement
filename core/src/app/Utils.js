@@ -26,7 +26,7 @@ function* watchApiResponse(response = {}, responseOk = function* (){}, responseN
         alert.error(response.data.message || getFirstMessage(response.data.message));
     }
 
-    if(response.status === 403 && response.data.message === "Token expired.") {
+    if(response.status === 403 && response.data.message === "Token Expired") {
         alert.error('Session Expired');
         yield put({
             type: "SIGN_OUT"

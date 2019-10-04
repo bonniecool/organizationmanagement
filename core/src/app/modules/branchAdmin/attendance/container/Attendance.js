@@ -5,49 +5,27 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import TransactionList from '../component/TransactionList';
-import * as actions from '../actions';
-import * as c from '../constants';
+import * as c from '../constant';
 
-class Organization extends PureComponent {
+class Attendance extends PureComponent {
   
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.GET_LIST
+		})
+	}
 
-  static propTypes = {
-    getList: PropTypes.instanceOf(Function).isRequired,
-    getDetails: PropTypes.instanceOf(Function).isRequired,
-    list: PropTypes.instanceOf(Array).isRequired,
-    form_data: PropTypes.instanceOf(Function),
-  }
-
-  static defaultProps = {
-    list:[],
-    details:{}
-  }
-
-  componentDidMount = () => {
-    const { getList } = this.props;
-    getList();
-  }
-
-  handleSelectRow = ({ id }) => e => {
-    e.preventDefault();
-    this.props.getDetails(id);
-  };
-
-  handleChange = () => {
-    
-  }
-
-  search = () => {
-    const {getOrganization } = this.props;
-    getOrganization({} , callback => {
-      if(_.get(callback, 'data').length > 0){
-        const id = _.get(callback, 'data[0].id')
-        getDetails(id)
-      }
-    });
-  }
+	handleOnChangeDate = key => (value) => {
+		const { dispatch } = this.props;
+		dispatch({
+			type: c.SET_FORM_DATA,
+			data: {
+				[key]: value,
+			},
+		});
+	}
 
   render() {
     const {
@@ -58,8 +36,8 @@ class Organization extends PureComponent {
         <div className="az-content-header" style={{minHeight: '90px'}}>
           <div className="az-content-header-top">
             <div>
-              <h2 className="az-content-title mg-b-5 mg-b-lg-8">Transaction</h2>
-              <p className="mg-b-0">Organization transaction history</p>
+              <h2 className="az-content-title mg-b-5 mg-b-lg-8">Attendance</h2>
+              <p className="mg-b-0">Daily Time Record</p>
             </div>
           </div>
         </div>
@@ -81,13 +59,12 @@ class Organization extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ api }) => ({
-  list: _.get(api, `${c.GET_LIST}.list`) || [],
-});
+const mapStateToProps = (state, routeParams) => {
+	const branchAttendance = state.branchAttendance;
+	return {
+		list : branchAttendance.get('list'),
+		form_data : branchAttendance.get('form_data'),
+	};
+};
 
-const enhance = _.flowRight([
-  withRouter,
-  connect(mapStateToProps, actions),
-]);
-
-export default enhance(Organization);
+export default withRouter(connect(mapStateToProps)(Attendance));

@@ -32,8 +32,8 @@ class Modal extends Component {
     }
 
     style = {
-        display: 'block',
-        paddingRight: 0
+        // display: 'block',
+        // paddingRight: 0
     }
 
     componentDidMount() {
@@ -53,8 +53,8 @@ class Modal extends Component {
         const { size } = this.props;
         return (
             <ModalWrapper>
-                <div className="modal fade show" style={this.style}>
-                    <div className={`modal-dialog ${size || 'modal-lg'}`} role="document">
+                <div className="modal fade show " style={this.style}>
+                    <div className={`modal-dialog modal-dialog-scrollable ${size || 'modal-lg'}`} role="document">
                         <div className="modal-content" style={{ pointerEvents: "initial" }}>
                             <div className="modal-header">
                                 <div className="modal-title">{ this.props.title || 'Modal Title Here'}</div>

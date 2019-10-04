@@ -1,4 +1,4 @@
-export const MODULE = 'BRANCH-ADMIN-MEMBERS';
+export const MODULE = 'BRANCH-ADMIN-MEMBERSSSS';
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`

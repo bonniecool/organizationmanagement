@@ -9,7 +9,6 @@ import Dashboard from 'app/modules/superAdmin/dashboard/container/Dashboard';
 import Organization from 'app/modules/superAdmin/organization/container/Organization';
 import Transaction from 'app/modules/superAdmin/transaction/container/Transaction';
 import thumbnail from 'assets/images/500x500.png';
-import 'assets/css/superStyle.css';
 
 class Main extends PureComponent {
 
