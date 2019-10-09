@@ -13,7 +13,7 @@ import organizationWallet from 'app/modules/organizationAdmin/wallet/saga';
 import branchDashboard from 'app/modules/branchAdmin/dashboard/saga';
 import branchMembers from 'app/modules/branchAdmin/members/saga';
 import branchAttendance from 'app/modules/branchAdmin/attendance/saga';
-// import branchReminders from 'app/modules/branchAdmin/reminders/saga';
+import branchReminders from 'app/modules/branchAdmin/reminders/saga';
 import branchQRCode from 'app/modules/branchAdmin/qr-code/saga';
 
 

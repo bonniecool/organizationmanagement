@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 export const MODULE = 'BRANCH-ADMIN-MEMBERS';
+=======
+export const MODULE = 'BRANCH-ADMIN-MEMBERSSSS';
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
 
 export const GET_LIST = `${MODULE}/GET_LIST`
 export const GOT_LIST = `${MODULE}/GOT_LIST`

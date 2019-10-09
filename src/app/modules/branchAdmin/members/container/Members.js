@@ -8,9 +8,19 @@ import _ from 'lodash';
 import Info from '../component/Info';
 import * as c from '../constant';
 import thumbnail from 'assets/images/500x500.png';
+<<<<<<< HEAD
 
 class Members extends PureComponent {
   
+=======
+import { AsyncComponent } from 'app/Utils';
+import moment from 'moment-timezone';
+const AddModal = AsyncComponent(() => import ('./AddModal'));
+const EditModal = AsyncComponent(() => import ('./EditModal'));
+const GenerateIDModal = AsyncComponent(() => import ('./GenerateIDModal'));
+
+class Members extends PureComponent {
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
 
 	componentWillMount() {
 		const { dispatch } = this.props;
@@ -130,7 +140,12 @@ class Members extends PureComponent {
     const {
       list,
       details
+<<<<<<< HEAD
     } = this.props;
+=======
+		} = this.props;
+
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
     return (
       <Fragment>
         <div className="az-content-header" style={{minHeight: '90px'}}>
@@ -141,7 +156,11 @@ class Members extends PureComponent {
             </div>
             <div className="az-dashboard-date">
               <div className="date">
+<<<<<<< HEAD
                 <button className="btn btn-primary btn-lg">Add Members</button>
+=======
+                <button className="btn btn-primary btn-lg" onClick={this.onAdd}>Add Members</button>
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
               </div>
             </div>
           </div>
@@ -159,6 +178,7 @@ class Members extends PureComponent {
                 </span>
               </div>
             </div>
+<<<<<<< HEAD
           </div>
             <div id="azContactList" className="az-contacts-list pre-scrollable">
             {
@@ -171,6 +191,20 @@ class Members extends PureComponent {
                       <span className="phone">{_.get(item, 'mobile_number')}</span>
                     </div>
                     <a href="" className={`az-contact-star ${_.get(item,'id') === _.get(organizationDetails,'id') && 'active'}`}><i className="typcn typcn-star"></i></a>
+=======
+					</div>
+					<div id="azContactList" className="az-contacts-list pre-scrollable">
+            {
+              list.map( (item, key) => {
+                return(
+                  <div key={`branch-${key}`} className={`az-contact-item ${item.get('uuid') === details.get('uuid') && 'selected'}`} onClick={this.handleSelectRow(item)}>
+                    <div className={`az-img-user ${item.get('has_logged') && 'online'}`}><img src={ item.get('photo')|| thumbnail } alt="" /></div>
+                    <div className={`az-contact-body `}>
+                      <h6 className="text-capitalize">{item.get( 'name')}</h6>
+                      <span className="phone">{item.get( 'mobile_number')}</span>
+                    </div>
+                    <a href="" className={`az-contact-star ${item.get('uuid') === details.get('uuid') && 'active'}`}><i className="typcn typcn-star"></i></a>
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
                   </div>
                 )
               })
@@ -180,7 +214,10 @@ class Members extends PureComponent {
           <Info 
             data={details}
           />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
         </div>
       </div>
       </Fragment>

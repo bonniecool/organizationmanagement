@@ -9,9 +9,8 @@ import Branch from 'app/modules/organizationAdmin/branch/container/Branch';
 import Transaction from 'app/modules/organizationAdmin/transaction/container/Transaction';
 import Wallet from 'app/modules/organizationAdmin/wallet/container/Wallet';
 import thumbnail from 'assets/images/500x500.png';
-import 'assets/fonts/typicons.font/typicons.css';
-import 'assets/fonts/ionicons/css/ionicons.min.css';
-import 'assets/css/superStyle.css';
+
+// import 'assets/css/superStyle.css';
 
 class Main extends PureComponent {
 

@@ -108,6 +108,7 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Region</label>
                                     <Select
+                                        className="form-control select2-no-search"
                                         isLoading={loadingTypes.indexOf('GET_REGIONS') > -1 }
                                         value={ form_data.get('region_code') }
                                         simpleValue
@@ -127,6 +128,7 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Province</label>
                                     <Select
+                                        className="form-control"
                                         isLoading={loadingTypes.indexOf('GET_PROVINCES') > -1 }
                                         value={ form_data.get('province_code') }
                                         simpleValue
@@ -146,6 +148,7 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Municipality</label>
                                     <Select
+                                        className="form-control"
                                         isLoading={loadingTypes.indexOf('GET_MUNICIPALITIES') > -1 }
                                         value={ form_data.get('municipality_code') }
                                         simpleValue
@@ -165,6 +168,7 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Barangay</label>
                                     <Select
+                                        className="form-control"
                                         isLoading={loadingTypes.indexOf('GET_BARANGAYS') > -1 }
                                         value={ form_data.get('barangay_code') }
                                         simpleValue

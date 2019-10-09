@@ -108,6 +108,10 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Region</label>
                                     <Select
+<<<<<<< HEAD
+=======
+                                        className="form-control select2-no-search"
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
                                         isLoading={loadingTypes.indexOf('GET_REGIONS') > -1 }
                                         value={ form_data.get('region_code') }
                                         simpleValue
@@ -127,6 +131,10 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Province</label>
                                     <Select
+<<<<<<< HEAD
+=======
+                                        className="form-control"
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
                                         isLoading={loadingTypes.indexOf('GET_PROVINCES') > -1 }
                                         value={ form_data.get('province_code') }
                                         simpleValue
@@ -146,6 +154,10 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Municipality</label>
                                     <Select
+<<<<<<< HEAD
+=======
+                                        className="form-control"
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
                                         isLoading={loadingTypes.indexOf('GET_MUNICIPALITIES') > -1 }
                                         value={ form_data.get('municipality_code') }
                                         simpleValue
@@ -165,6 +177,10 @@ class AddModal extends Component {
                                 <div className="form-group">
                                     <label>Barangay</label>
                                     <Select
+<<<<<<< HEAD
+=======
+                                        className="form-control"
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
                                         isLoading={loadingTypes.indexOf('GET_BARANGAYS') > -1 }
                                         value={ form_data.get('barangay_code') }
                                         simpleValue

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import Modal from 'app/modules/common/component/Modal';
+=======
+import Modal from 'app/modules/common/component/ModalBootstrap';
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as c from '../constant';

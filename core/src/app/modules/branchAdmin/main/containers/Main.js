@@ -10,9 +10,7 @@ import Dashboard from 'app/modules/branchAdmin/dashboard/container/Dashboard';
 import Members from 'app/modules/branchAdmin/members/container/Members';
 // import Attendance from 'app/modules/branchAdmin/attendance/container/Attendance';
 // import Wallet from 'app/modules/branchAdmin/wallet/container/Wallet';
-
-import 'assets/fonts/typicons.font/typicons.css';
-import 'assets/fonts/ionicons/css/ionicons.min.css';
+import thumbnail from 'assets/images/500x500.png';
 import 'assets/css/superStyle.css';
 
 class Main extends PureComponent {
@@ -38,11 +36,19 @@ class Main extends PureComponent {
       this.setState({
         isOpenDropdown: !this.state.isOpenDropdown
       });
+  };
 
+  signout = e => {
+    e.preventDefault();
+    const { dispatch } = this.props
+    dispatch({
+      type: 'SIGN_OUT',
+    });
   };
 
   render() {
     const { match } = this.props;
+    const profile = JSON.parse(sessionStorage.getItem('profile'))
 
     return (
       <Fragment>
@@ -71,7 +77,7 @@ class Main extends PureComponent {
                     <p className="az-notification-text">You have 2 unread notification</p>
                     <div className="az-notification-list">
                       <div className="media new">
-                        <div className="az-img-user"><img src="https://via.placeholder.com/500x500" onClick={this.handleDropDown} data-toggle="dropdown" alt="" /></div>
+                        <div className="az-img-user"><img src="https://via.placeholder.com/500x500" /></div>
                         <div className="media-body">
                           <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
                           <span>Mar 15 12:32pm</span>
@@ -102,25 +108,24 @@ class Main extends PureComponent {
                     <div className="dropdown-footer"><a href="">View All Notifications</a></div>
                   </div>
                 </div>
-                <div className="dropdown az-profile-menu">
-                  <a href="" className="az-img-user"><img src="https://via.placeholder.com/500x500" alt="" /></a>
+                <div className={`dropdown az-profile-menu ${ this.state.isOpenDropdown && 'show' }`}>
+                  <a to="" className="az-img-user"><img src={_.get(profile,'photo') || thumbnail} alt="" onClick={this.handleDropDown} data-toggle="dropdown"/></a>
                   <div className="dropdown-menu">
                     <div className="az-dropdown-header d-sm-none">
                       <a href="" className="az-header-arrow"><i className="icon ion-md-arrow-back"></i></a>
                     </div>
                     <div className="az-header-profile">
                       <div className="az-img-user">
-                        <img src="https://via.placeholder.com/500x500" alt="" />
+                        <img src={_.get(profile,'photo') || thumbnail} alt="" />
                       </div>
                       <h6>Aziana Pechon</h6>
                       <span>Premium Member</span>
                     </div>
-
                     <a href="" className="dropdown-item"><i className="typcn typcn-user-outline"></i> My Profile</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-edit"></i> Edit Profile</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-time"></i> Activity Logs</a>
                     <a href="" className="dropdown-item"><i className="typcn typcn-cog-outline"></i> Account Settings</a>
-                    <a href="page-signin.html" className="dropdown-item"><i className="typcn typcn-power-outline"></i> Sign Out</a>
+                    <a href="" className="dropdown-item"  onClick={this.signout}><i className="typcn typcn-power-outline"></i> Sign Out</a>
                   </div>
                 </div>
               </div>

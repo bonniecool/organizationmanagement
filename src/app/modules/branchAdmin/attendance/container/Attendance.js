@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+<<<<<<< HEAD
 import PropTypes from 'prop-types';
 import TransactionList from '../component/TransactionList';
 import * as actions from '../actions';
@@ -48,6 +49,29 @@ class Organization extends PureComponent {
       }
     });
   }
+=======
+import TransactionList from '../component/TransactionList';
+import * as c from '../constant';
+
+class Attendance extends PureComponent {
+  
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch({
+			type:c.GET_LIST
+		})
+	}
+
+	handleOnChangeDate = key => (value) => {
+		const { dispatch } = this.props;
+		dispatch({
+			type: c.SET_FORM_DATA,
+			data: {
+				[key]: value,
+			},
+		});
+	}
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
 
   render() {
     const {
@@ -58,8 +82,13 @@ class Organization extends PureComponent {
         <div className="az-content-header" style={{minHeight: '90px'}}>
           <div className="az-content-header-top">
             <div>
+<<<<<<< HEAD
               <h2 className="az-content-title mg-b-5 mg-b-lg-8">Transaction</h2>
               <p className="mg-b-0">Organization transaction history</p>
+=======
+              <h2 className="az-content-title mg-b-5 mg-b-lg-8">Attendance</h2>
+              <p className="mg-b-0">Daily Time Record</p>
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
             </div>
           </div>
         </div>
@@ -81,6 +110,7 @@ class Organization extends PureComponent {
   }
 }
 
+<<<<<<< HEAD
 const mapStateToProps = ({ api }) => ({
   list: _.get(api, `${c.GET_LIST}.list`) || [],
 });
@@ -91,3 +121,14 @@ const enhance = _.flowRight([
 ]);
 
 export default enhance(Organization);
+=======
+const mapStateToProps = (state, routeParams) => {
+	const branchAttendance = state.branchAttendance;
+	return {
+		list : branchAttendance.get('list'),
+		form_data : branchAttendance.get('form_data'),
+	};
+};
+
+export default withRouter(connect(mapStateToProps)(Attendance));
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb

@@ -163,7 +163,11 @@ class Branches extends PureComponent {
             </div>
             <div className="az-dashboard-date">
               <div className="date">
+<<<<<<< HEAD
                 <button className="btn btn-primary btn-lg" onClick={this.handleAddModal}>Create Branch</button>
+=======
+                <button className="btn btn-primary btn-md" onClick={this.onAdd}>Create Branch</button>
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
               </div>
             </div>
           </div>

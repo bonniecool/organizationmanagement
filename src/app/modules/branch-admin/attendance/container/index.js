@@ -25,7 +25,10 @@ class Dashboard extends Component {
 		});
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
 	render() {
 		const { list, form_data } = this.props;
 

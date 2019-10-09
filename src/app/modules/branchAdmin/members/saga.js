@@ -5,7 +5,11 @@ import * as c from './constant';
 function* list() {
 	yield put(loading('GET_BRANCH'));
 
+<<<<<<< HEAD
 	const response = yield call(services.get(`mng/brc/top_attendees`))
+=======
+	const response = yield call(services.get(`mng/brc/member`))
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
 
 	yield put(loading(null));
 

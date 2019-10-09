@@ -5,7 +5,7 @@ import SignIn from 'app/modules/auth/container/SignIn';
 import SignUp from 'app/modules/auth/container/SignUp';
 import Home from 'app/modules/auth/container/Home';
 import _ from 'lodash';
-import 'assets/css/style.css';
+// import 'assets/css/style.css';
 
 class Main extends PureComponent {
   render() {

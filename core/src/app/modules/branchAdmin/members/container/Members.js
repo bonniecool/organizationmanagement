@@ -8,9 +8,13 @@ import _ from 'lodash';
 import Info from '../component/Info';
 import * as c from '../constant';
 import thumbnail from 'assets/images/500x500.png';
+import { AsyncComponent } from 'app/Utils';
+import moment from 'moment-timezone';
+const AddModal = AsyncComponent(() => import ('./AddModal'));
+const EditModal = AsyncComponent(() => import ('./EditModal'));
+const GenerateIDModal = AsyncComponent(() => import ('./GenerateIDModal'));
 
 class Members extends PureComponent {
-  
 
 	componentWillMount() {
 		const { dispatch } = this.props;
@@ -130,7 +134,8 @@ class Members extends PureComponent {
     const {
       list,
       details
-    } = this.props;
+		} = this.props;
+
     return (
       <Fragment>
         <div className="az-content-header" style={{minHeight: '90px'}}>
@@ -141,7 +146,7 @@ class Members extends PureComponent {
             </div>
             <div className="az-dashboard-date">
               <div className="date">
-                <button className="btn btn-primary btn-lg">Add Members</button>
+                <button className="btn btn-primary btn-lg" onClick={this.onAdd}>Add Members</button>
               </div>
             </div>
           </div>
@@ -159,18 +164,18 @@ class Members extends PureComponent {
                 </span>
               </div>
             </div>
-          </div>
-            <div id="azContactList" className="az-contacts-list pre-scrollable">
+					</div>
+					<div id="azContactList" className="az-contacts-list pre-scrollable">
             {
               list.map( (item, key) => {
                 return(
-                  <div key={`member-${key}`} className={`az-contact-item ${_.get(item,'id') === _.get(organizationDetails,'id') && 'selected'}`} onClick={this.handleSelectRow(item)}>
-                    <div className="az-img-user online"><img src={ _.get(item,'photo')|| thumbnail } alt="" /></div>
+                  <div key={`branch-${key}`} className={`az-contact-item ${item.get('uuid') === details.get('uuid') && 'selected'}`} onClick={this.handleSelectRow(item)}>
+                    <div className={`az-img-user ${item.get('has_logged') && 'online'}`}><img src={ item.get('photo')|| thumbnail } alt="" /></div>
                     <div className={`az-contact-body `}>
-                      <h6 className="text-capitalize">{_.get(item, 'name')}</h6>
-                      <span className="phone">{_.get(item, 'mobile_number')}</span>
+                      <h6 className="text-capitalize">{item.get( 'name')}</h6>
+                      <span className="phone">{item.get( 'mobile_number')}</span>
                     </div>
-                    <a href="" className={`az-contact-star ${_.get(item,'id') === _.get(organizationDetails,'id') && 'active'}`}><i className="typcn typcn-star"></i></a>
+                    <a href="" className={`az-contact-star ${item.get('uuid') === details.get('uuid') && 'active'}`}><i className="typcn typcn-star"></i></a>
                   </div>
                 )
               })
@@ -180,7 +185,6 @@ class Members extends PureComponent {
           <Info 
             data={details}
           />
-
         </div>
       </div>
       </Fragment>

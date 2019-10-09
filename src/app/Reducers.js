@@ -14,7 +14,11 @@ import organizationWallet from 'app/modules/organizationAdmin/wallet/reducer';
 import branchDashboard from 'app/modules/branchAdmin/dashboard/reducer';
 import branchMembers from 'app/modules/branchAdmin/members/reducer';
 import branchAttendance from 'app/modules/branchAdmin/attendance/reducer';
+<<<<<<< HEAD
 // import branchReminders from 'app/modules/branchAdmin/reminders/reducer';
+=======
+import branchReminders from 'app/modules/branchAdmin/reminders/reducer';
+>>>>>>> 09eb3b6a8b8895fc43f0167ad287a5ee56d72ecb
 import branchQRCode from 'app/modules/branchAdmin/qr-code/reducer';
 
 
