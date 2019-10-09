@@ -1,0 +1,28 @@
+.table-custom {
+  & > .table-row-header {
+    height: auto !important;
+    vertical-align: middle;
+    & > .table-custom-head {
+      margin: 0;
+    }
+    & > .table-custom-head > span {
+      vertical-align: middle;
+    }
+  }
+  .ReactVirtualized__Table__headerColumn {
+    padding: 10px;
+    &:first-child {
+      padding: 10px 10px 10px 18px;
+    }
+  }
+  .ReactVirtualized__Table__row {
+    border: none;
+    & > .ReactVirtualized__Table__rowColumn {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+  .ReactVirtualized__Table__row.active {
+    border: none;
+  }
+}

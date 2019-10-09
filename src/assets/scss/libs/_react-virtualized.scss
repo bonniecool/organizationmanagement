@@ -1,0 +1,60 @@
+// .ReactVirtualized__Table__headerRow {
+// }
+
+@import "../themes/nbi-color";
+
+.ReactVirtualized__Table__Grid:focus,
+.ReactVirtualized__Table__row:focus {
+  outline: none;
+}
+.ReactVirtualized__Table__row {
+  padding: 4px 8px !important;
+  transition: 500ms all ease;
+  border-bottom: 1px solid rgba($black, 0.1);
+}
+// .ReactVirtualized__Table__row a {
+// }
+.ReactVirtualized__Table__row.active h3,
+.ReactVirtualized__Table__row.active small {
+  color: $white;
+  font-weight: 600;
+}
+.ReactVirtualized__Table__row.active a h3 {
+  color: $white;
+}
+.ReactVirtualized__Table__row.table-row-odd {
+  transition: 500ms all ease;
+}
+.ReactVirtualized__Table__row.active {
+  background: $blue-600;
+  color: $white;
+  position: relative;
+}
+
+.ReactVirtualized__Table__row:hover {
+  cursor: pointer;
+}
+
+.ReactModal__Overlay {
+  z-index: 1050;
+}
+.ReactVirtualized__Table__rowColumn {
+  white-space: normal !important;
+  margin: 0 !important;
+}
+.react-virtualized-scroll {
+  overflow: auto !important;
+  height: 80px;
+}
+
+.ReactVirtualized__Table__headerColumn {
+  background: $blue-050;
+  color: $blue-500;
+  margin: 0 !important;
+  padding: 10px 4px;
+  .ReactVirtualized__Table__headerTruncatedText {
+    font-size: 14px;
+    text-transform: capitalize;
+    line-height: 14px;
+  }
+}

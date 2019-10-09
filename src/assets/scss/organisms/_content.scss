@@ -1,0 +1,16 @@
+.content-inner {
+  padding: 50px 0 30px 250px;
+  height: 100vh;
+  overflow-y: auto;
+
+  &.active {
+    padding: 50px 0 30px 50px;
+  }
+}
+
+.page-content {
+  &.listing {
+  }
+  &.full {
+  }
+}

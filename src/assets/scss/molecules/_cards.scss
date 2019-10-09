@@ -1,0 +1,68 @@
+.card-fullwidth {
+  border-radius: 4px;
+  box-shadow: none;
+  border: 0;
+  height: 90vh;
+  position: sticky;
+  background: $white;
+  top: 0;
+
+  & > .card-fullwidth-header {
+    padding: 13px 8px;
+    background: $warm-grey-050;
+    height: 54px;
+  }
+}
+
+.card-details {
+  border-radius: 4px;
+  box-shadow: none;
+  border: 0;
+  height: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  .card-info {
+    background: $white;
+    height: 100%;
+  }
+  & > .card-details-header {
+    padding: 13px 8px;
+    background: $warm-grey-050;
+    height: 54px;
+  }
+}
+
+.card-borderless {
+  border: 0;
+  border-radius: 0;
+}
+
+.card-height {
+  height: 473px;
+}
+
+.card-height-min {
+  min-height: 520px;
+}
+
+.card-list {
+  border-radius: 4px;
+  box-shadow: none;
+  border: 0;
+  height: 90vh;
+  position: sticky;
+  top: 0;
+
+  & > .card-list-header {
+    padding: 8px;
+    background: $warm-grey-050;
+    min-height: 54px;
+    border-bottom: 1px solid $warm-grey-100;
+  }
+}
+
+.card-payroll {
+  border: 1px solid rgba($black, 0.05);
+  border-radius: 4px 4px 0 0;
+  box-shadow: none;
+}

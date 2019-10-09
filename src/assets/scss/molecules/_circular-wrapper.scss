@@ -1,0 +1,46 @@
+.circularIcon-wrapper {
+}
+
+.circularIcon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  min-width: 40px;
+  max-width: 40px;
+  border-radius: 50%;
+}
+
+.circularIcon-wrapper-big {
+  // position: absolute;
+  // margin-top: -20px;
+  font-size: 30px;
+  position: absolute;
+  margin-left: 10px;
+  z-index: 3;
+}
+
+.circularIcon-big {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  min-width: 80px;
+  max-width: 80px;
+  border-radius: 50%;
+  color: #fff !important;
+}
+
+.numberItem {
+  .count {
+    font-size: 2em;
+    font-weight: 600;
+    color: $blue-600;
+  }
+}
+
+.titleItem {
+  font-size: 1em;
+  font-weight: 300;
+  color: $black;
+}

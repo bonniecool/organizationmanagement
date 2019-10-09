@@ -1,0 +1,20 @@
+.page-header {
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+  padding: 16px 0;
+
+  &.with-submenu {
+    padding: 16px 0 0;
+  }
+
+  & > .title-header {
+    font-family: $font-family-sans-2;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 20px;
+    line-height: 38px;
+    margin: 0;
+    color: $color-primary-darken;
+  }
+}

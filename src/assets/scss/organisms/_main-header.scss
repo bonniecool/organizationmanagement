@@ -1,0 +1,21 @@
+.main-header {
+  background: linear-gradient(
+    90deg,
+    rgba($blue-050, 1) 0%,
+    rgba($blue-900, 1) 100%
+  );
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 777;
+  width: 100%;
+  padding-left: 50px;
+  & > .navbar {
+    padding: 0 24px !important;
+    background: $blue-500;
+    height: 50px;
+    display: block;
+    border-bottom: 1px solid $blue-600;
+    box-shadow: 0 4px 8px 0 rgba($blue-600, 0.05);
+  }
+}

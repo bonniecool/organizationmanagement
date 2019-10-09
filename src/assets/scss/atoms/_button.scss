@@ -1,0 +1,641 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  justify-content: center;
+  user-select: none;
+  height: 38px;
+  padding: 0 18px;
+  transition: all 0.1s ease-in-out 0s;
+  font-size: 0.875rem;
+  font-weight: 400;
+  position: relative;
+  /*Basic Appearence*/
+  background: $warm-grey-050;
+  border: 1px solid $warm-grey-100;
+  box-shadow: 0 1px 1px 0 rgba($black, 0.05), inset 0 2px 0 0 rgba($black, 0.05);
+  color: $warm-grey-700;
+  border-radius: 4px;
+  font-family: $font-family-sans-2;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    border: 1px solid #eee;
+    box-shadow: none;
+    transform: translateY(0px);
+  }
+  &:hover {
+    background: $warm-grey-100;
+    border: 1px solid $warm-grey-200;
+    box-shadow: 0 1px 2px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.05);
+  }
+  &:focus {
+    background: $warm-grey-050;
+    border: 1px solid $warm-grey-200;
+    box-shadow: 0 0 1px 0 rgba($black, 0.1), inset 0 2px 0 0 rgba($black, 0.05);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: #747578;
+    border: 1px solid #696a6e;
+    box-shadow: inset 0 2px 0 0 rgba($black, 0.06);
+    border-radius: 4px;
+    color: #ddd;
+    &.with-icon {
+      opacity: 0.3;
+    }
+  }
+
+  &.btn-no-border {
+    border: none !important;
+    background: white;
+    box-shadow: none;
+    &:hover {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.13);
+    }
+    &:focus {
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &.btn-icon {
+    .icon {
+      width: 24px;
+      height: 24px;
+      fill: $color-primary;
+    }
+  }
+
+  &.btn-transparent {
+    background: transparent;
+    border: 1px solid $warm-grey-100;
+    box-shadow: none;
+    &:hover {
+      border: 1px solid $warm-grey-200;
+    }
+    &:focus {
+      border: 1px solid $warm-grey-300;
+    }
+  }
+
+  .btn-dark {
+    color: $white;
+    background: $warm-grey-700;
+    border: 1px solid $warm-grey-800;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      background: $warm-grey-800;
+      border: 1px solid $warm-grey-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+
+    &:focus {
+      background: $warm-grey-600;
+      border: 1px solid $warm-grey-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.1);
+      }
+    }
+  }
+
+  &.btn-primary {
+    color: $white;
+    background: $blue-700;
+    border: 1px solid $blue-800;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      background: $blue-800;
+      border: 1px solid $blue-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      background: $blue-600;
+      border: 1px solid $blue-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-outline-primary {
+    color: $blue-800;
+    background: transparent;
+    border: 1px solid $blue-800;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $blue-800;
+      }
+    }
+    &:hover {
+      color: $white;
+      background: $blue-800;
+      border: 1px solid $blue-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      color: $white;
+      background: $blue-600;
+      border: 1px solid $blue-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-secondary {
+    color: $white;
+    background: $yellow-vivid-700;
+    border: 1px solid $yellow-vivid-800;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      background: $yellow-vivid-800;
+      border: 1px solid $yellow-vivid-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      background: $yellow-vivid-600;
+      border: 1px solid $yellow-vivid-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-outline-secondary {
+    color: $yellow-vivid-800;
+    background: transparent;
+    border: 1px solid $yellow-vivid-800;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $yellow-vivid-800;
+      }
+    }
+    &:hover {
+      color: $white;
+      background: $yellow-vivid-800;
+      border: 1px solid $yellow-vivid-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      color: $white;
+      background: $yellow-vivid-600;
+      border: 1px solid $yellow-vivid-800;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-warning {
+    color: $white;
+    background: $warning-100;
+    border: 1px solid $warning-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      background: $warning-200;
+      border: 1px solid $warning-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      background: lighten($warning-100, 10%);
+      border: 1px solid $warning-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-warning-warning {
+    color: $warning-200;
+    background: transparent;
+    border: 1px solid $warning-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $warning-200;
+      }
+    }
+    &:hover {
+      color: $white;
+      background: $warning-200;
+      border: 1px solid $warning-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      background: lighten($warning-100, 10%);
+      border: 1px solid $warning-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-success {
+    color: $white;
+    background: $success-100;
+    border: 1px solid $success-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      background: $success-200;
+      border: 1px solid $success-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      background: lighten($success-100, 10%);
+      border: 1px solid $success-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-outline-success {
+    color: $success-200;
+    background: transparent;
+    border: 1px solid $success-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $success-200;
+      }
+    }
+    &:hover {
+      color: $white;
+      background: $success-200;
+      border: 1px solid $success-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      background: lighten($success-100, 10%);
+      border: 1px solid $success-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-info {
+    color: $white;
+    background: $info-100;
+    border: 1px solid $info-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      background: $info-200;
+      border: 1px solid $info-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      background: lighten($info-100, 10%);
+      border: 1px solid $info-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-outline-info {
+    color: $info-200;
+    background: transparent;
+    border: 1px solid $info-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      color: $white;
+      background: $info-200;
+      border: 1px solid $info-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      color: $white;
+      background: lighten($info-100, 10%);
+      border: 1px solid $info-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-danger {
+    color: $white;
+    background: $danger-100;
+    border: 1px solid $danger-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $white;
+      }
+    }
+    &:hover {
+      color: $white;
+      background: $danger-200;
+      border: 1px solid $danger-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      color: $white;
+      background: lighten($danger-100, 10%);
+      border: 1px solid $danger-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-outline-danger {
+    color: $danger-200;
+    background: transparent;
+    border: 1px solid $danger-200;
+    box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+      inset 0 2px 0 0 rgba($black, 0.06);
+    &.btn-icon {
+      .icon {
+        fill: $danger-200;
+      }
+    }
+    &:hover {
+      color: $white;
+      background: $danger-200;
+      border: 1px solid $danger-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.18),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+    &:focus {
+      color: $white;
+      background: lighten($danger-100, 10%);
+      border: 1px solid $danger-200;
+      box-shadow: 0 1px 1px 0 rgba($black, 0.1),
+        inset 0 2px 0 0 rgba($black, 0.06);
+      &.btn-icon {
+        .icon {
+          fill: $white;
+        }
+      }
+      &.no-border {
+        box-shadow: 0 1px 1px 0 rgba($black, 0.18);
+      }
+    }
+  }
+
+  &.btn-sm {
+    height: 28px;
+    padding: 0 15px;
+    font-size: 12px;
+    &.btn-icon {
+      .icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 2px;
+      }
+    }
+  }
+  &.btn-lg {
+    height: 48px;
+    padding: 0 40px;
+    font-size: 16px;
+    &.btn-icon {
+      .icon {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  &.btn-clear {
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #9ea0a5;
+    x &:hover {
+      color: #6b6c6f;
+    }
+  }
+
+  &.btn-link {
+    border-radius: 0;
+    text-decoration: none;
+    display: block;
+  }
+
+  &.btn-link-icon {
+    color: $color-secondary;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    font-size: 14px;
+    transition: inherit;
+    .icon {
+      width: 24px;
+      height: 24px;
+      fill: $color-secondary;
+    }
+  }
+
+  &.btn-logout {
+    padding: 16px;
+    transition: inherit;
+    color: $color-important;
+    .icon {
+      fill: $color-important;
+    }
+  }
+}

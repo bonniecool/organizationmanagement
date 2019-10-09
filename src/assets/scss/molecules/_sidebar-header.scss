@@ -1,0 +1,27 @@
+.sidebar-header {
+  height: 50px;
+  padding: 10px 0 10px 24px;
+  background: $blue-500;
+  border-bottom: 1px solid $blue-500;
+  box-shadow: 0 4px 8px 0 rgba($blue-500, 0.05);
+  display: flex;
+  .brand-logo {
+    height: 30px;
+    width: auto;
+  }
+  .brand-menu {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+  }
+}
+
+.sidebar-navigation.shrinked {
+  .sidebar-header {
+    height: 50px;
+    padding: 5px 0 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+}
