@@ -1,0 +1,96 @@
+.profile-short-intro {
+  background: rgba($gray-chateau, 0.1);
+  transition: 300ms all ease;
+  &.small {
+    padding: 8px;
+  }
+  & .action {
+    vertical-align: middle;
+    line-height: 48px;
+  }
+  & > .hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+  & > .show {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: sticky;
+    top: 30px;
+    z-index: 400;
+  }
+  .dropdown-item {
+    line-height: 1.5;
+  }
+}
+
+.profile-header {
+  border-radius: 4px 4px 0 0;
+  background: lighten($gray-chateau, 50%);
+  z-index: 501;
+}
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  margin-right: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.profile-short-details {
+  display: inline-block;
+  vertical-align: middle;
+  &.small {
+    padding: 0;
+    & > .name {
+      font-size: 16px;
+      display: inline-block;
+      line-height: 48px;
+      vertical-align: middle;
+      margin: 0;
+    }
+    & > .status {
+      display: inline-block;
+      margin: 8px 16px;
+      .badge {
+        padding: 8px;
+      }
+    }
+  }
+  & > .name {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: $font-family-sans-2;
+    line-height: 32px;
+    color: $color-primary;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  & > .position,
+  & > .service {
+    font-size: 16px;
+    font-weight: 400;
+    color: $gray-chateau;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .status {
+    margin: 0;
+    .badge {
+      padding: 4px 8px;
+      margin: 0;
+    }
+  }
+}
+
+.employee-menu {
+  background: lighten($color-primary-lighten, 20%);
+  border-bottom: 1px solid rgba($color-primary, 0.3);
+  height: 40px;
+}
+
+.employee-content {
+  padding-bottom: 50px;
+}

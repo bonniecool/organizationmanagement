@@ -1,0 +1,38 @@
+.action-link {
+  border-radius: 0;
+  text-decoration: none;
+  display: block;
+  appearance: none;
+  border: none;
+  width: 100%;
+  padding: 4px 24px;
+  transition: all 0.1s ease-in-out 0s;
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
+  font-family: $font-family-sans-2;
+
+  &.with-icon {
+    color: $gray-chateau;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    font-size: 14px;
+    transition: inherit;
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      fill: $color-secondary;
+    }
+  }
+  &.logout {
+    transition: inherit;
+    color: $color-important;
+    .icon {
+      fill: $color-important;
+    }
+  }
+}

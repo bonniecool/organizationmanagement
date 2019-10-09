@@ -1,0 +1,62 @@
+.ReactModal__Overlay {
+	/*-webkit-perspective: 600;
+  perspective: 600;*/
+	opacity: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgba($warm-grey-900, 1) !important;
+	z-index: 10002;
+}
+
+.ReactModal__Overlay--after-open {
+	opacity: 1;
+	z-index: 5555;
+	/*transition: opacity 150ms ease-out;*/
+}
+
+.ReactModal__Content {
+	/*-webkit-transform: scale(0.5) rotateX(-30deg);*/
+	/*transform: scale(0.5) rotateX(-30deg);*/
+}
+
+.ReactModal__Content--after-open {
+	/*-webkit-transform: scale(1) rotateX(0deg);*/
+	/*transform: scale(1) rotateX(0deg);*/
+	/*transition: all 150ms ease-in;*/
+}
+
+.ReactModal__Overlay--before-close {
+	/*opacity: 0;*/
+}
+
+.ReactModal__Content--before-close {
+	/* -webkit-transform: scale(0.5) rotateX(30deg);
+  transform: scale(0.5) rotateX(30deg);
+  transition: all 150ms ease-in;*/
+}
+.ReactModal__Content.modal-dialog:focus,
+.ReactModal__Content.modal-dialog:active,
+.ReactModal__Content.modal-dialog:visited {
+	outline: none;
+}
+.ReactModal__Content.modal-dialog {
+	border: none;
+	background-color: transparent;
+}
+.modal-body .inner-form-wrapper {
+	padding: 0;
+	background: transparent;
+}
+.modal-title {
+	font-weight: 500;
+}
+
+.modal-header {
+	background: $blue-900;
+	color: $white;
+	.close {
+		opacity: 1;
+		color: $white;
+		text-shadow: none;
+	}
+}

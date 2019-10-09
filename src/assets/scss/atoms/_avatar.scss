@@ -1,0 +1,36 @@
+.avatar {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  object-fit: cover;
+  position: relative;
+  &.-large {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+  }
+  &.-border {
+    border: 2px solid $white;
+  }
+
+  & > .initial {
+    line-height: inherit;
+    text-align: center;
+    width: inherit;
+  }
+  & > .photo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+  }
+}
+
+.employee-photo,
+.other-photo {
+  width: 150px;
+  height: 150px;
+}

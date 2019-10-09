@@ -1,0 +1,61 @@
+.list-group-item{
+    color: $primary-color;
+    padding: 5px 10px;
+    text-shadow: 0 1px 1px rgba(255,255,255,.2);
+}
+.list-group-item.active{
+    background-color: #fd871f;
+    border-color: #fd871f;
+    position: relative;
+}
+.list-group-item.active .btn{
+    background-color: $lightest-color;
+    color: $btn-warning-color;
+}
+.list-group-item.active:after {
+    right: -7px;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 10px;
+    margin-top: -10px;
+}
+.list-group-item:first-child{
+    border-top-right-radius: 0;
+}
+.list-group-item:last-child{
+    border-bottom-right-radius: 0;
+}
+// REQUIREMENTS
+ .reqs-wrapper{
+    position: relative;
+    overflow: hidden;
+}
+.reqs-title{
+    position: absolute;
+    width: 100%;
+    // background: rgba(0,0,0,.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,.4);
+    color: #fff;
+    top: 0;
+    padding: 10px 10px 20px 10px;
+    font-size: 11px;
+    background: rgba(0,0,0,0.9);
+background: -moz-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.9)), color-stop(100%, rgba(0,0,0,0)));
+background: -webkit-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+background: -o-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+background: -ms-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+}
+.border-orange{
+    border: 5px solid #fd871f;    
+    @include border-radius($radius-md);
+}

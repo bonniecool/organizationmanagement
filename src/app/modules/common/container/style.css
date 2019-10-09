@@ -1,0 +1,32 @@
+
+.closeButton___3BdAF,
+.ril__closeButton{
+	display: none;
+}
+
+.lightbox-rotate-left{	
+    position: absolute;
+    z-index: 9999;
+    top: 10px;
+    right: 145px;
+    color: rgba(255, 255, 255, 0.6);
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+
+.lightbox-rotate-right{
+    position: absolute;
+    z-index: 9999;
+    top: 10px;
+    right: 105px;
+    color: rgba(255, 255, 255, 0.6);
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+
+.lightbox-rotate-left :hover,
+.lightbox-rotate-right :hover{
+	color: rgba(255, 255, 255, 0.9);
+}

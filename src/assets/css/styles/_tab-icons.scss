@@ -1,0 +1,11 @@
+.tab-icons img{
+  width: 50px;
+}
+.tab-icons .nav-link{
+  background-color: $btn-secondary-color;
+
+}
+.tab-icons .nav-link.active:focus,
+.tab-icons .nav-link.active:hover{
+  color: $lightest-color;
+}

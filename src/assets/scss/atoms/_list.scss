@@ -1,0 +1,57 @@
+.list-header {
+  color: $color-primary;
+  padding: 8px;
+  border-bottom: 1px solid $color-primary;
+}
+
+.list-height {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.list-box,
+.card {
+  border: 1px solid #fff;
+  box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.07),
+    0 2px 9px 0 rgba(62, 57, 107, 0.06);
+}
+.list-box a {
+  text-decoration: none !important;
+  display: block;
+  margin-bottom: 0;
+}
+
+.list-box .badge {
+  font-size: 0.7em;
+  padding: 5px 10px;
+  line-height: 1;
+  margin-left: 10px;
+}
+.list-box .item:nth-of-type(even) {
+  background: #fafafa;
+}
+
+.list-box .item .image {
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.list-box .item img {
+  border: 1px solid #ecf0f1;
+  background: #fdfdfd;
+}
+
+.list-box .item h3 {
+  color: $warm-grey-800;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.list-box .item a h3 {
+  color: $link-color;
+}
+.list-box .item small {
+  color: $warm-grey-700;
+  font-size: 12px;
+}

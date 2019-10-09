@@ -1,0 +1,291 @@
+.employee-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 100px;
+  }
+  .total-block {
+    flex: 0 0 26px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.medical-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 54px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.training-list,
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  .card-fullwidth-header {
+    flex: 0 0 64px;
+  }
+  .card-list-header {
+    flex: 0 0 55px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.request-list,
+.plantilla-list,
+.leave-list,
+.form-list,
+.user-list,
+.data-list,
+.position-list,
+.attendees-list,
+.recruitment-list,
+.requirement-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 54px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.dtr-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 107px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.applicant-list {
+  display: flex;
+  flex-direction: column;
+  .add-button {
+    flex: 0 0 54px;
+  }
+  .filter-option {
+    flex: 0 0 135px;
+  }
+  .total-block {
+    flex: 0 0 26px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.selected-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 151px;
+  }
+
+  .total-block {
+    flex: 0 0 26px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.interview-list {
+  display: flex;
+  flex-direction: column;
+  .card-header {
+    flex: 0 0 77px;
+  }
+
+  .total-block {
+    flex: 0 0 26px;
+  }
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.organization-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 55px;
+  }
+
+  .card-header {
+    flex: 0 0 55px;
+  }
+
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.role-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 55px;
+  }
+
+  .card-header {
+    flex: 0 0 55px;
+  }
+
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+}
+
+.salary-list {
+  display: flex;
+  flex-direction: column;
+  .list {
+    flex: 1;
+    min-height: 350px;
+  }
+}
+
+.audit-list {
+  display: flex;
+  flex-direction: column;
+  .list {
+    flex: 1;
+    min-height: 600px;
+  }
+}
+
+.job-list {
+  display: flex;
+  flex-direction: column;
+  .add-button {
+    flex: 0 0 45px;
+  }
+  .card-header {
+    flex: 0 0 109px;
+  }
+  .total-block {
+    flex: 0 0 26px;
+  }
+  .list {
+    flex: 1;
+    min-height: 400px;
+  }
+  .card-paginate {
+    flex: 0 0 44px;
+  }
+}
+
+.payroll-list {
+  display: flex;
+  flex-direction: column;
+  .card-list-header {
+    flex: 0 0 188px;
+  }
+  .list {
+    flex: 1;
+    min-height: 300px;
+    & > .ReactVirtualized__Table {
+      height: 100%;
+      overflow-y: scroll;
+    }
+  }
+
+  .card-footer {
+    flex: 0 0 145px;
+  }
+}
+
+.questionnaire-list {
+  .card-fullwidth-header {
+    flex: 0 0 93px;
+  }
+  .card-body {
+    flex: 1;
+    min-height: 400px;
+  }
+}
+
+.card-employee,
+.card-request,
+.card-plantilla,
+.card-leave,
+.card-dtr,
+.card-applicant,
+.card-interview,
+.card-job,
+.card-training,
+.card-announcement,
+.card-organization,
+.card-form,
+.card-user,
+.card-role,
+.card-position,
+.card-payroll,
+.card-recruitment,
+.card-medical {
+  background: $blue-600;
+  .card-info {
+    width: calc(100% - 8px);
+    margin: 4px;
+    border-radius: 4px;
+    position: relative;
+  }
+}
+
+.card-header {
+  &.header-details {
+    background: $blue-600;
+    p {
+      color: $white;
+    }
+  }
+}

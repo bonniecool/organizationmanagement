@@ -1,0 +1,141 @@
+.bg-red {
+  background: #ff7676 !important;
+  color: #fff;
+}
+
+.bg-red:hover {
+  color: #fff;
+}
+
+.bg-blue {
+  background: #85b4f2 !important;
+  color: #fff;
+}
+
+.bg-blue:hover {
+  color: #fff;
+}
+
+.bg-yellow {
+  background: #eef157 !important;
+  color: #fff;
+}
+
+.bg-yellow:hover {
+  color: #fff;
+}
+
+.bg-green {
+  background: #54e69d !important;
+  color: #fff;
+}
+
+.bg-green:hover {
+  color: #fff;
+}
+
+.bg-orange {
+  background: #ffc36d !important;
+  color: #fff;
+}
+
+.bg-orange:hover {
+  color: #fff;
+}
+
+.bg-violet {
+  background: $primary-color !important;
+  color: #fff;
+}
+
+.bg-violet:hover {
+  color: #fff;
+}
+
+.bg-gray {
+  background: #eceeef !important;
+}
+
+.bg-white {
+  background: #fff !important;
+}
+
+.text-red {
+  color: #ff7676;
+}
+
+.text-red:hover {
+  color: #ff7676;
+}
+
+.text-yellow {
+  color: #eef157;
+}
+
+.text-yellow:hover {
+  color: #eef157;
+}
+
+.text-green {
+  color: #54e69d;
+}
+
+.text-green:hover {
+  color: #54e69d;
+}
+
+.text-orange {
+  color: #ffc36d;
+}
+
+.text-orange:hover {
+  color: #ffc36d;
+}
+
+.text-violet {
+  color: $primary-color;
+}
+
+.text-violet:hover {
+  color: $primary-color;
+}
+
+.text-blue {
+  color: #85b4f2;
+}
+
+.text-blue:hover {
+  color: #85b4f2;
+}
+
+.text-gray {
+  color: #eceeef;
+}
+
+.text-gray:hover {
+  color: #eceeef;
+}
+
+.page {
+  background: $light-color;
+}
+
+.page .text-white {
+  color: #fff;
+}
+
+.page {
+  overflow-x: hidden;
+}
+
+.has-shadow {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.badge {
+  font-weight: 400;
+}
+
+.badge-rounded {
+  border-radius: 50px;
+}

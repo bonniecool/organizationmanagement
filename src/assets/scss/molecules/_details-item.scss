@@ -1,0 +1,22 @@
+.details-item {
+  margin-bottom: 16px;
+  & > .title {
+    font-weight: 400;
+    color: $warm-grey-700;
+    font-size: 12px;
+    font-family: $font-family-sans-2;
+    margin-bottom: 0;
+    margin-top: 0;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+  .answer {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: $warm-grey-900;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: $font-family-sans-2;
+  }
+}

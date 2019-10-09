@@ -1,0 +1,28 @@
+.action-list {
+  margin: 0;
+  & > .action-info {
+    padding: 8px 16px;
+    background: rgba($gray-chateau, 0.1);
+    cursor: default;
+  }
+  & > .action-item {
+    border-bottom: 1px solid rgba($gray-chateau, 0.1);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover {
+      background: rgba($color-secondary, 0.05);
+      .action-link {
+        color: $color-secondary;
+      }
+    }
+
+    &.action-logout {
+      transition: inherit;
+      &:hover {
+        background: rgba($color-important, 0.05);
+      }
+    }
+  }
+}
