@@ -10,7 +10,7 @@
     "accounting-js": "^1.1.1",
     "axios": "^0.16.2",
     "bootstrap": "^4.2.1",
-    "chart.js": "^2.7.0",
+    "chart.js": "^2.9.4",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",
