@@ -35,7 +35,7 @@
     "moment": "^2.17.1",
     "mysql": "^2.13.0",
     "node-cron": "^1.2.1",
-    "nodemailer": "^2.3.0",
+    "nodemailer": "^6.4.16",
     "numeral": "^1.5.3",
     "promise": "^7.3.1",
     "request": "^2.88.0",
